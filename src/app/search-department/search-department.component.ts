@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+
+import {HospitalService} from '../service/hosptial.service';
 
 @Component({
     selector: 'app-search-department',
@@ -8,10 +10,15 @@ import {Router} from "@angular/router";
 })
 export class SearchDepartmentComponent implements OnInit {
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private hospitalService: HospitalService) {
     }
 
     ngOnInit() {
+        this.hospitalService.fetchDepartmentList()
+            .subscribe(result => {
+                console.log(result);
+            });
     }
 
     onSelected(id: number): void {

@@ -1,5 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+
+import {HospitalService} from './service/hosptial.service';
 
 import {AppComponent} from './app.component';
 import {AppRouterModule} from './router/router.module';
@@ -13,6 +16,8 @@ import {DetailsDoctorComponent} from './details-doctor/details-doctor.component'
 import {DetailsAppointmentComponent} from './details-appointment/details-appointment.component';
 import {AppointmentInitComponent} from './appointment-init/appointment-init.component';
 import {AppointmentCheckComponent} from './appointment-check/appointment-check.component';
+
+
 
 @NgModule({
     declarations: [
@@ -30,9 +35,12 @@ import {AppointmentCheckComponent} from './appointment-check/appointment-check.c
     ],
     imports: [
         BrowserModule,
-        AppRouterModule
+        AppRouterModule,
+        HttpClientModule
     ],
-    providers: [],
+    providers: [
+        HospitalService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
