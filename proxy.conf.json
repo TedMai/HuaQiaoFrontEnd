@@ -1,5 +1,5 @@
 {
-  "/": {
+  "/backbone": {
     "target": "http://106.14.154.220:3000",
     "secure": false
   }

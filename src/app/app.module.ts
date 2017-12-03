@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 
 import {HospitalService} from './service/hosptial.service';
+import {UrlService} from './service/url.service';
 
 import {AppComponent} from './app.component';
 import {AppRouterModule} from './router/router.module';
@@ -16,7 +17,6 @@ import {DetailsDoctorComponent} from './details-doctor/details-doctor.component'
 import {DetailsAppointmentComponent} from './details-appointment/details-appointment.component';
 import {AppointmentInitComponent} from './appointment-init/appointment-init.component';
 import {AppointmentCheckComponent} from './appointment-check/appointment-check.component';
-
 
 
 @NgModule({
@@ -39,7 +39,8 @@ import {AppointmentCheckComponent} from './appointment-check/appointment-check.c
         HttpClientModule
     ],
     providers: [
-        HospitalService
+        HospitalService,
+        UrlService
     ],
     bootstrap: [AppComponent]
 })

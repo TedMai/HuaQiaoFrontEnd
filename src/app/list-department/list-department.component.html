@@ -1,3 +1,9 @@
-<p>
-  list-department works!
-</p>
+<div>
+    <ul class="department">
+        <li *ngFor="let department of departments">
+            <div (click)="onClick(department.did)">
+                <span class="badge">{{department.did}}</span> {{department.name}}
+            </div>
+        </li>
+    </ul>
+</div>

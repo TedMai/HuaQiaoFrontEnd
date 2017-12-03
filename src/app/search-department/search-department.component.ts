@@ -10,15 +10,11 @@ import {HospitalService} from '../service/hosptial.service';
 })
 export class SearchDepartmentComponent implements OnInit {
 
-    constructor(private router: Router,
-                private hospitalService: HospitalService) {
+    constructor(private router: Router) {
     }
 
     ngOnInit() {
-        this.hospitalService.fetchDepartmentList()
-            .subscribe(result => {
-                console.log(result);
-            });
+
     }
 
     onSelected(id: number): void {
