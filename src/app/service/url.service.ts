@@ -4,19 +4,15 @@ const API = '/backbone';
 const PREFIX = PROTOCOL + HOST + API;
 
 export class UrlService {
-    // public __FETCH_DEPARTMENT_LIST__: string;
-    // public __QUERY_SPECIFIC_DEPARTMENT__: string;
-    //
-    // constructor() {
-    //     this.__FETCH_DEPARTMENT_LIST__ = PREFIX + '/table/department';
-    //     this.__QUERY_SPECIFIC_DEPARTMENT__ = PREFIX + '/table/department';
-    // }
-
-    FetchDepartmentList(): string {
-        return PREFIX + '/table/department';
+    static FetchTableList(name: string): string {
+        return PREFIX + '/table/' + name;
     }
 
-    QuerySpecificDepartment(id: number): string {
-        return PREFIX + '/table/department/id/' + id;
+    static QuerySpecificTable(name: string, id: number): string {
+        return PREFIX + '/table/' + name + '/id/' + id;
+    }
+
+    static searchTable(name: string, field: string, term: string): string {
+        return PREFIX + '/table/' + name + '/field/' + field + '/term/' + term;
     }
 }

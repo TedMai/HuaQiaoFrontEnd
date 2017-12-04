@@ -1,7 +1,16 @@
 <div>
-    <ul class="department">
-        <li *ngFor="let department of departments">
-            <div (click)="onClick(department.did)">
+    <ul class="parent">
+        <li *ngFor="let department of parent">
+            <div (click)="showMyChildren(department.did)">
+                <span class="badge">{{department.did}}</span> {{department.name}}
+            </div>
+        </li>
+    </ul>
+</div>
+<div>
+    <ul class="children">
+        <li *ngFor="let department of children">
+            <div>
                 <span class="badge">{{department.did}}</span> {{department.name}}
             </div>
         </li>

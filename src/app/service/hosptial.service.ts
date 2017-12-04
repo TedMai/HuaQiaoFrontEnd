@@ -14,21 +14,32 @@ const httpOptions = {
 @Injectable()
 export class HospitalService {
 
-    constructor(private http: HttpClient,
-                private url: UrlService) {
+    constructor(private http: HttpClient) {
     }
 
     fetchDepartmentList(): Observable<Department[]> {
         return this.http
-            .get<Department[]>(this.url.FetchDepartmentList())
+            .get<Department[]>(UrlService.FetchTableList('department'))
             .pipe(
                 catchError(this.handleError('fetchDepartmentList', []))
             );
     }
 
+    searchDepartments(term: string): Observable<Department[]> {
+        if (!term.trim()) {
+            return of([]);
+        }
+
+        return this.http
+            .get<Department[]>(UrlService.searchTable('department', 'name', term.trim()))
+            .pipe(
+                catchError(this.handleError('searchDepartments', []))
+            );
+    }
+
     querySpecificDepartment(id: number): Observable<any> {
         return this.http
-            .get<any>(this.url.QuerySpecificDepartment(id))
+            .get<any>(UrlService.QuerySpecificTable('department', id))
             .pipe(
                 catchError(this.handleError('querySpecificDepartment', []))
             );
