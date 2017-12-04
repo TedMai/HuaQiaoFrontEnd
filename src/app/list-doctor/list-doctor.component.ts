@@ -25,7 +25,36 @@ export class ListDoctorComponent implements OnInit, OnDestroy {
             console.log('list-doctor.component.ts ==> ngOnInit()');
             this.id = params['id'];
             this.hospitalService.querySpecificDepartment(this.id)
-                .subscribe(department => console.log(department));
+                .subscribe(response => {
+                        console.log(response);
+                        if (response.code === 0) {
+                            const tmpArray = JSON.parse(response.msg.doctors);
+                            console.log(tmpArray);
+                            // 去重
+                            if (tmpArray.length > 0) {
+                                let count = 0;
+                                this.doctors = [];
+                                for (let i = 0, length = tmpArray.length; i < length; i++) {
+                                    count = this.doctors.length;
+                                    if (count < 1 || tmpArray[i].id !== this.doctors[count - 1].id) {
+                                        this.doctors.push({
+                                            id: tmpArray[i].id,
+                                            name: tmpArray[i].name,
+                                            title: '',
+                                            position: '',
+                                            resume: '',
+                                            field: '',
+                                            imageurl: 'image/screenshot/' + tmpArray[i].imageurl,
+                                            department: 46
+                                        });
+                                    }
+                                }
+                                /* end of for */
+                            }
+                            console.log(this.doctors);
+                        }
+                    }
+                );
         });
     }
 
