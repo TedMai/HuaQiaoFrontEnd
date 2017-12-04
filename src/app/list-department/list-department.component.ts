@@ -37,8 +37,6 @@ export class ListDepartmentComponent implements OnInit {
         this.children = this.departments.filter(function (department) {
             return department.parent === id;
         });
-        // this.hospitalService.querySpecificDepartment(id)
-        //     .subscribe(department => console.log(department));
     }
 
 }

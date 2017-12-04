@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {Department} from '../service/department';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {HospitalService} from '../service/hosptial.service';
 
 @Component({
     selector: 'app-search-department',
@@ -18,7 +18,7 @@ export class SearchDepartmentComponent implements OnInit {
     // You can also push values into that Observable by calling its next(value) method as the search() method does.
     private searchTerms = new Subject<string>();
 
-    constructor(private hospitalService) {
+    constructor(private hospitalService: HospitalService) {
     }
 
     ngOnInit() {

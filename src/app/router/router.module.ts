@@ -28,7 +28,7 @@ const __ROUTES__: Routes = [
                 component: SearchDoctorComponent
             },
             {
-                path: 'result',
+                path: 'result/:id',
                 component: SearchResultComponent
             }
         ]
