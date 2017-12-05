@@ -37,11 +37,11 @@ export class HospitalService {
             );
     }
 
-    querySpecificDepartment(id: number): Observable<any> {
+    queryRelativeDoctors(departmentId: number): Observable<any> {
         return this.http
-            .get<any>(UrlService.QuerySpecificTable('department', id))
+            .get<any>(UrlService.QueryRelativeDoctors('doctor', departmentId))
             .pipe(
-                catchError(this.handleError('querySpecificDepartment', []))
+                catchError(this.handleError('queryRelativeDoctors', []))
             );
     }
 

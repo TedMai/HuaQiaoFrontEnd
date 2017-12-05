@@ -54,7 +54,7 @@ const __ROUTES__: Routes = [
                 component: DetailsDepartmentComponent
             },
             {
-                path: 'doctor',
+                path: 'doctor/:id',
                 component: DetailsDoctorComponent
             },
             {

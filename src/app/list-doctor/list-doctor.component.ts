@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import {HospitalService} from '../service/hosptial.service';
+import {ContainerService} from '../service/container.service';
 
 import {Doctor} from '../service/doctor';
 
@@ -17,41 +18,43 @@ export class ListDoctorComponent implements OnInit, OnDestroy {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private hospitalService: HospitalService) {
+                private hospitalService: HospitalService,
+                private container: ContainerService) {
     }
 
     ngOnInit() {
+        /**
+         * 获取传入参数
+         * @type {Subscription}
+         */
         this.sub = this.activatedRoute.params.subscribe(params => {
             console.log('list-doctor.component.ts ==> ngOnInit()');
+            // 根据科室的ID查找其下的医生
             this.id = params['id'];
-            this.hospitalService.querySpecificDepartment(this.id)
+            this.hospitalService.queryRelativeDoctors(this.id)
                 .subscribe(response => {
-                        console.log(response);
-                        if (response.code === 0) {
-                            const tmpArray = JSON.parse(response.msg.doctors);
-                            console.log(tmpArray);
-                            // 去重
-                            if (tmpArray.length > 0) {
-                                let count = 0;
-                                this.doctors = [];
-                                for (let i = 0, length = tmpArray.length; i < length; i++) {
-                                    count = this.doctors.length;
-                                    if (count < 1 || tmpArray[i].id !== this.doctors[count - 1].id) {
-                                        this.doctors.push({
-                                            id: tmpArray[i].id,
-                                            name: tmpArray[i].name,
-                                            title: '',
-                                            position: '',
-                                            resume: '',
-                                            field: '',
-                                            imageurl: 'image/screenshot/' + tmpArray[i].imageurl,
-                                            department: 46
-                                        });
-                                    }
+                        const tmpArray = JSON.parse(response.doctors);
+                        // 去重
+                        // 只取第一张图片 作为医生头像
+                        if (tmpArray.length > 0) {
+                            let count = 0;
+                            this.doctors = [];
+                            for (let i = 0, length = tmpArray.length; i < length; i++) {
+                                count = this.doctors.length;
+                                if (count < 1 || tmpArray[i].id !== this.doctors[count - 1].id) {
+                                    this.doctors.push({
+                                        id: tmpArray[i].id,
+                                        name: tmpArray[i].name,
+                                        title: tmpArray[i].title,
+                                        position: tmpArray[i].position,
+                                        resume: tmpArray[i].resume,
+                                        field: tmpArray[i].field,
+                                        department: tmpArray[i].department,
+                                        imageurl: 'backbone/image/screenshot/' + tmpArray[i].imageurl,
+                                    });
                                 }
-                                /* end of for */
                             }
-                            console.log(this.doctors);
+                            /* end of for */
                         }
                     }
                 );
@@ -62,7 +65,8 @@ export class ListDoctorComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
-    onSelected(id: number) {
-        this.router.navigate(['/details/doctor'], {queryParams: {id: id}}).then();
+    onSelected(doctor: Doctor) {
+        this.container.set(doctor);
+        this.router.navigate(['/details/doctor', doctor.id]).then();
     }
 }

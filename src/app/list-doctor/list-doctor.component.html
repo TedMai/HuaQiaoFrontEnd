@@ -1,10 +1,12 @@
 <div>
     <ul class="doctors">
         <li *ngFor="let doctor of doctors">
-            <div>
+            <div (click)="onSelected(doctor)">
                 <h3>{{doctor.name}}</h3>
+                <h4>{{doctor.title}}</h4>
                 <img src="{{doctor.imageurl}}">
             </div>
+            <p>{{doctor.field}}</p>
         </li>
     </ul>
 </div>

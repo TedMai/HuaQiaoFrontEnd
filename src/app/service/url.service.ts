@@ -8,8 +8,8 @@ export class UrlService {
         return PREFIX + '/table/' + name;
     }
 
-    static QuerySpecificTable(name: string, id: number): string {
-        return PREFIX + '/table/' + name + '/id/' + id;
+    static QueryRelativeDoctors(name: string, id: number): string {
+        return PREFIX + '/table/' + name + '/relatives/' + id;
     }
 
     static searchTable(name: string, field: string, term: string): string {

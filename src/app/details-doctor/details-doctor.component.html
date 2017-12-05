@@ -1,8 +1,13 @@
 <div>
-    <img alt="医生头像">
-    <h1>医生姓名</h1>
-    <p>擅长XXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-    <br />
+    <img alt="医生头像" src="{{doctor.imageurl}}">
+    <h2>{{doctor.name}}</h2>
+    <h4>{{doctor.title}}</h4>
+    <h4>{{doctor.position}}</h4>
+    <label>简历：</label>
+    <p>{{doctor.resume}}</p>
+    <label>擅长领域：</label>
+    <p>{{doctor.field}}</p>
+    <br/>
     <div>
         <h1>医生排班</h1>
         <button (click)="makeAppointment()">我要预约</button>
