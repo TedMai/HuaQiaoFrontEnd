@@ -1,7 +1,7 @@
 <div>
     <ul class="doctors">
         <li *ngFor="let doctor of doctors">
-            <div (click)="onSelected(doctor)">
+            <div (click)="showDoctorDetails(doctor)">
                 <h3>{{doctor.name}}</h3>
                 <h4>{{doctor.title}}</h4>
                 <img src="{{doctor.imageurl}}">

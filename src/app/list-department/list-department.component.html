@@ -1,7 +1,7 @@
 <div>
     <ul class="parent">
         <li *ngFor="let department of parent">
-            <div (click)="showMyChildren(department.did)">
+            <div (click)="showSubordinateDepartment(department.did)">
                 <span class="badge">{{department.did}}</span> {{department.name}}
             </div>
         </li>
@@ -10,7 +10,7 @@
 <div>
     <ul class="children">
         <li *ngFor="let department of children">
-            <div>
+            <div (click)="showDoctorList(department.did)">
                 <span class="badge">{{department.did}}</span> {{department.name}}
             </div>
         </li>

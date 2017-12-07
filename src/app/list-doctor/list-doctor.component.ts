@@ -65,7 +65,7 @@ export class ListDoctorComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
-    onSelected(doctor: Doctor) {
+    showDoctorDetails(doctor: Doctor) {
         this.container.set(doctor);
         this.router.navigate(['/details/doctor', doctor.id]).then();
     }

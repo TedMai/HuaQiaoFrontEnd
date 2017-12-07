@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+
 import {HospitalService} from '../service/hosptial.service';
 import {Department} from '../service/department';
 
@@ -13,7 +15,8 @@ export class ListDepartmentComponent implements OnInit {
     parent: Department[];
     children: Department[];
 
-    constructor(private hospitalService: HospitalService) {
+    constructor(private router: Router,
+                private hospitalService: HospitalService) {
 
     }
 
@@ -33,10 +36,14 @@ export class ListDepartmentComponent implements OnInit {
             });
     }
 
-    showMyChildren(id: number) {
+    showSubordinateDepartment(id: number) {
         this.children = this.departments.filter(function (department) {
             return department.parent === id;
         });
+    }
+
+    showDoctorList(id: number) {
+        this.router.navigate(['/search/result', id]).then();
     }
 
 }

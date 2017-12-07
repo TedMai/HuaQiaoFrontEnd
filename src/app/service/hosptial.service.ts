@@ -45,6 +45,14 @@ export class HospitalService {
             );
     }
 
+    queryRelativeSchedules(doctorId: number): Observable<any> {
+        return this.http
+            .get<any>(UrlService.QueryRelativeDoctors('schedule', doctorId))
+            .pipe(
+                catchError(this.handleError('queryRelativeDoctors', []))
+            );
+    }
+
     /**
      * Handle Http operation that failed.
      * Let the app continue.

@@ -67,7 +67,7 @@ const __ROUTES__: Routes = [
         path: 'appointment',
         children: [
             {
-                path: 'init',
+                path: 'init/:id',
                 component: AppointmentInitComponent
             },
             {

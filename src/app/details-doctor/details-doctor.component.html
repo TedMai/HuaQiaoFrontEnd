@@ -10,7 +10,17 @@
     <br/>
     <div>
         <h1>医生排班</h1>
-        <button (click)="makeAppointment()">我要预约</button>
+        <div *ngFor="let schedule of schedules">
+            <label>门诊时间</label>
+            <p>{{schedule.visiting}}</p>
+            <p *ngIf="schedule.section === 0">上午</p>
+            <p *ngIf="schedule.section === 1">下午</p>
+            <label>挂号费</label>
+            <p>{{schedule.registerFee}}</p>
+            <label>医疗服务费</label>
+            <p>{{schedule.medicalFee}}</p>
+            <button (click)="makeAppointment(schedule)">我要预约</button>
+        </div>
     </div>
     <div>
         <h1>评论区</h1>
