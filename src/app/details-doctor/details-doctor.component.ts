@@ -13,8 +13,9 @@ import {Schedule} from '../service/schedule';
     styleUrls: ['./details-doctor.component.css']
 })
 export class DetailsDoctorComponent implements OnInit {
-    private doctor: Doctor;
-    private schedules: Schedule[];
+    departmentName: string;
+    doctor: Doctor;
+    schedules: Schedule[];
 
     constructor(private router: Router,
                 private hospitalService: HospitalService,
@@ -23,16 +24,21 @@ export class DetailsDoctorComponent implements OnInit {
 
     ngOnInit() {
         console.log('details-doctor.component.ts ==> ngOnInit()');
-        this.doctor = this.container.get();
+        this.departmentName = this.container.get().departmentName;
+        this.doctor = this.container.get().doctor;
         console.log(this.doctor);
         this.hospitalService.queryRelativeSchedules(this.doctor.id)
             .subscribe(response => {
-                console.info(response);
                 this.schedules = response;
             });
     }
 
     makeAppointment(schedule: Schedule) {
+        this.container.set({
+            departmentName: this.departmentName,
+            doctorName: this.doctor.name,
+            schedule: schedule
+        });
         this.router.navigate(['/appointment/init', schedule.id]).then();
     }
 }

@@ -42,8 +42,8 @@ export class ListDepartmentComponent implements OnInit {
         });
     }
 
-    showDoctorList(id: number) {
-        this.router.navigate(['/search/result', id]).then();
+    showDoctorList(id: number, name: string) {
+        this.router.navigate(['/search/result', id, name]).then();
     }
 
 }

@@ -8,7 +8,7 @@
     <!-- When the component gets destroyed, the async pipe unsubscribes automatically to avoid potential memory leaks. -->
     <ul class="search-result">
         <li *ngFor="let department of departments$ | async">
-            <a [routerLink]="['/search/result',department.did]">
+            <a [routerLink]="['/search/result',department.did, department.name]">
                 {{department.name}}
             </a>
         </li>

@@ -14,6 +14,7 @@ import {Doctor} from '../service/doctor';
 export class ListDoctorComponent implements OnInit, OnDestroy {
     private sub: any;
     private id: number;
+    private name: string;
     doctors: Doctor[];
 
     constructor(private router: Router,
@@ -31,6 +32,7 @@ export class ListDoctorComponent implements OnInit, OnDestroy {
             console.log('list-doctor.component.ts ==> ngOnInit()');
             // 根据科室的ID查找其下的医生
             this.id = params['id'];
+            this.name = params['name'];
             this.hospitalService.queryRelativeDoctors(this.id)
                 .subscribe(response => {
                         const tmpArray = JSON.parse(response.doctors);
@@ -50,6 +52,7 @@ export class ListDoctorComponent implements OnInit, OnDestroy {
                                         resume: tmpArray[i].resume,
                                         field: tmpArray[i].field,
                                         department: tmpArray[i].department,
+                                        subordinate: tmpArray[i].subordinate,
                                         imageurl: 'backbone/image/screenshot/' + tmpArray[i].imageurl,
                                     });
                                 }
@@ -66,7 +69,10 @@ export class ListDoctorComponent implements OnInit, OnDestroy {
     }
 
     showDoctorDetails(doctor: Doctor) {
-        this.container.set(doctor);
+        this.container.set({
+            departmentName: this.name,
+            doctor: doctor
+        });
         this.router.navigate(['/details/doctor', doctor.id]).then();
     }
 }

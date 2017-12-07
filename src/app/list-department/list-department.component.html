@@ -10,7 +10,7 @@
 <div>
     <ul class="children">
         <li *ngFor="let department of children">
-            <div (click)="showDoctorList(department.did)">
+            <div (click)="showDoctorList(department.did, department.name)">
                 <span class="badge">{{department.did}}</span> {{department.name}}
             </div>
         </li>

@@ -6,6 +6,7 @@ export class Doctor {
                 public resume: string,
                 public field: string,
                 public imageurl: string,
+                public subordinate: number,
                 public department: number) {
     }
 
