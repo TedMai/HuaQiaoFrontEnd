@@ -9,5 +9,4 @@ export class Doctor {
                 public subordinate: number,
                 public department: number) {
     }
-
 }

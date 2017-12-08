@@ -5,5 +5,4 @@ export class Department {
                 public parent: number,
                 public hospital: number) {
     }
-
 }

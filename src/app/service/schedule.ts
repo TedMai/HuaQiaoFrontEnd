@@ -8,5 +8,4 @@ export class Schedule {
                 public visiting: string,
                 public section: number) {
     }
-
 }

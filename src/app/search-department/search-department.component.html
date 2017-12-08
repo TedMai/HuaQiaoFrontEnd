@@ -9,7 +9,7 @@
     <ul class="search-result">
         <li *ngFor="let department of departments$ | async">
             <a [routerLink]="['/search/result',department.did, department.name]">
-                {{department.name}}
+                {{ department.name }}
             </a>
         </li>
     </ul>
