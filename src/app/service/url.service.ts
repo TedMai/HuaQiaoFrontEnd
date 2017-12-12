@@ -8,7 +8,7 @@ export class UrlService {
         return PREFIX + '/table/' + name;
     }
 
-    static QueryRelativeDoctors(name: string, id: number): string {
+    static QueryRelatives(name: string, id: number): string {
         return PREFIX + '/table/' + name + '/relatives/' + id;
     }
 
