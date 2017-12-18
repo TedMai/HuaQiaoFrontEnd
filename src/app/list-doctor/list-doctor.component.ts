@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
+import {UrlService} from '../service/url.service';
 import {HospitalService} from '../service/hosptial.service';
 import {ContainerService} from '../service/container.service';
 
@@ -53,7 +54,8 @@ export class ListDoctorComponent implements OnInit, OnDestroy {
                                         field: tmpArray[i].field,
                                         department: tmpArray[i].department,
                                         subordinate: tmpArray[i].subordinate,
-                                        imageurl: 'backbone/image/screenshot/' + tmpArray[i].imageurl,
+                                        imageurl: UrlService.FetchImage(tmpArray[i].imageurl)
+                                        // imageurl: 'backbone/image/screenshot/' + tmpArray[i].imageurl,
                                     });
                                 }
                             }

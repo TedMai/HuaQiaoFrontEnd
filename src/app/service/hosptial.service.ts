@@ -31,7 +31,7 @@ export class HospitalService {
         }
 
         return this.http
-            .get<Department[]>(UrlService.searchTable('department', 'name', term.trim()))
+            .get<Department[]>(UrlService.SearchTable('department', 'name', term.trim()))
             .pipe(
                 catchError(this.handleError('searchDepartments', []))
             );

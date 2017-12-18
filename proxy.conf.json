@@ -1,6 +1,6 @@
 {
   "/backbone": {
-    "target": "http://106.14.154.220:3000",
+    "target": "https://www.thinmelon.cc",
     "secure": false
   }
 }
