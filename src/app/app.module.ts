@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
+import {NgbCarouselConfig, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {HospitalService} from './service/hosptial.service';
 import {UrlService} from './service/url.service';
@@ -18,6 +19,7 @@ import {DetailsDoctorComponent} from './details-doctor/details-doctor.component'
 import {DetailsAppointmentComponent} from './details-appointment/details-appointment.component';
 import {AppointmentInitComponent} from './appointment-init/appointment-init.component';
 import {AppointmentCheckComponent} from './appointment-check/appointment-check.component';
+import { DetailsHospitalComponent } from './details-hospital/details-hospital.component';
 
 @NgModule({
     declarations: [
@@ -31,12 +33,14 @@ import {AppointmentCheckComponent} from './appointment-check/appointment-check.c
         DetailsDoctorComponent,
         DetailsAppointmentComponent,
         AppointmentInitComponent,
-        AppointmentCheckComponent
+        AppointmentCheckComponent,
+        DetailsHospitalComponent
     ],
     imports: [
         BrowserModule,
         AppRouterModule,
-        HttpClientModule
+        HttpClientModule,
+        NgbModule.forRoot()
     ],
     providers: [
         HospitalService,

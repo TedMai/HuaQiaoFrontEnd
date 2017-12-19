@@ -1,12 +1,14 @@
 <div>
-    <ul class="doctors">
-        <li *ngFor="let doctor of doctors">
+    <ul class="list-group">
+        <li *ngFor="let doctor of doctors" class="list-group-item">
             <div (click)="showDoctorDetails(doctor)">
                 <h3>{{ doctor.name }}</h3>
                 <h4>{{ doctor.title }}</h4>
-                <img src="{{ doctor.imageurl }}">
+                <img class="img-responsive img-circle" src="{{ doctor.imageurl }}">
             </div>
-            <p>{{ doctor.field }}</p>
+            <blockquote>
+                <small>{{ doctor.field }}</small>
+            </blockquote>
         </li>
     </ul>
 </div>

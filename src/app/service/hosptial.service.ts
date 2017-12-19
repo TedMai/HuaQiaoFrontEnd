@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {catchError} from 'rxjs/operators';
@@ -7,14 +7,22 @@ import {catchError} from 'rxjs/operators';
 import {Department} from './department';
 import {UrlService} from './url.service';
 
-const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+// const httpOptions = {
+//     headers: new HttpHeaders({'Content-Type': 'application/json'})
+// };
 
 @Injectable()
 export class HospitalService {
 
     constructor(private http: HttpClient) {
+    }
+
+    querySpecificHospital(id: number): Observable<any> {
+        return this.http
+            .get<any>(UrlService.QuerySpecific('hospital', id))
+            .pipe(
+                catchError(this.handleError('querySpecificHospital', {}))
+            );
     }
 
     fetchDepartmentList(): Observable<Department[]> {

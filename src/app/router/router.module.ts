@@ -8,6 +8,7 @@ import {SearchResultComponent} from '../search-result/search-result.component';
 import {ListDepartmentComponent} from '../list-department/list-department.component';
 import {ListDoctorComponent} from '../list-doctor/list-doctor.component';
 
+import {DetailsHospitalComponent} from '../details-hospital/details-hospital.component';
 import {DetailsDepartmentComponent} from '../details-department/details-department.component';
 import {DetailsDoctorComponent} from '../details-doctor/details-doctor.component';
 import {DetailsAppointmentComponent} from '../details-appointment/details-appointment.component';
@@ -50,6 +51,10 @@ const __ROUTES__: Routes = [
         path: 'details',
         children: [
             {
+                path: 'hospital',
+                component: DetailsHospitalComponent
+            },
+            {
                 path: 'department',
                 component: DetailsDepartmentComponent
             },
@@ -75,10 +80,17 @@ const __ROUTES__: Routes = [
                 component: AppointmentCheckComponent
             }
         ]
+    },
+    {
+        path: '',
+        redirectTo: '/details/hospital',
+        pathMatch: 'full'
     }
 ];
 
 @NgModule({
+    // The forRoot() method is called because a configured router is provided at the app's root.
+    // The forRoot() method supplies the Router service providers and directives needed for routing, and performs the initial navigation based on the current browser URL.
     imports: [RouterModule.forRoot(__ROUTES__)],
     declarations: [],
     exports: [RouterModule]

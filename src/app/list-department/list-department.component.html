@@ -1,8 +1,8 @@
 <div>
-    <ul class="parent">
-        <li *ngFor="let department of parent">
+    <ul class="parent" class="list-group">
+        <li *ngFor="let department of parent" class="list-group-item">
             <div (click)="showSubordinateDepartment(department.did)">
-                <span class="badge">{{ department.did }}</span> {{ department.name }}
+                {{ department.name }}
             </div>
         </li>
     </ul>

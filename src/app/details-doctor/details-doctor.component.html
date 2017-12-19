@@ -1,31 +1,35 @@
-<label>科室</label>
-{{ departmentName }}
-<hr>
-<div>
-    <img alt="医生头像" src="{{ doctor.imageurl }}">
-    <h2>{{ doctor.name }}</h2>
-    <h4>{{ doctor.title }}</h4>
-    <h4>{{ doctor.position }}</h4>
-    <label>简历：</label>
-    <p>{{ doctor.resume }}</p>
-    <label>擅长领域：</label>
-    <p>{{ doctor.field }}</p>
-    <br/>
+<div class="container">
+    <span class="label-primary">科室</span>
+    {{ departmentName }}
+    <hr>
     <div>
-        <h1>医生排班</h1>
-        <div *ngFor="let schedule of schedules">
-            <label>门诊时间</label>
-            <p>{{ schedule.visiting }}</p>
-            <p *ngIf="schedule.section === 0">上午</p>
-            <p *ngIf="schedule.section === 1">下午</p>
-            <label>挂号费</label>
-            <p>{{ schedule.registerFee }}</p>
-            <label>医疗服务费</label>
-            <p>{{ schedule.medicalFee }}</p>
-            <button (click)="makeAppointment(schedule)">我要预约</button>
+        <img alt="医生头像" src="{{ doctor.imageurl }}" class=" .center-block">
+        <h2>{{ doctor.name }}</h2>
+        <h4>{{ doctor.title }}</h4>
+        <h4>{{ doctor.position }}</h4>
+        <label class="label label-primary">简历：</label>
+        <p class="text-primary">{{ doctor.resume }}</p>
+        <label class="label label-primary">擅长领域：</label>
+        <p class="text-primary">{{ doctor.field }}</p>
+        <br/>
+        <div>
+            <h1>医生排班</h1>
+            <div *ngFor="let schedule of schedules">
+                <label class="label label-primary">门诊时间</label>
+                <p>{{ schedule.visiting }}</p>
+                <p *ngIf="schedule.section === 0">上午</p>
+                <p *ngIf="schedule.section === 1">下午</p>
+                <label class="label label-primary">挂号费</label>
+                <p>{{ schedule.registerFee }}</p>
+                <label class="label label-primary">医疗服务费</label>
+                <p>{{ schedule.medicalFee }}</p>
+                <button (click)="makeAppointment(schedule)" type="button" class="btn btn-success btn-lg btn-block">
+                    我要预约
+                </button>
+            </div>
         </div>
-    </div>
-    <div>
-        <h1>评论区</h1>
+        <div>
+            <h1>评论区</h1>
+        </div>
     </div>
 </div>
