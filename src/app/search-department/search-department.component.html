@@ -1,17 +1,8 @@
 <div class="container">
-    <input #searchBox id="search-box" title="search hero" (keyup)="search(searchBox.value)"/>
-
-    <!-- The $ is a convention that indicates departments$ is an Observable, not an array. -->
-    <!-- The *ngFor can't do anything with an Observable. But there's also a pipe character (|) followed by async, which identifies Angular's AsyncPipe. -->
-    <!-- The AsyncPipe subscribes to an Observable automatically so you won't have to do so in the component class. -->
-    <!-- The async pipe subscribes to an Observable or Promise and returns the latest value it has emitted. When a new value is emitted, the async pipe marks the component to be checked for changes -->
-    <!-- When the component gets destroyed, the async pipe unsubscribes automatically to avoid potential memory leaks. -->
-    <ul class="list-group">
-        <li *ngFor="let department of departments$ | async" class="list-group-item">
-            <a [routerLink]="['/search/result',department.did, department.name]">
-                {{ department.name }}
-            </a>
-        </li>
-    </ul>
+    <div class="d-flex flex-row justify-content-between">
+        <button type="button" class="btn btn-primary" (click)="toMainPage()">首页</button>
+        <p class="text-info">科室列表</p>
+        <button type="button" class="btn btn-primary" (click)="toSearchPage()">搜索</button>
+    </div>
     <app-list-department></app-list-department>
 </div>

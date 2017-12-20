@@ -1,12 +1,15 @@
 <div class="container">
-    <h1>信息验证</h1>
-    <div>
+    <div class="d-flex flex-row justify-content-between" style="margin: 10px 0">
         <label>手机号码</label>
         <input #mobile title="手机号码" placeholder="请输入手机号码">
     </div>
-    <div>
+    <div class="d-flex flex-row justify-content-between" style="margin: 10px 0">
         <label>验证码</label>
-        <input #code title="验证码" placeholder="请输入验证码">
+        <div class="d-flex flex-row align-content-center">
+            <input #code title="验证码" placeholder="请输入验证码">
+            <button type="button" class="btn btn-primary btn-sm" (click)="sendVerificationCode()">发送</button>
+        </div>
     </div>
+    <button (click)="onConfirm()" type="button" class="btn btn-success btn-lg btn-block">确认</button>
 </div>
-<button (click)="onConfirm()" type="button" class="btn btn-success btn-lg btn-block">确认</button>
+

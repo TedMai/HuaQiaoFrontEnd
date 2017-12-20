@@ -3,15 +3,19 @@
         <li *ngFor="let department of parent" class="list-group-item">
             <div (click)="showSubordinateDepartment(department.did)">
                 {{ department.name }}
-            </div>
-        </li>
-    </ul>
-</div>
-<div>
-    <ul class="children">
-        <li *ngFor="let department of children">
-            <div (click)="showDoctorList(department.did, department.name)">
-                <span class="badge">{{ department.did }}</span> {{ department.name }}
+                <div [ngbCollapse]="department.did !==  focusSuperior">
+                    <div class="card">
+                        <div class="card-body">
+                            <ul class="children">
+                                <li *ngFor="let department of children">
+                                    <div (click)="showDoctorList(department.did, department.name)">
+                                        {{ department.name }}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </li>
     </ul>

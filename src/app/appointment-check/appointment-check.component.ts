@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {HospitalService} from '../service/hosptial.service';
 
 @Component({
     selector: 'app-appointment-check',
@@ -8,7 +9,8 @@ import {Router} from '@angular/router';
 })
 export class AppointmentCheckComponent implements OnInit {
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private hospitalService: HospitalService) {
     }
 
     ngOnInit() {
@@ -16,5 +18,12 @@ export class AppointmentCheckComponent implements OnInit {
 
     onConfirm(): void {
         this.router.navigate(['/details/appointment']).then();
+    }
+
+    sendVerificationCode(): void {
+        this.hospitalService.sendVerificationCode('18159393355')
+            .subscribe(response => {
+                console.info(response);
+            });
     }
 }

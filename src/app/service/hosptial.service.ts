@@ -61,6 +61,14 @@ export class HospitalService {
             );
     }
 
+    sendVerificationCode(phone: string): Observable<any> {
+        return this.http
+            .get<any>(UrlService.SendSms(phone, 0))
+            .pipe(
+                catchError(this.handleError('queryRelativeDoctors', []))
+            );
+    }
+
     /**
      * Handle Http operation that failed.
      * Let the app continue.

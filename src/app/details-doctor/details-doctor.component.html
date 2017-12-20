@@ -1,35 +1,39 @@
 <div class="container">
-    <span class="label-primary">科室</span>
-    {{ departmentName }}
-    <hr>
     <div>
-        <img alt="医生头像" src="{{ doctor.imageurl }}" class=" .center-block">
-        <h2>{{ doctor.name }}</h2>
-        <h4>{{ doctor.title }}</h4>
-        <h4>{{ doctor.position }}</h4>
+        <div class="d-flex flex-row justify-content-start">
+            <img alt="医生头像" src="{{ doctor.imageurl }}" class="rounded">
+            <div>
+                <h2>姓名：{{ doctor.name }}</h2>
+                <h4>职称：{{ doctor.title }}</h4>
+                <h4>科室：{{ departmentName }}</h4>
+                <h4>职位：{{ doctor.position }}</h4>
+            </div>
+        </div>
         <label class="label label-primary">简历：</label>
         <p class="text-primary">{{ doctor.resume }}</p>
         <label class="label label-primary">擅长领域：</label>
         <p class="text-primary">{{ doctor.field }}</p>
-        <br/>
-        <div>
-            <h1>医生排班</h1>
-            <div *ngFor="let schedule of schedules">
-                <label class="label label-primary">门诊时间</label>
-                <p>{{ schedule.visiting }}</p>
-                <p *ngIf="schedule.section === 0">上午</p>
-                <p *ngIf="schedule.section === 1">下午</p>
-                <label class="label label-primary">挂号费</label>
-                <p>{{ schedule.registerFee }}</p>
-                <label class="label label-primary">医疗服务费</label>
-                <p>{{ schedule.medicalFee }}</p>
-                <button (click)="makeAppointment(schedule)" type="button" class="btn btn-success btn-lg btn-block">
-                    我要预约
-                </button>
+    </div>
+    <div>
+        <h1>医生排班</h1>
+        <div class="d-flex flex-row justify-content-start">
+            <div class="card" style="width: 20rem;" *ngFor="let schedule of schedules">
+                <div class="card-body">
+                    <h4 class="card-title">门诊时间</h4>
+                    <p class="card-text text-success" *ngIf="schedule.section === 0">上午</p>
+                    <p class="card-text text-success" *ngIf="schedule.section === 1">下午</p>
+                    <h4 class="card-title">挂号费</h4>
+                    <p class="card-text text-danger">{{ schedule.registerFee }}</p>
+                    <h4 class="card-title">医疗服务费</h4>
+                    <p class="card-text text-danger">{{ schedule.medicalFee }}</p>
+                    <button (click)="makeAppointment(schedule)" type="button" class="btn btn-success btn-lg">
+                        我要预约
+                    </button>
+                </div>
             </div>
         </div>
-        <div>
-            <h1>评论区</h1>
-        </div>
+    </div>
+    <div>
+        <h1>评论区</h1>
     </div>
 </div>

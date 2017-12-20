@@ -20,6 +20,7 @@ import {DetailsAppointmentComponent} from './details-appointment/details-appoint
 import {AppointmentInitComponent} from './appointment-init/appointment-init.component';
 import {AppointmentCheckComponent} from './appointment-check/appointment-check.component';
 import { DetailsHospitalComponent } from './details-hospital/details-hospital.component';
+import { SearchInitComponent } from './search-init/search-init.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { DetailsHospitalComponent } from './details-hospital/details-hospital.co
         DetailsAppointmentComponent,
         AppointmentInitComponent,
         AppointmentCheckComponent,
-        DetailsHospitalComponent
+        DetailsHospitalComponent,
+        SearchInitComponent
     ],
     imports: [
         BrowserModule,

@@ -18,7 +18,7 @@ export class DetailsHospitalComponent implements OnInit {
 
     constructor(private carouselConfig: NgbCarouselConfig,
                 private hospitalService: HospitalService) {
-        carouselConfig.interval = 5000;      // 自动循环每个项目之间延迟的时间量。
+        carouselConfig.interval = 4000;      // 自动循环每个项目之间延迟的时间量。
         carouselConfig.wrap = true;         // 轮播是否连续循环
         // carouselConfig.keyboard = true;
     }

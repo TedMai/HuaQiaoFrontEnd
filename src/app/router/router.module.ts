@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
+import {SearchInitComponent} from '../search-init/search-init.component';
 import {SearchDepartmentComponent} from '../search-department/search-department.component';
 import {SearchDoctorComponent} from '../search-doctor/search-doctor.component';
 import {SearchResultComponent} from '../search-result/search-result.component';
@@ -20,6 +21,10 @@ const __ROUTES__: Routes = [
     {
         path: 'search',
         children: [
+            {
+                path: 'init',
+                component: SearchInitComponent
+            },
             {
                 path: 'department',
                 component: SearchDepartmentComponent

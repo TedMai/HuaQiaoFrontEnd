@@ -25,4 +25,8 @@ export class UrlService {
     static FetchImage(relative: string) {
         return PREFIX + '/image/screenshot/' + relative;
     }
+
+    static SendSms(phone: string, type: number) {
+        return PREFIX + '/sms/' + phone + '/type/' + type;
+    }
 }
