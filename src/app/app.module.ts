@@ -21,7 +21,7 @@ import {AppointmentInitComponent} from './appointment-init/appointment-init.comp
 import {AppointmentCheckComponent} from './appointment-check/appointment-check.component';
 import {DetailsHospitalComponent} from './details-hospital/details-hospital.component';
 import {SearchInitComponent} from './search-init/search-init.component';
-import {NgbdModalContent} from './ngbd-modal-content/ngbd-modal-content.component';
+import {NgbdModalContentComponent} from './ngbd-modal-content/ngbd-modal-content.component';
 
 @NgModule({
     declarations: [
@@ -38,10 +38,10 @@ import {NgbdModalContent} from './ngbd-modal-content/ngbd-modal-content.componen
         AppointmentCheckComponent,
         DetailsHospitalComponent,
         SearchInitComponent,
-        NgbdModalContent
+        NgbdModalContentComponent
     ],
     entryComponents: [
-        NgbdModalContent
+        NgbdModalContentComponent
     ],
     imports: [
         BrowserModule,

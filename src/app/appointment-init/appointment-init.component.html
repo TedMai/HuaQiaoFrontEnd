@@ -15,8 +15,10 @@
     </div>
     <div class="d-flex flex-row justify-content-between" (click)="choosePatient()">
         <h3>就诊人</h3>
-        <h3>就诊人</h3>
-        <img class="go-forward-icon" src="../../assets/icons/public/go-forward.png">
+        <div class="d-flex flex-lg-row justify-content-center">
+            <h4>{{ patientName }}</h4>
+            <img class="go-forward-icon" src="../../assets/icons/public/go-forward.png">
+        </div>
     </div>
     <div class="d-flex flex-row justify-content-between">
         <h3>初/复诊</h3>

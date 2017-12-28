@@ -1,5 +1,5 @@
 <div class="container">
-    <input #searchBox id="search-box" title="搜索科室" (keyup)="search(searchBox.value)" placeholder="请输入要查找的科室名称"/>
+    <input #searchBox id="search-box" title="搜索科室" (keyup)="search(searchBox.value)" placeholder="请输入要查找的科室名称" type="search"/>
 
     <!-- The $ is a convention that indicates departments$ is an Observable, not an array. -->
     <!-- The *ngFor can't do anything with an Observable. But there's also a pipe character (|) followed by async, which identifies Angular's AsyncPipe. -->

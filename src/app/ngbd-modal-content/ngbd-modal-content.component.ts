@@ -7,7 +7,7 @@ import {Patient} from '../service/patient';
     templateUrl: './ngbd-modal-content.component.html',
     styleUrls: ['./ngbd-modal-content.component.css']
 })
-export class NgbdModalContent {
+export class NgbdModalContentComponent {
     @Input() title;
     patients: Patient[];
     patientSelected: Patient;

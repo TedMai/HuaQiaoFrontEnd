@@ -5,9 +5,9 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {HospitalService} from '../service/hosptial.service';
 import {ContainerService} from '../service/container.service';
 import {Schedule} from '../service/schedule';
+import {Patient} from '../service/patient';
 
-import {NgbdModalContent} from '../ngbd-modal-content/ngbd-modal-content.component';
-
+import {NgbdModalContentComponent} from '../ngbd-modal-content/ngbd-modal-content.component';
 
 @Component({
     selector: 'app-appointment-init',
@@ -16,8 +16,10 @@ import {NgbdModalContent} from '../ngbd-modal-content/ngbd-modal-content.compone
 })
 export class AppointmentInitComponent implements OnInit {
     schedule: Schedule;
+    patient: Patient;
     departmentName: string;
     doctorName: string;
+    patientName: string;
 
     constructor(private router: Router,
                 private hospitalService: HospitalService,
@@ -25,6 +27,7 @@ export class AppointmentInitComponent implements OnInit {
                 private modalService: NgbModal) {
         this.departmentName = '';
         this.doctorName = '';
+        this.patientName = '';
     }
 
     ngOnInit() {
@@ -37,11 +40,12 @@ export class AppointmentInitComponent implements OnInit {
         this.hospitalService
             .queryRelativePatients('osCkO0a1sPv2YDNBIAw7wFXlTib4')
             .subscribe(response => {
-                const modalRef = this.modalService.open(NgbdModalContent);
+                const modalRef = this.modalService.open(NgbdModalContentComponent);
                 modalRef.result.then((result) => {
-                    console.info(result);
+                    this.patient = result;
+                    this.patientName = result.name;
                 }, (reason) => {
-                    console.info(reason);
+                    console.log(reason);
                 });
                 modalRef.componentInstance.title = '选择就诊人';
                 modalRef.componentInstance.patients = JSON.parse(response.patients);
@@ -50,6 +54,12 @@ export class AppointmentInitComponent implements OnInit {
     }
 
     onSubmitAppointment(): void {
+        this.container.set({
+            schedule: this.schedule,
+            patient: this.patient,
+            departmentName: this.departmentName,
+            doctorName: this.doctorName
+        });
         this.router.navigate(['/appointment/check']).then();
     }
 }

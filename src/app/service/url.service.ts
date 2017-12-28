@@ -29,4 +29,8 @@ export class UrlService {
     static SendSms(phone: string, type: number) {
         return PREFIX + '/sms/' + phone + '/type/' + type;
     }
+
+    static Insert(name: string) {
+        return PREFIX + '/table/' + name;
+    }
 }

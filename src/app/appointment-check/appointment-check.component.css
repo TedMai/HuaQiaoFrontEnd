@@ -1,0 +1,19 @@
+.field {
+    margin: 10px 0
+}
+
+.phone {
+    width: 50%
+}
+
+.field-right {
+    width: 50%
+}
+
+.input-verification-code {
+    margin-right: 1rem
+}
+
+.btn-send-code {
+    width: 5rem
+}

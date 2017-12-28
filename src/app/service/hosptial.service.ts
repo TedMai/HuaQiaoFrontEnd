@@ -6,6 +6,7 @@ import {catchError} from 'rxjs/operators';
 
 import {Department} from './department';
 import {UrlService} from './url.service';
+import {Appointment} from './appointment';
 
 // const httpOptions = {
 //     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -57,7 +58,7 @@ export class HospitalService {
         return this.http
             .get<any>(UrlService.QueryRelatives('schedule', doctorId.toString()))
             .pipe(
-                catchError(this.handleError('queryRelativeDoctors', []))
+                catchError(this.handleError('queryRelativeSchedules', []))
             );
     }
 
@@ -73,7 +74,15 @@ export class HospitalService {
         return this.http
             .get<any>(UrlService.SendSms(phone, 0))
             .pipe(
-                catchError(this.handleError('queryRelativeDoctors', []))
+                catchError(this.handleError('sendVerificationCode', []))
+            );
+    }
+
+    makeAppointment(appointment: Appointment): Observable<any> {
+        return this.http
+            .post<any>(UrlService.Insert('appointment'), appointment)
+            .pipe(
+                catchError(this.handleError('makeAppointment', []))
             );
     }
 
