@@ -47,7 +47,7 @@ export class HospitalService {
 
     queryRelativeDoctors(departmentId: number): Observable<any> {
         return this.http
-            .get<any>(UrlService.QueryRelatives('doctor', departmentId))
+            .get<any>(UrlService.QueryRelatives('doctor', departmentId.toString()))
             .pipe(
                 catchError(this.handleError('queryRelativeDoctors', []))
             );
@@ -55,9 +55,17 @@ export class HospitalService {
 
     queryRelativeSchedules(doctorId: number): Observable<any> {
         return this.http
-            .get<any>(UrlService.QueryRelatives('schedule', doctorId))
+            .get<any>(UrlService.QueryRelatives('schedule', doctorId.toString()))
             .pipe(
                 catchError(this.handleError('queryRelativeDoctors', []))
+            );
+    }
+
+    queryRelativePatients(openid: string): Observable<any> {
+        return this.http
+            .get<any>(UrlService.QueryRelatives('patient', openid))
+            .pipe(
+                catchError(this.handleError('queryRelativePatients', []))
             );
     }
 

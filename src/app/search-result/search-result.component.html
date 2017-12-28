@@ -1,7 +1,13 @@
 <div class="container">
-    <div class="d-flex flex-row justify-content-around">
-        <button type="button" class="btn btn-info">按专家预约</button>
-        <button type="button" class="btn btn-info">按日期预约</button>
-    </div>
-    <app-list-doctor></app-list-doctor>
+    <ngb-tabset>
+        <ngb-tab title="按专家预约">
+            <ng-template ngbTabContent>
+                <app-list-doctor></app-list-doctor>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="按日期预约">
+            <ng-template ngbTabContent>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
 </div>

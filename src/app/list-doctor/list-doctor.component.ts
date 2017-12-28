@@ -30,7 +30,6 @@ export class ListDoctorComponent implements OnInit, OnDestroy {
          * @type {Subscription}
          */
         this.sub = this.activatedRoute.params.subscribe(params => {
-            console.log('list-doctor.component.ts ==> ngOnInit()');
             // 根据科室的ID查找其下的医生
             this.id = params['id'];
             this.name = params['name'];
