@@ -15,9 +15,21 @@ import {Appointment} from './appointment';
 @Injectable()
 export class HospitalService {
 
+    /**
+     * 构造函数
+     * 依赖注入 HttpClient 服务
+     * @param http
+     */
     constructor(private http: HttpClient) {
     }
 
+    /**
+     * 获取指定医院的信息
+     *  传入参数
+     *      --  医院 ID
+     * @param id
+     * @returns {Observable<{}|any>}
+     */
     querySpecificHospital(id: number): Observable<any> {
         return this.http
             .get<any>(UrlService.QuerySpecific('hospital', id))
@@ -26,6 +38,10 @@ export class HospitalService {
             );
     }
 
+    /**
+     * 获取所有科室列表
+     * @returns {Observable<Array|any>}
+     */
     fetchDepartmentList(): Observable<Department[]> {
         return this.http
             .get<Department[]>(UrlService.FetchTableList('department'))
@@ -34,7 +50,16 @@ export class HospitalService {
             );
     }
 
+    /**
+     * 搜索功能 - 找科室
+     *  传入参数
+     *      --  搜索词
+     * @param term
+     * @returns {any}
+     */
     searchDepartments(term: string): Observable<Department[]> {
+        // 搜索词为空
+        // 直接返回 []
         if (!term.trim()) {
             return of([]);
         }
@@ -46,6 +71,13 @@ export class HospitalService {
             );
     }
 
+    /**
+     * 查询当前科室下的所有医生列表
+     *  传入参数
+     *      --  科室  ID
+     * @param departmentId
+     * @returns {Observable<Array|any>}
+     */
     queryRelativeDoctors(departmentId: number): Observable<any> {
         return this.http
             .get<any>(UrlService.QueryRelatives('doctor', departmentId.toString()))
@@ -54,6 +86,13 @@ export class HospitalService {
             );
     }
 
+    /**
+     * 查询当前医生的排班信息
+     *  传入参数
+     *      --  医生 ID
+     * @param doctorId
+     * @returns {Observable<Array|any>}
+     */
     queryRelativeSchedules(doctorId: number): Observable<any> {
         return this.http
             .get<any>(UrlService.QueryRelatives('schedule', doctorId.toString()))
@@ -62,6 +101,13 @@ export class HospitalService {
             );
     }
 
+    /**
+     * 查询当前用户所关联的预约病人列表信息
+     *  传入参数
+     *      --  openid
+     * @param openid
+     * @returns {Observable<Array|any>}
+     */
     queryRelativePatients(openid: string): Observable<any> {
         return this.http
             .get<any>(UrlService.QueryRelatives('patient', openid))
@@ -70,6 +116,13 @@ export class HospitalService {
             );
     }
 
+    /**
+     * 发送短信
+     *  传入参数
+     *      --  接收电话号码
+     * @param phone
+     * @returns {Observable<Array|any>}
+     */
     sendVerificationCode(phone: string): Observable<any> {
         return this.http
             .get<any>(UrlService.SendSms(phone, 0))
@@ -78,9 +131,23 @@ export class HospitalService {
             );
     }
 
+    /**
+     * 生成预约挂号单
+     *  传入参数
+     *      --  排班 ID
+     *      --  预约人 ID
+     * @param appointment
+     * @returns {Observable<Array|any>}
+     */
     makeAppointment(appointment: Appointment): Observable<any> {
         return this.http
-            .post<any>(UrlService.Insert('appointment'), appointment)
+            .post<any>(
+                UrlService.Insert('appointment'),
+                {
+                    schedule: appointment.schedule,
+                    patient: appointment.patient
+                }
+            )
             .pipe(
                 catchError(this.handleError('makeAppointment', []))
             );

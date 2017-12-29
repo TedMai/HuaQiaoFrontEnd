@@ -22,4 +22,8 @@ export class ContainerService {
     public get(): any {
         return this.myData;
     }
+
+    public append(key: string, value: any): void {
+        this.myData[key] = value;
+    }
 }
