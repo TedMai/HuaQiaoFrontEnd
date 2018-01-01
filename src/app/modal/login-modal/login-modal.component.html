@@ -1,0 +1,46 @@
+<form (ngSubmit)="login()" #registerForm="ngForm">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ title }}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ngb-alert type="danger" *ngIf="message" (close)="message=''">{{ message }}</ngb-alert>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="手机号码"
+                   required
+                   [(ngModel)]="user.phone" name="phone"
+                   #phone="ngModel"
+            />
+            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                 class="alert alert-danger">
+                * 必填项
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="密码"
+                   required
+                   [(ngModel)]="user.password" name="password"
+                   #password="ngModel"
+            />
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                 class="alert alert-danger">
+                * 必填项
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer d-flex flex-md-row justify-content-end">
+        <button type="button" class="btn btn-outline-secondary" (click)="goRegister()">注册新账号</button>
+        <button type="submit" class="btn btn-outline-success">登录</button>
+    </div>
+</form>
+<hr>
+<div style="text-align: center">
+    <p>请选择便捷登录方式</p>
+</div>
+<div class="footer field d-flex flex-row justify-content-around align-items-center">
+    <img class="login-icon" src="../../../assets/icons/login/wechat.png">
+    <img class="login-icon" src="../../../assets/icons/login/alipay.png">
+    <img class="login-icon" src="../../../assets/icons/login/qq.png">
+</div>

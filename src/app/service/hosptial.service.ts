@@ -7,6 +7,7 @@ import {catchError} from 'rxjs/operators';
 import {Department} from './department';
 import {UrlService} from './url.service';
 import {Appointment} from './appointment';
+import {User} from './user';
 
 // const httpOptions = {
 //     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -117,7 +118,7 @@ export class HospitalService {
     }
 
     /**
-     * 发送短信
+     * 发送验证码短信
      *  传入参数
      *      --  接收电话号码
      * @param phone
@@ -128,6 +129,14 @@ export class HospitalService {
             .get<any>(UrlService.SendSms(phone, 0))
             .pipe(
                 catchError(this.handleError('sendVerificationCode', []))
+            );
+    }
+
+    sendConfirmMessage(phone: string): Observable<any> {
+        return this.http
+            .get<any>(UrlService.SendSms(phone, 1))
+            .pipe(
+                catchError(this.handleError('sendConfirmMessage', []))
             );
     }
 
@@ -150,6 +159,28 @@ export class HospitalService {
             )
             .pipe(
                 catchError(this.handleError('makeAppointment', []))
+            );
+    }
+
+    /**
+     * 登录
+     *  -   形式：统一账户
+     * @param user
+     * @param action
+     * @returns {Observable<Array|any>}
+     */
+    login(user: User, action: string): Observable<any> {
+        return this.http
+            .post<any>(
+                UrlService.Login('union', action),
+                {
+                    phone: user.phone,
+                    password: user.password,
+                    verificationCode: user.verificationCode
+                }
+            )
+            .pipe(
+                catchError(this.handleError('login', {}))
             );
     }
 

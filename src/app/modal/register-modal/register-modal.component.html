@@ -1,0 +1,64 @@
+<form (ngSubmit)="confirm()" #registerForm="ngForm">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ title }}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="height: 20rem; overflow: auto">
+        <ngb-alert type="danger" *ngIf="message" (close)="message=''">{{ message }}</ngb-alert>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="手机号码"
+                   required
+                   [(ngModel)]="newUser.phone" name="phone"
+                   #phone="ngModel"
+                   (keyup)="message=''"
+            />
+            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                 class="alert alert-danger">
+                * 必填项
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="d-flex flex-md-row justify-content-between">
+                <input type="number" class="form-control input-verification-code" placeholder="验证码"
+                       required
+                       [(ngModel)]="newUser.verificationCode" name="verificationCode"
+                       #verificationCode="ngModel"
+                />
+                <button class="btn btn-sm btn-primary btn-send-code"
+                        (click)="sendCode()" [disabled]="hasSent"> {{ btnText }}
+                </button>
+            </div>
+            <div *ngIf="verificationCode.invalid && (verificationCode.dirty || verificationCode.touched)"
+                 class="alert alert-danger">
+                * 必填项
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="密码"
+                   required
+                   [(ngModel)]="newUser.password" name="password"
+                   #password="ngModel"
+            />
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                 class="alert alert-danger">
+                * 必填项
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="再次确认"
+                   required
+                   [(ngModel)]="newUser.passwordConfirm" name="passwordConfirm"
+                   #passwordConfirm="ngModel"
+            />
+            <div *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)"
+                 class="alert alert-danger">
+                * 必填项
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer d-flex flex-md-row justify-content-end">
+        <button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid">注册</button>
+    </div>
+</form>

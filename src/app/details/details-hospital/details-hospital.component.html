@@ -1,0 +1,17 @@
+<div class="container">
+    <!--巨幕-->
+    <div class="jumbotron">
+        <h1>{{ hospital.name }}</h1>
+        <p>{{ hospital.description }}</p>
+        <p>
+            <a [routerLink]="['/search/department']" routerLinkActive="active" class="btn btn-primary btn-lg"
+               role="button">预约挂号</a>
+        </p>
+    </div>
+    <!--轮播图-->
+    <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let image of gallery">
+            <img src="{{ image.imageurl }}" alt="carousel" height="375px">
+        </ng-template>
+    </ngb-carousel>
+</div>

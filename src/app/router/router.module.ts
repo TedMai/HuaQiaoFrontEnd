@@ -1,21 +1,21 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {SearchInitComponent} from '../search-init/search-init.component';
-import {SearchDepartmentComponent} from '../search-department/search-department.component';
-import {SearchDoctorComponent} from '../search-doctor/search-doctor.component';
-import {SearchResultComponent} from '../search-result/search-result.component';
+import {SearchInitComponent} from '../search/search-init/search-init.component';
+import {SearchDepartmentComponent} from '../search/search-department/search-department.component';
+import {SearchDoctorComponent} from '../search/search-doctor/search-doctor.component';
+import {SearchResultComponent} from '../search/search-result/search-result.component';
 
-import {ListDepartmentComponent} from '../list-department/list-department.component';
-import {ListDoctorComponent} from '../list-doctor/list-doctor.component';
+import {ListDepartmentComponent} from '../list/list-department/list-department.component';
+import {ListDoctorComponent} from '../list/list-doctor/list-doctor.component';
 
-import {DetailsHospitalComponent} from '../details-hospital/details-hospital.component';
-import {DetailsDepartmentComponent} from '../details-department/details-department.component';
-import {DetailsDoctorComponent} from '../details-doctor/details-doctor.component';
-import {DetailsAppointmentComponent} from '../details-appointment/details-appointment.component';
+import {DetailsHospitalComponent} from '../details/details-hospital/details-hospital.component';
+import {DetailsDepartmentComponent} from '../details/details-department/details-department.component';
+import {DetailsDoctorComponent} from '../details/details-doctor/details-doctor.component';
+import {DetailsAppointmentComponent} from '../details/details-appointment/details-appointment.component';
 
-import {AppointmentInitComponent} from '../appointment-init/appointment-init.component';
-import {AppointmentCheckComponent} from '../appointment-check/appointment-check.component';
+import {AppointmentInitComponent} from '../appointment/appointment-init/appointment-init.component';
+import {AppointmentCheckComponent} from '../appointment/appointment-check/appointment-check.component';
 
 const __ROUTES__: Routes = [
     {

@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+/**
+    图标
+    -   进入下一级
+ */
 .go-forward-icon {
     width: 20px;
     height: 20px;
+}
+
+/**
+    表单验证
+ */
+.ng-valid[required], .ng-valid.required {
+    border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442; /* red */
 }

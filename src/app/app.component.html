@@ -1,4 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<!--导航-->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div>
+            <button *ngIf="!isLoggedIn" class="btn btn-outline-primary btn-lg" (click)="showLoginModal()">登录</button>
+            <img *ngIf="isLoggedIn" src="{{ headImageUrl }}" class="head-image-icon">
+        </div>
+    </div>
+</nav>
 <!--You have to tell the router where to display the component. -->
 <!--To do this, you can add a <router-outlet> element at the end of the template.-->
 <!--RouterOutlet is one of the directives provided by the RouterModule. -->

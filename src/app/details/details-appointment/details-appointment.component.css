@@ -1,0 +1,19 @@
+label {
+    color: #999999;
+    margin-bottom: .5rem
+}
+
+.extra-info {
+    width: 100%;
+    background-color: gainsboro;
+    text-align: center;
+}
+
+.appointment-status {
+    height: 3rem;
+}
+
+.appointment-extra {
+    height: 10rem;
+}
+
