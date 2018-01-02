@@ -25,6 +25,7 @@ import {SearchInitComponent} from './search/search-init/search-init.component';
 import {PatientSelectModalComponent} from './modal/patient-select-modal/patient-select-modal.component';
 import {LoginModalComponent} from './modal/login-modal/login-modal.component';
 import {RegisterModalComponent} from './modal/register-modal/register-modal.component';
+import { VerificationCodeComponent } from './common/verification-code/verification-code.component';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import {RegisterModalComponent} from './modal/register-modal/register-modal.comp
         SearchInitComponent,
         PatientSelectModalComponent,
         LoginModalComponent,
-        RegisterModalComponent
+        RegisterModalComponent,
+        VerificationCodeComponent
     ],
     entryComponents: [
         PatientSelectModalComponent,

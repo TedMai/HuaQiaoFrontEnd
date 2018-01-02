@@ -9,6 +9,17 @@
 }
 
 /**
+    验证码
+ */
+.input-verification-code {
+    width: 70%;
+}
+
+app-verification-code {
+    width: 25%;
+}
+
+/**
     表单验证
  */
 .ng-valid[required], .ng-valid.required {

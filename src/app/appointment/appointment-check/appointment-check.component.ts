@@ -1,9 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+
 import {HospitalService} from '../../service/hosptial.service';
 import {ContainerService} from '../../service/container.service';
 import {Appointment} from '../../service/appointment';
-import {Subscription} from 'rxjs/Subscription';
+import {Message} from '../../service/message';
 
 @Component({
     selector: 'app-appointment-check',
@@ -11,12 +13,11 @@ import {Subscription} from 'rxjs/Subscription';
     styleUrls: ['./appointment-check.component.css']
 })
 export class AppointmentCheckComponent implements OnInit, OnDestroy {
-    scheduleId: number;
-    patientId: number;
-    phone: string;
-    isDisabled: boolean;
+    scheduleId = 0;
+    patientId = 0;
+    phone = '';
+    verificationCode = '';
     appointmentSubscription: Subscription;
-    sendMessageSubscription: Subscription;
 
     constructor(private router: Router,
                 private container: ContainerService,
@@ -24,7 +25,6 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.isDisabled = false;
         this.patientId = this.container.get().patient.pid;
         this.phone = this.container.get().patient.phone;
         this.scheduleId = this.container.get().schedule.id;
@@ -34,8 +34,13 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
         if (typeof this.appointmentSubscription !== 'undefined') {
             this.appointmentSubscription.unsubscribe();
         }
-        if (typeof this.sendMessageSubscription !== 'undefined') {
-            this.sendMessageSubscription.unsubscribe();
+    }
+
+    onSentCompleted(response: Message): void {
+        if (response.Code === 'OK') {
+
+        } else {
+
         }
     }
 
@@ -65,19 +70,5 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
                 }
                 this.router.navigate(['/details/appointment']).then();
             });
-    }
-
-    /**
-     * 发送验证码
-     *  --  收到服务器发送成功的通知后，修改按键状态，开始倒计时
-     */
-    sendVerificationCode(): void {
-        if (typeof this.phone !== 'undefined' && this.phone !== '') {
-            this.isDisabled = true;
-            this.sendMessageSubscription = this.hospitalService.sendVerificationCode(this.phone)
-                .subscribe(result => {
-                    console.log(result);
-                });
-        }
     }
 }

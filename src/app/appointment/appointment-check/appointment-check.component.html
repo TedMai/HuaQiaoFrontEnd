@@ -1,17 +1,22 @@
-<div class="container">
-    <div class="d-flex flex-row justify-content-between field">
-        <label>手机号码</label>
-        <input title="手机号码" class="form-control phone" value="{{ phone }}" readonly>
-    </div>
-    <div class="d-flex flex-row justify-content-between field">
-        <label>验证码</label>
-        <div class="d-flex flex-row align-content-center field-right">
-            <input #code title="验证码" class="form-control input-verification-code" placeholder="请输入验证码">
-            <button type="button" class="btn btn-primary btn-sm btn-send-code" (click)="sendVerificationCode()"
-                    [disabled]=isDisabled>发送
-            </button>
+<form #checkAppointmentForm="ngForm">
+    <div class="container">
+        <div class="form-group">
+            <input type="text" class="form-control" value="{{ phone }}" readonly>
         </div>
+        <div class="form-group">
+            <div class="d-flex flex-md-row justify-content-between">
+                <input type="number" class="form-control input-verification-code" placeholder="请输入验证码"
+                       required
+                       [(ngModel)]="verificationCode" name="verificationCode"
+                       #verificationCode="ngModel"
+                />
+                <app-verification-code
+                        [phone]="phone"
+                        (sentCompleted)="onSentCompleted($event)"
+                >
+                </app-verification-code>
+            </div>
+        </div>
+        <button (click)="onConfirm()" type="button" class="btn btn-success btn-lg btn-block">下一步</button>
     </div>
-    <button (click)="onConfirm()" type="button" class="btn btn-success btn-lg btn-block">确认</button>
-</div>
-
+</form>

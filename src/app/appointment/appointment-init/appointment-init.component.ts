@@ -39,12 +39,14 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.subscription.unsubscribe();
+        if (typeof this.subscription !== 'undefined') {
+            this.subscription.unsubscribe();
+        }
     }
 
     choosePatient(): void {
         this.subscription = this.hospitalService
-            .queryRelativePatients('11')
+            .queryRelativePatients('1')
             .subscribe(response => {
                 const modalRef = this.modalService.open(PatientSelectModalComponent);
                 modalRef.result.then((result) => {
