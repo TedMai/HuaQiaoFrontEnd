@@ -1,4 +1,4 @@
-<form (ngSubmit)="confirm()" #registerForm="ngForm">
+<form (ngSubmit)="startRegister()" #registerForm="ngForm">
     <div class="modal-header">
         <h4 class="modal-title">{{ title }}</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -10,7 +10,7 @@
         <div class="form-group">
             <input type="text" class="form-control" placeholder="手机号码"
                    required
-                   [(ngModel)]="newUser.phone" name="phone"
+                   [(ngModel)]="newUser.phone" name="inputPhone"
                    #phone="ngModel"
                    (keyup)="message=''"
             />
@@ -23,12 +23,13 @@
             <div class="d-flex flex-md-row justify-content-between">
                 <input type="number" class="form-control input-verification-code" placeholder="请输入验证码"
                        required
-                       [(ngModel)]="newUser.verificationCode" name="verificationCode"
+                       [(ngModel)]="newUser.verificationCode" name="inputVerificationCode"
                        #verificationCode="ngModel"
+                       (keyup)="message=''"
                 />
                 <app-verification-code
                         [phone]="newUser.phone"
-                        (sentCompleted)="onSentCompleted($event)"
+                        (sentCompleted)="sentVerificationCodeCompleted($event)"
                 >
                 </app-verification-code>
             </div>
@@ -39,19 +40,24 @@
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="密码"
-                   required
-                   [(ngModel)]="newUser.password" name="password"
+                   required minlength="6"
+                   [(ngModel)]="newUser.password" name="inputPassword"
                    #password="ngModel"
             />
             <div *ngIf="password.invalid && (password.dirty || password.touched)"
                  class="alert alert-danger">
-                * 必填项
+                <div *ngIf="password.errors.required">
+                    * 必填项
+                </div>
+                <div *ngIf="password.errors.minlength">
+                    密码至少输入6位字符
+                </div>
             </div>
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="再次确认"
                    required
-                   [(ngModel)]="newUser.passwordConfirm" name="passwordConfirm"
+                   [(ngModel)]="newUser.passwordConfirm" name="inputPasswordConfirm"
                    #passwordConfirm="ngModel"
             />
             <div *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)"

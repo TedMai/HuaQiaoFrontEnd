@@ -10,7 +10,7 @@
         <div class="form-group">
             <input type="text" class="form-control" placeholder="手机号码"
                    required
-                   [(ngModel)]="user.phone" name="phone"
+                   [(ngModel)]="user.phone" name="inputPhone"
                    #phone="ngModel"
             />
             <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
@@ -21,7 +21,7 @@
         <div class="form-group">
             <input type="password" class="form-control" placeholder="密码"
                    required
-                   [(ngModel)]="user.password" name="password"
+                   [(ngModel)]="user.password" name="inputPassword"
                    #password="ngModel"
             />
             <div *ngIf="password.invalid && (password.dirty || password.touched)"

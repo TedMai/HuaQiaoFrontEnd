@@ -25,7 +25,8 @@ import {SearchInitComponent} from './search/search-init/search-init.component';
 import {PatientSelectModalComponent} from './modal/patient-select-modal/patient-select-modal.component';
 import {LoginModalComponent} from './modal/login-modal/login-modal.component';
 import {RegisterModalComponent} from './modal/register-modal/register-modal.component';
-import { VerificationCodeComponent } from './common/verification-code/verification-code.component';
+import {VerificationCodeComponent} from './common/verification-code/verification-code.component';
+import {ConsistentCiphersValidatorDirective} from './common/consistent-ciphers.directive';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { VerificationCodeComponent } from './common/verification-code/verificati
         PatientSelectModalComponent,
         LoginModalComponent,
         RegisterModalComponent,
-        VerificationCodeComponent
+        VerificationCodeComponent,
+        ConsistentCiphersValidatorDirective
     ],
     entryComponents: [
         PatientSelectModalComponent,

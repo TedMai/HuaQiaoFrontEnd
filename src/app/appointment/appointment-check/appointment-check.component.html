@@ -7,8 +7,7 @@
             <div class="d-flex flex-md-row justify-content-between">
                 <input type="number" class="form-control input-verification-code" placeholder="请输入验证码"
                        required
-                       [(ngModel)]="verificationCode" name="verificationCode"
-                       #verificationCode="ngModel"
+                       [(ngModel)]="verificationCode" name="inputVerificationCode"
                 />
                 <app-verification-code
                         [phone]="phone"

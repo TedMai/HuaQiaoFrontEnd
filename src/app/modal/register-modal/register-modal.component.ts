@@ -10,24 +10,50 @@ import {Message} from '../../service/message';
     styleUrls: ['./register-modal.component.css']
 })
 export class RegisterModalComponent {
+    // 对话框标题
     @Input() title: string;
+    // 错误提示信息
     @Input() message: string;
+    // 注册事件 - 通知父组件
     @Output() toRegister = new EventEmitter<User>();
+    // 对象 - 新账户
     newUser: User;
 
     constructor(public activeModal: NgbActiveModal) {
-        this.newUser = new User(0, '', '', '', '');
+        // 初始化
+        this.newUser = new User(0, '', '', '', '', '', '');
     }
 
-    onSentCompleted(response: Message): void {
+    /**
+     * 发送验证码
+     *      --  下发失败，弹出提示
+     * @param response
+     */
+    sentVerificationCodeCompleted(response: Message): void {
         if (response.Code === 'OK') {
-
+            // 成功发送验证码
+            // 记录   requestId, bizId
+            this.newUser.requestId = response.RequestId;
+            this.newUser.bizId = response.BizId;
         } else {
             this.message = response.Message;
         }
     }
 
-    confirm(): void {
-        this.toRegister.emit(this.newUser);
+    /**
+     * 启动注册流程
+     *      --  校验表单数据
+     *      --  通知父组件
+     */
+    startRegister(): void {
+        const phoneReg = /^1[3|4|5|7|8|9][0-9]{9}$/;
+        if (!phoneReg.test(this.newUser.phone)) {
+            this.message = '请输入正确的手机号码';
+        }
+        else if (this.newUser.password !== this.newUser.passwordConfirm) {
+            this.message = '两次输入的密码不一致';
+        } else {
+            this.toRegister.emit(this.newUser);
+        }
     }
 }

@@ -176,7 +176,9 @@ export class HospitalService {
                 {
                     phone: user.phone,
                     password: user.password,
-                    verificationCode: user.verificationCode
+                    verificationCode: user.verificationCode,
+                    requestId: user.requestId,
+                    bizId: user.bizId
                 }
             )
             .pipe(

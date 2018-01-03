@@ -14,7 +14,7 @@ export class LoginModalComponent {
     user: User;
 
     constructor(public activeModal: NgbActiveModal) {
-        this.user = new User(0, '', '', '', '');
+        this.user = new User(0, '', '', '', '', '', '');
     }
 
     goRegister(): void {

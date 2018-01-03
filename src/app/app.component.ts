@@ -37,7 +37,6 @@ export class AppComponent implements OnDestroy {
         const loginModalRef = this.modalService.open(LoginModalComponent);
         loginModalRef.result.then(
             (reason) => {
-                console.log(reason);
                 switch (reason) {
                     case 'Login success':
                         // 1. 弹出登录成功的气泡提示
@@ -50,7 +49,6 @@ export class AppComponent implements OnDestroy {
                 }
             },
             (reason) => {
-                console.log(reason);
                 switch (reason) {
                     case 'Register':
                         this.showRegisterModal();
@@ -84,6 +82,11 @@ export class AppComponent implements OnDestroy {
             .then(
                 (result) => {
                     console.log(result);
+                    if(result === 'Register success'){
+                        // 注册成功后
+                        // 保存用户信息
+                        // 并更新页面
+                    }
                 },
                 (reason) => {
                     console.log(reason);
@@ -105,7 +108,7 @@ export class AppComponent implements OnDestroy {
                     }
                     else {
                         // 弹出气泡提示
-                        registerModalRef.componentInstance.message = '注册失败';
+                        registerModalRef.componentInstance.message = result.msg;
                     }
                 }
             );
