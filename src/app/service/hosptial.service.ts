@@ -81,7 +81,7 @@ export class HospitalService {
      */
     queryRelativeDoctors(departmentId: number): Observable<any> {
         return this.http
-            .get<any>(UrlService.QueryRelatives('doctor', departmentId.toString()))
+            .get<any>(UrlService.QueryRelatives('doctor', departmentId))
             .pipe(
                 catchError(this.handleError('queryRelativeDoctors', []))
             );
@@ -96,7 +96,7 @@ export class HospitalService {
      */
     queryRelativeSchedules(doctorId: number): Observable<any> {
         return this.http
-            .get<any>(UrlService.QueryRelatives('schedule', doctorId.toString()))
+            .get<any>(UrlService.QueryRelatives('schedule', doctorId))
             .pipe(
                 catchError(this.handleError('queryRelativeSchedules', []))
             );
@@ -105,13 +105,13 @@ export class HospitalService {
     /**
      * 查询当前用户所关联的预约病人列表信息
      *  传入参数
-     *      --  openid
-     * @param openid
+     *      --  uid
+     * @param uid
      * @returns {Observable<Array|any>}
      */
-    queryRelativePatients(openid: string): Observable<any> {
+    queryRelativePatients(uid: number): Observable<any> {
         return this.http
-            .get<any>(UrlService.QueryRelatives('patient', openid))
+            .get<any>(UrlService.QueryRelatives('patient', uid))
             .pipe(
                 catchError(this.handleError('queryRelativePatients', []))
             );

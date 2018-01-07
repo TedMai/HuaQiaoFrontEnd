@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div>
             <button *ngIf="!isLoggedIn" class="btn btn-outline-primary btn-lg" (click)="showLoginModal()">登录</button>
-            <img *ngIf="isLoggedIn" src="{{ headImageUrl }}" class="head-image-icon">
+            <img *ngIf="isLoggedIn" src="{{ headImageUrl }}" class="head-image-icon" (click)="toUserProfile()">
         </div>
     </div>
 </nav>

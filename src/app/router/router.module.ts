@@ -16,6 +16,7 @@ import {DetailsAppointmentComponent} from '../details/details-appointment/detail
 
 import {AppointmentInitComponent} from '../appointment/appointment-init/appointment-init.component';
 import {AppointmentCheckComponent} from '../appointment/appointment-check/appointment-check.component';
+import {MyProfileComponent} from '../my/my-profile/my-profile.component';
 
 const __ROUTES__: Routes = [
     {
@@ -87,6 +88,15 @@ const __ROUTES__: Routes = [
         ]
     },
     {
+        path: 'my',
+        children: [
+            {
+                path: 'profile/:id',
+                component: MyProfileComponent
+            }
+        ]
+    },
+    {
         path: '',
         redirectTo: '/details/hospital',
         pathMatch: 'full'
@@ -95,7 +105,8 @@ const __ROUTES__: Routes = [
 
 @NgModule({
     // The forRoot() method is called because a configured router is provided at the app's root.
-    // The forRoot() method supplies the Router service providers and directives needed for routing, and performs the initial navigation based on the current browser URL.
+    // The forRoot() method supplies the Router service providers and directives needed for routing.
+    // And performs the initial navigation based on the current browser URL.
     imports: [RouterModule.forRoot(__ROUTES__)],
     declarations: [],
     exports: [RouterModule]

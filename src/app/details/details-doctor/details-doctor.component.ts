@@ -39,11 +39,16 @@ export class DetailsDoctorComponent implements OnInit, OnDestroy {
     }
 
     makeAppointment(schedule: Schedule) {
-        this.container.set({
-            departmentName: this.departmentName,
-            doctorName: this.doctor.name,
-            schedule: schedule
-        });
-        this.router.navigate(['/appointment/init', schedule.id]).then();
+        const uid = this.container.getUserID();
+        if (typeof uid === 'undefined' || uid === null) {
+            // TODO: 弹出登录对话框，需要与app.component.ts交互
+        } else {
+            this.container.set({
+                departmentName: this.departmentName,
+                doctorName: this.doctor.name,
+                schedule: schedule
+            });
+            this.router.navigate(['/appointment/init', schedule.id]).then();
+        }
     }
 }

@@ -14,7 +14,7 @@ export class UrlService {
         return PREFIX + '/table/' + name + '/id/' + id;
     }
 
-    static QueryRelatives(name: string, id: string): string {
+    static QueryRelatives(name: string, id: number): string {
         return PREFIX + '/table/' + name + '/relatives/' + id;
     }
 
@@ -36,6 +36,5 @@ export class UrlService {
 
     static Login(type: string, action: string): string {
         return `${ PREFIX }/login/type/${ type }/action/${ action }`;
-        // return PREFIX + '/login/' + name + '/type/' + type;
     }
 }

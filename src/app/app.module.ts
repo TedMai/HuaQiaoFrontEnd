@@ -27,6 +27,7 @@ import {LoginModalComponent} from './modal/login-modal/login-modal.component';
 import {RegisterModalComponent} from './modal/register-modal/register-modal.component';
 import {VerificationCodeComponent} from './common/verification-code/verification-code.component';
 import {ConsistentCiphersValidatorDirective} from './common/consistent-ciphers.directive';
+import { MyProfileComponent } from './my/my-profile/my-profile.component';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,8 @@ import {ConsistentCiphersValidatorDirective} from './common/consistent-ciphers.d
         LoginModalComponent,
         RegisterModalComponent,
         VerificationCodeComponent,
-        ConsistentCiphersValidatorDirective
+        ConsistentCiphersValidatorDirective,
+        MyProfileComponent
     ],
     entryComponents: [
         PatientSelectModalComponent,

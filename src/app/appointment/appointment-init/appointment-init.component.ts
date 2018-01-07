@@ -45,20 +45,26 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
     }
 
     choosePatient(): void {
-        this.subscription = this.hospitalService
-            .queryRelativePatients('1')
-            .subscribe(response => {
-                const modalRef = this.modalService.open(PatientSelectModalComponent);
-                modalRef.result.then((result) => {
-                    this.patient = result;
-                    this.patientName = result.name;
-                }, (reason) => {
-                    console.log(reason);
-                });
-                modalRef.componentInstance.title = '选择就诊人';
-                modalRef.componentInstance.patients = JSON.parse(response.patients);
-            });
 
+        const uid = this.container.getUserID();
+        console.log(uid);
+        if (typeof uid === 'undefined') {
+            // 弹出未登录提示气泡
+        } else {
+            this.subscription = this.hospitalService
+                .queryRelativePatients(uid)
+                .subscribe(response => {
+                    const modalRef = this.modalService.open(PatientSelectModalComponent);
+                    modalRef.result.then((result) => {
+                        this.patient = result;
+                        this.patientName = result.name;
+                    }, (reason) => {
+                        console.log(reason);
+                    });
+                    modalRef.componentInstance.title = '选择就诊人';
+                    modalRef.componentInstance.patients = JSON.parse(response.patients);
+                });
+        }
     }
 
     onSubmitAppointment(): void {
