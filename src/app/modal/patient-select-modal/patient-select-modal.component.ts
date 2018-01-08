@@ -18,19 +18,13 @@ export class PatientSelectModalComponent {
     onSelected(pid): void {
         this.patients.map(patient => {
             if (patient.pid === pid) {
-                patient.isDefault = 1;
-            } else {
-                patient.isDefault = 0;
-            }
-        });
-    }
-
-    onClosed(): void {
-        this.patients.map(patient => {
-            if (patient.isDefault === 1) {
                 this.patientSelected = patient;
             }
         });
         this.activeModal.close(this.patientSelected);
+    }
+
+    addPatient(): void {
+        this.activeModal.dismiss('Add patient');
     }
 }

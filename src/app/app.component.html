@@ -3,7 +3,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div>
-            <button *ngIf="!isLoggedIn" class="btn btn-outline-primary btn-lg" (click)="showLoginModal()">登录</button>
+            <button *ngIf="!isLoggedIn" class="btn btn-outline-primary btn-lg" (click)="openLoginModal()">登录</button>
             <img *ngIf="isLoggedIn" src="{{ headImageUrl }}" class="head-image-icon" (click)="toUserProfile()">
         </div>
     </div>

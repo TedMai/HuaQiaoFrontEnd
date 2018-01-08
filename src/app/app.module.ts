@@ -7,6 +7,7 @@ import {FormsModule} from '@angular/forms';
 import {HospitalService} from './service/hosptial.service';
 import {UrlService} from './service/url.service';
 import {ContainerService} from './service/container.service';
+import {LoginService} from './service/login.service';
 
 import {AppComponent} from './app.component';
 import {AppRouterModule} from './router/router.module';
@@ -27,7 +28,8 @@ import {LoginModalComponent} from './modal/login-modal/login-modal.component';
 import {RegisterModalComponent} from './modal/register-modal/register-modal.component';
 import {VerificationCodeComponent} from './common/verification-code/verification-code.component';
 import {ConsistentCiphersValidatorDirective} from './common/consistent-ciphers.directive';
-import { MyProfileComponent } from './my/my-profile/my-profile.component';
+import {MyProfileComponent} from './my/my-profile/my-profile.component';
+import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-modal.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +47,7 @@ import { MyProfileComponent } from './my/my-profile/my-profile.component';
         DetailsHospitalComponent,
         SearchInitComponent,
         PatientSelectModalComponent,
+        PatientAddModalComponent,
         LoginModalComponent,
         RegisterModalComponent,
         VerificationCodeComponent,
@@ -53,6 +56,7 @@ import { MyProfileComponent } from './my/my-profile/my-profile.component';
     ],
     entryComponents: [
         PatientSelectModalComponent,
+        PatientAddModalComponent,
         LoginModalComponent,
         RegisterModalComponent
     ],
@@ -66,7 +70,8 @@ import { MyProfileComponent } from './my/my-profile/my-profile.component';
     providers: [
         HospitalService,
         UrlService,
-        ContainerService
+        ContainerService,
+        LoginService
     ],
     bootstrap: [AppComponent]
 })

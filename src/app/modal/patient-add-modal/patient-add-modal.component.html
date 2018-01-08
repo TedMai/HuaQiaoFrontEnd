@@ -1,0 +1,73 @@
+<form (ngSubmit)="addPatient()" #addPatientForm="ngForm">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ title }}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="height: 20rem; overflow: auto">
+        <ngb-alert type="danger" *ngIf="message" (close)="message=''">{{ message }}</ngb-alert>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入真实姓名"
+                   required
+                   [(ngModel)]="newPatient.name" name="inputName"
+                   #patientName="ngModel"
+            />
+            <div *ngIf="patientName.invalid && (patientName.dirty || patientName.touched)"
+                 class="alert alert-danger">
+                * 必填项
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入真实身份证号"
+                   required
+                   [(ngModel)]="newPatient.identity" name="inputIdentity"
+                   #patientIdentity="ngModel"
+            />
+            <div *ngIf="patientIdentity.invalid && (patientIdentity.dirty || patientIdentity.touched)"
+                 class="alert alert-danger">
+                * 必填项
+            </div>
+        </div>
+        <div class="form-group d-flex flex-row justify-content-between">
+            <div>
+                性别
+            </div>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="inputSexRadio1" value="{{ 0 }}"
+                           [(ngModel)]="newPatient.sex" name="inputSexOptions"
+                           [checked]="newPatient.sex === 0">
+                    <label class="form-check-label" for="inputSexRadio1">男</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="inputSexRadio2" value="{{ 1 }}"
+                           [(ngModel)]="newPatient.sex" name="inputSexOptions"
+                           [checked]="newPatient.sex === 1">
+                    <label class="form-check-label" for="inputSexRadio2">女</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入手机号码"
+                   required
+                   [(ngModel)]="newPatient.phone" name="inputPhone"
+                   #patientPhone="ngModel"
+            />
+            <div *ngIf="patientPhone.invalid && (patientPhone.dirty || patientPhone.touched)"
+                 class="alert alert-danger">
+                * 必填项
+            </div>
+        </div>
+        <div class="form-group d-flex flex-row justify-content-end">
+            <div class="form-check">
+                <input type="checkbox" id="setDefault"
+                       [(ngModel)]="newPatient.isDefault" name="inputSetDefault">
+                <label class="form-check-label" for="setDefault">设为默认</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success" [disabled]="!addPatientForm.form.valid">新增</button>
+    </div>
+</form>

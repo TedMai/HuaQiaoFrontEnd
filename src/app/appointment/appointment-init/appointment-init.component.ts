@@ -9,6 +9,7 @@ import {Patient} from '../../service/patient';
 
 import {PatientSelectModalComponent} from '../../modal/patient-select-modal/patient-select-modal.component';
 import {Subscription} from 'rxjs/Subscription';
+import {PatientAddModalComponent} from '../../modal/patient-add-modal/patient-add-modal.component';
 
 @Component({
     selector: 'app-appointment-init',
@@ -18,18 +19,15 @@ import {Subscription} from 'rxjs/Subscription';
 export class AppointmentInitComponent implements OnInit, OnDestroy {
     schedule: Schedule;
     patient: Patient;
-    departmentName: string;
-    doctorName: string;
-    patientName: string;
-    subscription: Subscription;
+    departmentName = '';
+    doctorName = '';
+    patientName = '';
+    choosePatientSubscription: Subscription;
 
     constructor(private router: Router,
                 private hospitalService: HospitalService,
                 private container: ContainerService,
                 private modalService: NgbModal) {
-        this.departmentName = '';
-        this.doctorName = '';
-        this.patientName = '';
     }
 
     ngOnInit() {
@@ -39,32 +37,75 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        if (typeof this.subscription !== 'undefined') {
-            this.subscription.unsubscribe();
+        if (typeof this.choosePatientSubscription !== 'undefined') {
+            this.choosePatientSubscription.unsubscribe();
         }
     }
 
+    /**
+     * 选择就诊人
+     */
     choosePatient(): void {
-
         const uid = this.container.getUserID();
-        console.log(uid);
-        if (typeof uid === 'undefined') {
-            // 弹出未登录提示气泡
-        } else {
-            this.subscription = this.hospitalService
-                .queryRelativePatients(uid)
-                .subscribe(response => {
-                    const modalRef = this.modalService.open(PatientSelectModalComponent);
-                    modalRef.result.then((result) => {
+        this.choosePatientSubscription = this.hospitalService
+            .queryRelativePatients(uid)
+            .subscribe(response => {
+                const choosePatientModalRef = this.modalService.open(PatientSelectModalComponent);
+                choosePatientModalRef.componentInstance.title = '选择就诊人';
+                choosePatientModalRef.componentInstance.patients = JSON.parse(response.patients);
+                choosePatientModalRef.result.then(
+                    /**
+                     * close
+                     * @param result
+                     */
+                    (result) => {
                         this.patient = result;
                         this.patientName = result.name;
-                    }, (reason) => {
+                    },
+                    /**
+                     * dismiss
+                     * @param reason
+                     */
+                    (reason) => {
                         console.log(reason);
+                        switch (reason) {
+                            case 'Add patient':
+                                this.addPatient();
+                                break;
+                            case 'Cross click':
+                                break;
+                        }
                     });
-                    modalRef.componentInstance.title = '选择就诊人';
-                    modalRef.componentInstance.patients = JSON.parse(response.patients);
-                });
-        }
+            });
+    }
+
+    /**
+     * 新增就诊人
+     */
+    addPatient(): void {
+        const addPatientModalRef = this.modalService.open(PatientAddModalComponent);
+        addPatientModalRef.componentInstance.title = '新增就诊人';
+        addPatientModalRef.componentInstance.message = '';
+        addPatientModalRef.componentInstance.submitNewPatient.subscribe(
+            (response) => {
+                console.log(response);
+            });
+
+        addPatientModalRef.result.then(
+            /**
+             * close
+             * @param reason
+             */
+            (reason) => {
+                console.log(reason);
+            },
+            /**
+             * dismiss
+             * @param reason
+             */
+            (reason) => {
+                console.log(reason);
+            });
     }
 
     onSubmitAppointment(): void {

@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs/Subscription';
 
 import {HospitalService} from '../../service/hosptial.service';
 import {ContainerService} from '../../service/container.service';
+import {LoginService} from '../../service/login.service';
 
 import {Doctor} from '../../service/doctor';
 import {Schedule} from '../../service/schedule';
@@ -21,7 +22,8 @@ export class DetailsDoctorComponent implements OnInit, OnDestroy {
 
     constructor(private router: Router,
                 private hospitalService: HospitalService,
-                private container: ContainerService) {
+                private container: ContainerService,
+                private loginService: LoginService) {
     }
 
     ngOnInit() {
@@ -41,7 +43,7 @@ export class DetailsDoctorComponent implements OnInit, OnDestroy {
     makeAppointment(schedule: Schedule) {
         const uid = this.container.getUserID();
         if (typeof uid === 'undefined' || uid === null) {
-            // TODO: 弹出登录对话框，需要与app.component.ts交互
+            this.loginService.openLoginModal();             // 弹出登录对话框
         } else {
             this.container.set({
                 departmentName: this.departmentName,
