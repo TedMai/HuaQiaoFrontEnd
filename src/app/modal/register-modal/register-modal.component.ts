@@ -3,6 +3,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 import {User} from '../../service/user';
 import {Message} from '../../service/message';
+import {ValidatorService} from '../../service/validator.service';
 
 @Component({
     selector: 'app-register-modal',
@@ -19,7 +20,7 @@ export class RegisterModalComponent {
     // 对象 - 新账户
     newUser: User;
 
-    constructor(public activeModal: NgbActiveModal) {
+    constructor(private activeModal: NgbActiveModal) {
         // 初始化
         this.newUser = new User(0, '', '', '', '', '', '');
     }
@@ -46,11 +47,10 @@ export class RegisterModalComponent {
      *      --  通知父组件
      */
     startRegister(): void {
-        const phoneReg = /^1[3|4|5|7|8|9][0-9]{9}$/;
-        if (!phoneReg.test(this.newUser.phone)) {
+        if (!ValidatorService.MobilePhoneValidator(this.newUser.phone)) {
             this.message = '请输入正确的手机号码';
         }
-        else if (this.newUser.password !== this.newUser.passwordConfirm) {
+        else if (!ValidatorService.ConsistenceValidator(this.newUser.password, this.newUser.passwordConfirm)) {
             this.message = '两次输入的密码不一致';
         } else {
             this.toRegister.emit(this.newUser);

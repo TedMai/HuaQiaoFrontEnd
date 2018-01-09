@@ -1,5 +1,6 @@
 <form #checkAppointmentForm="ngForm">
     <div class="container">
+        <ngb-alert type="danger" *ngIf="message" (close)="message=''">{{ message }}</ngb-alert>
         <div class="form-group">
             <input type="text" class="form-control" value="{{ phone }}" readonly>
         </div>

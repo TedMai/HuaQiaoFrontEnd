@@ -8,6 +8,7 @@ import {Department} from './department';
 import {UrlService} from './url.service';
 import {Appointment} from './appointment';
 import {User} from './user';
+import {Patient} from './patient';
 
 // const httpOptions = {
 //     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -132,6 +133,13 @@ export class HospitalService {
             );
     }
 
+    /**
+     * 发送确认短信
+     *  传入参数
+     *      --  接收电话号码
+     * @param phone
+     * @returns {Observable<Array|any>}
+     */
     sendConfirmMessage(phone: string): Observable<any> {
         return this.http
             .get<any>(UrlService.SendSms(phone, 1))
@@ -155,6 +163,31 @@ export class HospitalService {
                 {
                     schedule: appointment.schedule,
                     patient: appointment.patient
+                }
+            )
+            .pipe(
+                catchError(this.handleError('makeAppointment', []))
+            );
+    }
+
+    /**
+     * 新增就诊人
+     * @param patient
+     * @returns {Observable<Array|any>}
+     */
+    addNewPatient(patient: Patient): Observable<any> {
+        return this.http
+            .post<any>(
+                UrlService.Insert('patient'),
+                {
+                    name: patient.name,
+                    sex: parseInt(patient.sex),
+                    // birthday: new Date(),
+                    identity: patient.identity,
+                    phone: patient.phone,
+                    address: patient.address,
+                    isDefault: patient.isDefault,
+                    uid: patient.uid
                 }
             )
             .pipe(

@@ -9,13 +9,19 @@
         <ngb-alert type="danger" *ngIf="message" (close)="message=''">{{ message }}</ngb-alert>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="请输入真实姓名"
-                   required
+                   required maxlength="16"
                    [(ngModel)]="newPatient.name" name="inputName"
                    #patientName="ngModel"
+                   (keyup)="message=''"
             />
             <div *ngIf="patientName.invalid && (patientName.dirty || patientName.touched)"
                  class="alert alert-danger">
-                * 必填项
+                <div *ngIf="patientName.errors.required">
+                    * 必填项
+                </div>
+                <div *ngIf="patientName.errors.maxlength">
+                    至多输入16个字符
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -23,6 +29,7 @@
                    required
                    [(ngModel)]="newPatient.identity" name="inputIdentity"
                    #patientIdentity="ngModel"
+                   (keyup)="message=''"
             />
             <div *ngIf="patientIdentity.invalid && (patientIdentity.dirty || patientIdentity.touched)"
                  class="alert alert-danger">
@@ -35,15 +42,15 @@
             </div>
             <div>
                 <div class="form-check form-check-inline">
-                    <input type="radio" id="inputSexRadio1" value="{{ 0 }}"
+                    <input type="radio" id="inputSexRadio1" value="0"
                            [(ngModel)]="newPatient.sex" name="inputSexOptions"
-                           [checked]="newPatient.sex === 0">
+                    >
                     <label class="form-check-label" for="inputSexRadio1">男</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="radio" id="inputSexRadio2" value="{{ 1 }}"
+                    <input type="radio" id="inputSexRadio2" value="1"
                            [(ngModel)]="newPatient.sex" name="inputSexOptions"
-                           [checked]="newPatient.sex === 1">
+                    >
                     <label class="form-check-label" for="inputSexRadio2">女</label>
                 </div>
             </div>
@@ -53,6 +60,7 @@
                    required
                    [(ngModel)]="newPatient.phone" name="inputPhone"
                    #patientPhone="ngModel"
+                   (keyup)="message=''"
             />
             <div *ngIf="patientPhone.invalid && (patientPhone.dirty || patientPhone.touched)"
                  class="alert alert-danger">

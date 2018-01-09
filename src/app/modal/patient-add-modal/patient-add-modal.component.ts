@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import {Patient} from '../../service/patient';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {ContainerService} from '../../service/container.service';
+import {ValidatorService} from '../../service/validator.service';
 
 @Component({
     selector: 'app-patient-add-modal',
@@ -16,12 +18,22 @@ export class PatientAddModalComponent {
     // 注册事件 - 通知父组件
     @Output() submitNewPatient = new EventEmitter<Patient>();
     // 对象 - 新账户
-    newPatient = new Patient(0, '', 0, '', '', '', '', '', 0);
+    newPatient: Patient;
 
-    constructor(private activeModal: NgbActiveModal) {
+    constructor(private activeModal: NgbActiveModal,
+                private container: ContainerService) {
+        this.newPatient = new Patient(0, '', '0', '', '', '', '', this.container.getUserID(), false);
     }
 
     addPatient(): void {
-        this.submitNewPatient.emit(this.newPatient);
+        if (!ValidatorService.MobilePhoneValidator(this.newPatient.phone)) {
+            this.message = '请输入正确的手机号码';
+        }
+        else if (!ValidatorService.IdentityValidator(this.newPatient.identity)) {
+            this.message = '请输入有效的身份证号';
+        }
+        else {
+            this.submitNewPatient.emit(this.newPatient);
+        }
     }
 }

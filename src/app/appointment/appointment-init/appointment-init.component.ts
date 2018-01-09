@@ -88,7 +88,17 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
         addPatientModalRef.componentInstance.message = '';
         addPatientModalRef.componentInstance.submitNewPatient.subscribe(
             (response) => {
-                console.log(response);
+                const newPatient = response;
+                this.hospitalService.addNewPatient(response).subscribe(
+                    (result) => {
+                        if (-400 === result.code) {
+                            addPatientModalRef.componentInstance.message = '用户不存在，请重新登录！';
+                        } else {
+                            this.patient = newPatient;
+                            this.patientName = newPatient.name;
+                            addPatientModalRef.componentInstance.activeModal.close('Add patient success.');
+                        }
+                    });
             });
 
         addPatientModalRef.result.then(

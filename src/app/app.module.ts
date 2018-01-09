@@ -8,6 +8,7 @@ import {HospitalService} from './service/hosptial.service';
 import {UrlService} from './service/url.service';
 import {ContainerService} from './service/container.service';
 import {LoginService} from './service/login.service';
+import {ValidatorService} from './service/validator.service';
 
 import {AppComponent} from './app.component';
 import {AppRouterModule} from './router/router.module';
@@ -71,7 +72,8 @@ import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-mo
         HospitalService,
         UrlService,
         ContainerService,
-        LoginService
+        LoginService,
+        ValidatorService
     ],
     bootstrap: [AppComponent]
 })

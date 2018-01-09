@@ -17,6 +17,7 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
     patientId = 0;
     phone = '';
     verificationCode = '';
+    message = '';
     appointmentSubscription: Subscription;
 
     constructor(private router: Router,
@@ -37,10 +38,8 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
     }
 
     onSentCompleted(response: Message): void {
-        if (response.Code === 'OK') {
-
-        } else {
-
+        if (response.Code !== 'OK') {
+            this.message = response.Message;
         }
     }
 
@@ -54,21 +53,27 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
             .makeAppointment(new Appointment('', this.scheduleId, this.patientId, ''))
             .subscribe(response => {
                 console.log(response);
-                // 发送确认短信
-                if (typeof this.phone !== 'undefined' && this.phone !== '') {
-                    this.hospitalService
-                        .sendConfirmMessage(this.phone)
-                        .subscribe(result => {
-                            console.log(result);
-                        });
-                }
-                // 装入额外信息 下单时间及挂号单ID
-                // 跳转至订单详情页
-                if (0 === response.code) {
+                if (response.code === 0) {
+                    // 发送确认短信
+                    if (typeof this.phone !== 'undefined' && this.phone !== '') {
+                        this.hospitalService
+                            .sendConfirmMessage(this.phone)
+                            .subscribe(result => {
+                                console.log(result);
+                            });
+                    }
+                    // 装入额外信息 下单时间及挂号单ID
+                    // 跳转至订单详情页
                     this.container.append('appointment', response.msg.appointment);
                     this.container.append('rid', response.msg.insertId);
+                    this.router.navigate(['/details/appointment']).then();
+                } else if (response.code === -500) {
+                    // 提示重复提交的错误
+                    this.message = '请勿重复提交提单！';
+                } else {
+                    // 提示出现未知错误
+                    this.message = '出现未知错误！';
                 }
-                this.router.navigate(['/details/appointment']).then();
             });
     }
 }

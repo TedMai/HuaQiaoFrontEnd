@@ -22,7 +22,7 @@ export class DetailsAppointmentComponent implements OnInit {
         this.departmentName = '';
         this.doctorName = '';
         this.schedule = new Schedule(0, 0, 0, 0, 0, 0, '', 0);
-        this.patient = new Patient(0, '', 0, '', '', '', '', '', 0);
+        this.patient = new Patient(0, '', '0', '', '', '', '', this.container.getUserID(), false);
         this.appointmentId = '';
         this.appointmentDatetime = '';
     }
