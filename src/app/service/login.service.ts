@@ -79,6 +79,7 @@ export class LoginService {
                 result => {
                     console.log(result);
                     if (result.code === 0) {
+                        this.container.setUserID(result.msg.insertId);
                         // 关闭对话框
                         registerModalRef.componentInstance.activeModal.close('Register success');
                     }

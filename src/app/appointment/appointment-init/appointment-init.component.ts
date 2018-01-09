@@ -22,6 +22,7 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
     departmentName = '';
     doctorName = '';
     patientName = '';
+    message = '';
     choosePatientSubscription: Subscription;
 
     constructor(private router: Router,
@@ -88,14 +89,15 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
         addPatientModalRef.componentInstance.message = '';
         addPatientModalRef.componentInstance.submitNewPatient.subscribe(
             (response) => {
-                const newPatient = response;
+                this.patient = response;
+                this.patientName = response.name;
                 this.hospitalService.addNewPatient(response).subscribe(
                     (result) => {
+                        console.log(result);
                         if (-400 === result.code) {
                             addPatientModalRef.componentInstance.message = '用户不存在，请重新登录！';
                         } else {
-                            this.patient = newPatient;
-                            this.patientName = newPatient.name;
+                            this.patient.pid = result.msg.insertId;
                             addPatientModalRef.componentInstance.activeModal.close('Add patient success.');
                         }
                     });
@@ -119,12 +121,16 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
     }
 
     onSubmitAppointment(): void {
-        this.container.set({
-            schedule: this.schedule,
-            patient: this.patient,
-            departmentName: this.departmentName,
-            doctorName: this.doctorName
-        });
-        this.router.navigate(['/appointment/check']).then();
+        if (typeof this.patient === 'undefined' || this.patient.pid === 0) {
+            this.message = '请选择就诊人';
+        } else {
+            this.container.set({
+                schedule: this.schedule,
+                patient: this.patient,
+                departmentName: this.departmentName,
+                doctorName: this.doctorName
+            });
+            this.router.navigate(['/appointment/check']).then();
+        }
     }
 }

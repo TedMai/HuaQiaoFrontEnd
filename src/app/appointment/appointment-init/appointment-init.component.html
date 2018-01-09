@@ -1,17 +1,28 @@
 <div class="container">
-    <div>
-        <h3>{{ doctorName }}</h3>
-        <h3>{{ departmentName }}</h3>
-        <div>
-            <label>门诊时间：</label>
-            <p>{{ schedule.visiting }}</p>
-            <label> 门诊类型： </label>
-            <p>专家门诊</p>
-            <label>挂号费用</label>
-            <p>{{ schedule.registerFee }}</p>
-            <label>医疗服务费用</label>
-            <p>{{ schedule.medicalFee }}</p>
-        </div>
+    <ngb-alert type="danger" *ngIf="message" (close)="message=''">{{ message }}</ngb-alert>
+    <div class="form-group field-item">
+        <label>就诊医生：</label>
+        <p>{{ doctorName }}</p>
+    </div>
+    <div class="form-group field-item">
+        <label>就诊科室：</label>
+        <p>{{ departmentName }}</p>
+    </div>
+    <div class="form-group field-item">
+        <label>门诊时间：</label>
+        <p>{{ schedule.visiting }}</p>
+    </div>
+    <div class="form-group field-item">
+        <label> 门诊类型： </label>
+        <p>专家门诊</p>
+    </div>
+    <div class="form-group field-item">
+        <label>挂号费用</label>
+        <p>{{ schedule.registerFee }}</p>
+    </div>
+    <div class="form-group field-item">
+        <label>医疗服务费用</label>
+        <p>{{ schedule.medicalFee }}</p>
     </div>
     <div class="d-flex flex-row justify-content-between" (click)="choosePatient()">
         <h3>就诊人</h3>

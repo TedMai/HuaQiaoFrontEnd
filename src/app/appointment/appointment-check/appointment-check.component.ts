@@ -49,6 +49,7 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
      *  --  2. 跳转至挂号单详情页
      */
     onConfirm(): void {
+        // TODO: 校验验证码是否正确
         this.appointmentSubscription = this.hospitalService
             .makeAppointment(new Appointment('', this.scheduleId, this.patientId, ''))
             .subscribe(response => {
