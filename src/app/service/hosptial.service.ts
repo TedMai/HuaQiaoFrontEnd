@@ -162,7 +162,11 @@ export class HospitalService {
                 UrlService.Insert('appointment'),
                 {
                     schedule: appointment.schedule,
-                    patient: appointment.patient
+                    patient: appointment.patient,
+                    requestId: appointment.requestId,
+                    bizId: appointment.bizId,
+                    phone: appointment.phone,
+                    verificationCode: appointment.verificationCode
                 }
             )
             .pipe(

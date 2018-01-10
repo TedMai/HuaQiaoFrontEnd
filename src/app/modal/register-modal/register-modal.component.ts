@@ -20,7 +20,7 @@ export class RegisterModalComponent {
     // 对象 - 新账户
     newUser: User;
 
-    constructor(private activeModal: NgbActiveModal) {
+    constructor(public activeModal: NgbActiveModal) {
         // 初始化
         this.newUser = new User(0, '', '', '', '', '', '');
     }

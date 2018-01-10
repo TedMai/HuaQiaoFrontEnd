@@ -32,13 +32,12 @@ export class VerificationCodeComponent implements OnInit, OnDestroy {
     }
 
     sendCode(): void {
-        console.log(this.phone);
         if (this.check(this.phone)) {
+            this.hasSent = true;
             this.sendMessageSubscription = this.hospitalService
                 .sendVerificationCode(this.phone)
                 .subscribe(result => {
                     if (result.Code === 'OK') {
-                        this.hasSent = true;
                         this.countDown();
                     }
                     this.sentCompleted.emit(result);

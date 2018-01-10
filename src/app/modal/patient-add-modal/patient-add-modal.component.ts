@@ -20,7 +20,7 @@ export class PatientAddModalComponent {
     // 对象 - 新账户
     newPatient: Patient;
 
-    constructor(private activeModal: NgbActiveModal,
+    constructor(public activeModal: NgbActiveModal,
                 private container: ContainerService) {
         this.newPatient = new Patient(0, '', '0', '', '', '', '', this.container.getUserID(), false);
     }

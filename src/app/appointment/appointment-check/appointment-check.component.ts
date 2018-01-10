@@ -15,6 +15,8 @@ import {Message} from '../../service/message';
 export class AppointmentCheckComponent implements OnInit, OnDestroy {
     scheduleId = 0;
     patientId = 0;
+    requestId = '';
+    bizId = '';
     phone = '';
     verificationCode = '';
     message = '';
@@ -40,6 +42,9 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
     onSentCompleted(response: Message): void {
         if (response.Code !== 'OK') {
             this.message = response.Message;
+        } else {
+            this.requestId = response.RequestId;
+            this.bizId = response.BizId;
         }
     }
 
@@ -51,7 +56,15 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
     onConfirm(): void {
         // TODO: 校验验证码是否正确
         this.appointmentSubscription = this.hospitalService
-            .makeAppointment(new Appointment('', this.scheduleId, this.patientId, ''))
+            .makeAppointment(new Appointment(
+                '',
+                this.scheduleId,
+                this.patientId,
+                '',
+                this.requestId,
+                this.bizId,
+                this.phone,
+                this.verificationCode))
             .subscribe(response => {
                 console.log(response);
                 if (response.code === 0) {
@@ -70,7 +83,9 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
                     this.router.navigate(['/details/appointment']).then();
                 } else if (response.code === -500) {
                     // 提示重复提交的错误
-                    this.message = '请勿重复提交提单！';
+                    this.message = '您已成功预约，进入个人中心查看详情。';
+                } else if (response.code === -300) {
+                    this.message = '验证码输入有误！';
                 } else {
                     // 提示出现未知错误
                     this.message = '出现未知错误！';
