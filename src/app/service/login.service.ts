@@ -23,7 +23,7 @@ export class LoginService {
         loginModalRef.componentInstance.message = '';
         loginModalRef.componentInstance.toLogin.subscribe(response => {
             console.log(response);
-            this.hospitalService.login(response, 'login').subscribe(
+            this.hospitalService.login(response, 'unionLogin').subscribe(
                 result => {
                     console.log(result);
                     if (result.code === 0) {
