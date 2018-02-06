@@ -19,8 +19,8 @@ import {PatientAddModalComponent} from '../../modal/patient-add-modal/patient-ad
 export class AppointmentInitComponent implements OnInit, OnDestroy {
     schedule: Schedule;
     patient: Patient;
-    departmentName = '';
-    doctorName = '';
+    departmentName: string;
+    doctorName: string;
     patientName = '';
     message = '';
     choosePatientSubscription: Subscription;
@@ -32,9 +32,10 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.departmentName = this.container.get().departmentName;
-        this.doctorName = this.container.get().doctorName;
-        this.schedule = this.container.get().schedule;
+        const isInit = typeof this.container.get() !== 'undefined';
+        this.departmentName = isInit ? this.container.get().departmentName : '';
+        this.doctorName = isInit ? this.container.get().doctorName : '';
+        this.schedule = isInit ? this.container.get().schedule : new Schedule(0, 0, 0, 0, 0, 0, '', 0);
     }
 
     ngOnDestroy() {
@@ -48,6 +49,9 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
      */
     choosePatient(): void {
         const uid = this.container.getUserID();
+        if (typeof uid === 'undefined') {
+            return;
+        }
         this.choosePatientSubscription = this.hospitalService
             .queryRelativePatients(uid)
             .subscribe(response => {
@@ -126,9 +130,9 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
         } else {
             this.container.set({
                 schedule: this.schedule,
-                patient: this.patient,
-                departmentName: this.departmentName,
-                doctorName: this.doctorName
+                patient: this.patient
+                // departmentName: this.departmentName,
+                // doctorName: this.doctorName
             });
             this.router.navigate(['/appointment/check']).then();
         }

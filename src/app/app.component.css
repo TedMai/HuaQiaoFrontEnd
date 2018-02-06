@@ -1,5 +1,14 @@
+.top-bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 70px;
+}
 
-.head-image-icon {
-    width: 3rem;
-    height: 3rem;
+.panel-search-result {
+    position: fixed;
+    width: 230px;
+    right: 0;
+    margin-right: 14px;
+    z-index: 999;
 }

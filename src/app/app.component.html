@@ -1,13 +1,42 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!--导航-->
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button *ngIf="!isLoggedIn" class="btn btn-outline-success" (click)="openLoginModal()">登录</button>
+    <img *ngIf="isLoggedIn" src="{{ headImageUrl }}" class="head-image-icon" (click)="toUserProfile()">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
         <div>
-            <button *ngIf="!isLoggedIn" class="btn btn-outline-primary btn-lg" (click)="openLoginModal()">登录</button>
-            <img *ngIf="isLoggedIn" src="{{ headImageUrl }}" class="head-image-icon" (click)="toUserProfile()">
+            <input class="form-control" #searchBox id="search-box" title="搜索科室"
+                   (keyup)="search(searchBox.value)" placeholder="请输入要查找的科室名称" aria-label="Search">
         </div>
     </div>
 </nav>
+<!-- The $ is a convention that indicates departments$ is an Observable, not an array. -->
+<!-- The *ngFor can't do anything with an Observable. But there's also a pipe character (|) followed by async, which identifies Angular's AsyncPipe. -->
+<!-- The AsyncPipe subscribes to an Observable automatically so you won't have to do so in the component class. -->
+<!-- The async pipe subscribes to an Observable or Promise and returns the latest value it has emitted. When a new value is emitted, the async pipe marks the component to be checked for changes -->
+<!-- When the component gets destroyed, the async pipe unsubscribes automatically to avoid potential memory leaks. -->
+<div class="panel-search-result">
+    <ul class="list-group">
+        <li *ngFor="let department of departments$ | async" class="list-group-item">
+            <a (click)="found(department.did, department.name)"> {{ department.name }} </a>
+            <!--<a [routerLink]="['/search/result',department.did, department.name]">-->
+            <!--{{ department.name }}-->
+            <!--</a>-->
+        </li>
+    </ul>
+</div>
 <!--You have to tell the router where to display the component. -->
 <!--To do this, you can add a <router-outlet> element at the end of the template.-->
 <!--RouterOutlet is one of the directives provided by the RouterModule. -->

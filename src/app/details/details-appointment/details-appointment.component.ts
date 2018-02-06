@@ -1,40 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {Record} from '../../service/record';
 import {ContainerService} from '../../service/container.service';
-import {Schedule} from '../../service/schedule';
-import {Patient} from '../../service/patient';
+import {HospitalService} from '../../service/hosptial.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-details-appointment',
     templateUrl: './details-appointment.component.html',
     styleUrls: ['./details-appointment.component.css']
 })
-export class DetailsAppointmentComponent implements OnInit {
-    schedule: Schedule;
-    patient: Patient;
-    departmentName: string;
-    doctorName: string;
-    appointmentId: string;
-    appointmentDatetime: string;
+export class DetailsAppointmentComponent implements OnInit, OnDestroy {
+    appointment = new Record('', '', '', '', '', '', '', 0, '', '', '');
+    subscription: Subscription;
 
     constructor(private router: Router,
-                private container: ContainerService) {
-        this.departmentName = '';
-        this.doctorName = '';
-        this.schedule = new Schedule(0, 0, 0, 0, 0, 0, '', 0);
-        this.patient = new Patient(0, '', '0', '', '', '', '', this.container.getUserID(), false);
-        this.appointmentId = '';
-        this.appointmentDatetime = '';
+                private container: ContainerService,
+                private hospitalService: HospitalService) {
     }
 
     ngOnInit() {
-        console.log(this.container.get());
-        this.departmentName = this.container.get().departmentName;
-        this.doctorName = this.container.get().doctorName;
-        this.schedule = this.container.get().schedule;
-        this.patient = this.container.get().patient;
-        this.appointmentId = this.container.get().rid;
-        this.appointmentDatetime = this.container.get().appointment;
+        this.subscription = this.hospitalService.querySpecificAppointment(this.container.get().rid)
+            .subscribe(response => {
+                this.appointment = Record.FormatAppointmentDetails(JSON.parse(response.appointment))[0];
+            });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
     backToOrigin(): void {

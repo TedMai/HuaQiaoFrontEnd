@@ -1,0 +1,32 @@
+.entry-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.entry-item {
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.entry-item img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.entry-item div {
+    font-size: 9pt;
+    margin-top: 8px;
+}
+
+.logout {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}

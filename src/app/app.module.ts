@@ -17,13 +17,13 @@ import {SearchDoctorComponent} from './search/search-doctor/search-doctor.compon
 import {SearchResultComponent} from './search/search-result/search-result.component';
 import {ListDoctorComponent} from './list/list-doctor/list-doctor.component';
 import {ListDepartmentComponent} from './list/list-department/list-department.component';
+import {ListAppointmentComponent} from './list/list-appointment/list-appointment.component';
 import {DetailsDepartmentComponent} from './details/details-department/details-department.component';
 import {DetailsDoctorComponent} from './details/details-doctor/details-doctor.component';
 import {DetailsAppointmentComponent} from './details/details-appointment/details-appointment.component';
 import {AppointmentInitComponent} from './appointment/appointment-init/appointment-init.component';
 import {AppointmentCheckComponent} from './appointment/appointment-check/appointment-check.component';
 import {DetailsHospitalComponent} from './details/details-hospital/details-hospital.component';
-import {SearchInitComponent} from './search/search-init/search-init.component';
 import {PatientSelectModalComponent} from './modal/patient-select-modal/patient-select-modal.component';
 import {LoginModalComponent} from './modal/login-modal/login-modal.component';
 import {RegisterModalComponent} from './modal/register-modal/register-modal.component';
@@ -31,6 +31,7 @@ import {VerificationCodeComponent} from './common/verification-code/verification
 import {ConsistentCiphersValidatorDirective} from './common/consistent-ciphers.directive';
 import {MyProfileComponent} from './my/my-profile/my-profile.component';
 import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-modal.component';
+
 
 @NgModule({
     declarations: [
@@ -40,13 +41,13 @@ import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-mo
         SearchResultComponent,
         ListDoctorComponent,
         ListDepartmentComponent,
+        ListAppointmentComponent,
         DetailsDepartmentComponent,
         DetailsDoctorComponent,
         DetailsAppointmentComponent,
         AppointmentInitComponent,
         AppointmentCheckComponent,
         DetailsHospitalComponent,
-        SearchInitComponent,
         PatientSelectModalComponent,
         PatientAddModalComponent,
         LoginModalComponent,

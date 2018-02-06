@@ -34,9 +34,17 @@ export class HospitalService {
      */
     querySpecificHospital(id: number): Observable<any> {
         return this.http
-            .get<any>(UrlService.QuerySpecific('hospital', id))
+            .get<any>(UrlService.QuerySpecific('hospital', id.toString()))
             .pipe(
                 catchError(this.handleError('querySpecificHospital', {}))
+            );
+    }
+
+    querySpecificAppointment(id: string): Observable<any> {
+        return this.http
+            .get<any>(UrlService.QuerySpecific('appointment', id))
+            .pipe(
+                catchError(this.handleError('querySpecificAppointment', {}))
             );
     }
 
@@ -119,6 +127,21 @@ export class HospitalService {
     }
 
     /**
+     * 查询当前用户所关联的预约信息
+     *  传入参数
+     *      --  uid
+     * @param uid
+     * @returns {Observable<Array|any>}
+     */
+    queryRelativeAppointments(uid: number): Observable<any> {
+        return this.http
+            .get<any>(UrlService.QueryRelatives('appointment', uid))
+            .pipe(
+                catchError(this.handleError('queryRelativeAppointments', []))
+            );
+    }
+
+    /**
      * 发送验证码短信
      *  传入参数
      *      --  接收电话号码
@@ -185,7 +208,7 @@ export class HospitalService {
                 UrlService.Insert('patient'),
                 {
                     name: patient.name,
-                    sex: parseInt(patient.sex),
+                    sex: patient.sex,
                     // birthday: new Date(),
                     identity: patient.identity,
                     phone: patient.phone,

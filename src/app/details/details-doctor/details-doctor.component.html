@@ -1,39 +1,54 @@
 <div class="container">
     <div>
         <div class="d-flex flex-row justify-content-start">
-            <img alt="医生头像" src="{{ doctor.imageurl }}" class="rounded">
-            <div>
-                <h2>姓名：{{ doctor.name }}</h2>
-                <h4>职称：{{ doctor.title }}</h4>
-                <h4>科室：{{ departmentName }}</h4>
-                <h4>职位：{{ doctor.position }}</h4>
+            <div class="d-flex flex-row justify-content-center align-items-center doctor-head-image">
+                <img alt="医生头像" src="{{ doctor.imageurl }}" class="rounded">
+            </div>
+            <div class="doctor-brief">
+                <p class="text-primary font-weight-bold larger-font">{{ doctor.name }}</p>
+                <p class="text-info">职称：{{ doctor.title }}</p>
+                <p class="text-info">科室：{{ departmentName }}</p>
+                <p class="text-info">职位：{{ doctor.position }}</p>
             </div>
         </div>
-        <label class="label label-primary">简历：</label>
-        <p class="text-primary">{{ doctor.resume }}</p>
-        <label class="label label-primary">擅长领域：</label>
-        <p class="text-primary">{{ doctor.field }}</p>
+        <div class="doctor-field">
+            <p class="text-info">简历：</p>
+            <p class="text-primary">{{ doctor.resume }}</p>
+        </div>
+        <div class="doctor-field">
+            <p class="text-info">擅长领域：</p>
+            <p class="text-primary">{{ doctor.field }}</p>
+        </div>
     </div>
-    <div>
-        <h1>医生排班</h1>
-        <div class="d-flex flex-row justify-content-start">
-            <div class="card" style="width: 20rem;" *ngFor="let schedule of schedules">
-                <div class="card-body">
-                    <h4 class="card-title">门诊时间</h4>
-                    <p class="card-text text-success" *ngIf="schedule.section === 0">上午</p>
-                    <p class="card-text text-success" *ngIf="schedule.section === 1">下午</p>
-                    <h4 class="card-title">挂号费</h4>
-                    <p class="card-text text-danger">{{ schedule.registerFee }}</p>
-                    <h4 class="card-title">医疗服务费</h4>
-                    <p class="card-text text-danger">{{ schedule.medicalFee }}</p>
-                    <button (click)="makeAppointment(schedule)" type="button" class="btn btn-success btn-lg">
-                        我要预约
-                    </button>
+    <div class="seperator">
+        <div>医生排班</div>
+    </div>
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-row justify-content-between align-items-center schedule"
+             *ngFor="let schedule of schedules">
+            <div class="d-flex flex-column part-left">
+                <div class="d-flex flex-row justify-content-start align-items-center">
+                    <p class="text-primary font-weight-bold larger-font">{{ schedule.visiting }}</p>
+                    <p class="text-success larger-font" *ngIf="schedule.section === 0">上午</p>
+                    <p class="text-success larger-font" *ngIf="schedule.section === 1">下午</p>
+                </div>
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <p class="text-info">挂号费</p>
+                    <p class="text-danger larger-font">{{ schedule.registerFee }}</p>
+                </div>
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <p class="text-info">医疗服务费</p>
+                    <p class="text-danger larger-font">{{ schedule.medicalFee }}</p>
                 </div>
             </div>
+            <div class="d-flex flex-row justify-content-center align-items-center part-right">
+                <button (click)="makeAppointment(schedule)" type="button" class="btn btn-success btn-lg">
+                    我要预约
+                </button>
+            </div>
         </div>
     </div>
-    <div>
-        <h1>评论区</h1>
+    <div class="seperator">
+        <div>评论区</div>
     </div>
 </div>

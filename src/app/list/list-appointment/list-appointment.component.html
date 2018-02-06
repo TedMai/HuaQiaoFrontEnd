@@ -1,0 +1,30 @@
+<div>
+    <div *ngFor="let item of appointments" class="list-group-item">
+        <div class='seperator'>
+            <div> 预约时间：</div>
+            <div> {{ item.appointment }}</div>
+        </div>
+        <div class='appointment-list-item' (click)="toAppointmentDetails(item.rid)">
+            <div class='left'>
+                <div class='field'>
+                    <div> 科室：</div>
+                    <div> {{ item.departmentName }}</div>
+                </div>
+                <div class='field'>
+                    <div> 医生：</div>
+                    <div> {{ item.doctorName }}</div>
+                </div>
+                <div class='visiting'>
+                    <div class='visiting-label'> 就诊时间：</div>
+                    <div class='field'>
+                        <div>{{ item.visiting }}</div>
+                        <div>{{ item.section }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class='right'>
+                <div>{{ item.status }}</div>
+            </div>
+        </div>
+    </div>
+</div>

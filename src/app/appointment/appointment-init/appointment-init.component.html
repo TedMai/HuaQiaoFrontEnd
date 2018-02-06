@@ -1,43 +1,51 @@
 <div class="container">
     <ngb-alert type="danger" *ngIf="message" (close)="message=''">{{ message }}</ngb-alert>
     <div class="form-group field-item">
-        <label>就诊医生：</label>
-        <p>{{ doctorName }}</p>
+        <div class="field-label">就诊医生：</div>
+        <div class="field-content">{{ doctorName }}</div>
     </div>
     <div class="form-group field-item">
-        <label>就诊科室：</label>
-        <p>{{ departmentName }}</p>
+        <div class="field-label">就诊科室：</div>
+        <div class="field-content">{{ departmentName }}</div>
     </div>
     <div class="form-group field-item">
-        <label>门诊时间：</label>
-        <p>{{ schedule.visiting }}</p>
+        <div class="field-label">门诊时间：</div>
+        <div class="field-content">{{ schedule.visiting }}</div>
     </div>
     <div class="form-group field-item">
-        <label> 门诊类型： </label>
-        <p>专家门诊</p>
+        <div class="field-label">门诊类型：</div>
+        <div class="field-content">专家门诊</div>
     </div>
     <div class="form-group field-item">
-        <label>挂号费用</label>
-        <p>{{ schedule.registerFee }}</p>
+        <div class="field-label">挂号费用</div>
+        <div class="field-content">{{ schedule.registerFee }}</div>
     </div>
     <div class="form-group field-item">
-        <label>医疗服务费用</label>
-        <p>{{ schedule.medicalFee }}</p>
+        <div class="field-label">医疗服务费用</div>
+        <div class="field-content">{{ schedule.medicalFee }}</div>
     </div>
-    <div class="d-flex flex-row justify-content-between" (click)="choosePatient()">
-        <h3>就诊人</h3>
-        <div class="d-flex flex-lg-row justify-content-center">
-            <h4>{{ patientName }}</h4>
+    <!-- 预约规则说明 -->
+    <div>
+        <div class='appointment-rule'>• 停诊将短信通知,请保持手机畅通</div>
+        <div class='appointment-rule'>• 实名制预约,就诊人信息不符将无法取号</div>
+    </div>
+    <!-- 预约所需的信息选项 -->
+    <div class="function-list">
+        <div class="d-flex flex-row justify-content-between function-list-item" (click)="choosePatient()">
+            <div class="field-label">就诊人</div>
+            <div class="d-flex flex-lg-row justify-content-center">
+                <div class="field-label">{{ patientName }}</div>
+                <img class="go-forward-icon" src="../../../assets/icons/public/go-forward.png">
+            </div>
+        </div>
+        <div class="d-flex flex-row justify-content-between function-list-item">
+            <div class="field-label">初/复诊</div>
             <img class="go-forward-icon" src="../../../assets/icons/public/go-forward.png">
         </div>
-    </div>
-    <div class="d-flex flex-row justify-content-between">
-        <h3>初/复诊</h3>
-        <img class="go-forward-icon" src="../../../assets/icons/public/go-forward.png">
-    </div>
-    <div class="d-flex flex-row justify-content-between">
-        <h3>支付方式</h3>
-        <img class="go-forward-icon" src="../../../assets/icons/public/go-forward.png">
+        <div class="d-flex flex-row justify-content-between function-list-item">
+            <div class="field-label">支付方式</div>
+            <img class="go-forward-icon" src="../../../assets/icons/public/go-forward.png">
+        </div>
     </div>
     <button (click)="onSubmitAppointment()" type="button" class="btn btn-success btn-lg btn-block">提交</button>
 </div>

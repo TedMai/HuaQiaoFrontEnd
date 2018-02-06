@@ -10,7 +10,7 @@ export class UrlService {
         return PREFIX + '/table/' + name;
     }
 
-    static QuerySpecific(name: string, id: number): string {
+    static QuerySpecific(name: string, id: string): string {
         return PREFIX + '/table/' + name + '/id/' + id;
     }
 

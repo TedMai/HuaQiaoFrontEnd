@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {SearchInitComponent} from '../search/search-init/search-init.component';
 import {SearchDepartmentComponent} from '../search/search-department/search-department.component';
 import {SearchDoctorComponent} from '../search/search-doctor/search-doctor.component';
 import {SearchResultComponent} from '../search/search-result/search-result.component';
 
 import {ListDepartmentComponent} from '../list/list-department/list-department.component';
 import {ListDoctorComponent} from '../list/list-doctor/list-doctor.component';
+import {ListAppointmentComponent} from '../list/list-appointment/list-appointment.component';
 
 import {DetailsHospitalComponent} from '../details/details-hospital/details-hospital.component';
 import {DetailsDepartmentComponent} from '../details/details-department/details-department.component';
@@ -22,10 +22,6 @@ const __ROUTES__: Routes = [
     {
         path: 'search',
         children: [
-            {
-                path: 'init',
-                component: SearchInitComponent
-            },
             {
                 path: 'department',
                 component: SearchDepartmentComponent
@@ -43,6 +39,10 @@ const __ROUTES__: Routes = [
     {
         path: 'list',
         children: [
+            {
+                path: 'appointment',
+                component: ListAppointmentComponent
+            },
             {
                 path: 'department',
                 component: ListDepartmentComponent

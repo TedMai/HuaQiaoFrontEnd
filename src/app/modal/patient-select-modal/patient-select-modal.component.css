@@ -1,0 +1,25 @@
+.patient-select-modal-body {
+    height: 20rem;
+    overflow: auto
+}
+
+.patient-select-modal-check {
+    padding: 0 1.8rem;
+    border-bottom: 0.1rem solid #ccc;
+}
+
+.patient-select-item {
+    width: 100%;
+    padding: 0.3rem 1rem;
+}
+
+.patient-select-item-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.patient-select-item-field label {
+    color: #888888;
+}

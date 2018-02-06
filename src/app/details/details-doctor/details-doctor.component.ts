@@ -8,6 +8,7 @@ import {LoginService} from '../../service/login.service';
 
 import {Doctor} from '../../service/doctor';
 import {Schedule} from '../../service/schedule';
+import {DatetimeService} from '../../service/datetime.service';
 
 @Component({
     selector: 'app-details-doctor',
@@ -29,10 +30,12 @@ export class DetailsDoctorComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.departmentName = this.container.get().departmentName;
         this.doctor = this.container.get().doctor;
-        console.log(this.doctor);
         this.subscription = this.hospitalService.queryRelativeSchedules(this.doctor.id)
             .subscribe(response => {
-                this.schedules = response;
+                this.schedules = response.map(item => {
+                    item.visiting = DatetimeService.FormatDate(new Date(item.visiting));
+                    return item;
+                });
             });
     }
 

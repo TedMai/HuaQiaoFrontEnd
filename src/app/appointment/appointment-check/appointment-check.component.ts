@@ -78,7 +78,7 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
                     }
                     // 装入额外信息 下单时间及挂号单ID
                     // 跳转至订单详情页
-                    this.container.append('appointment', response.msg.appointment);
+                    // this.container.append('appointment', response.msg.appointment);
                     this.container.append('rid', response.msg.insertId);
                     this.router.navigate(['/details/appointment']).then();
                 } else if (response.code === -500) {

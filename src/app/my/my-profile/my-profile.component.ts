@@ -32,4 +32,7 @@ export class MyProfileComponent implements OnInit, OnDestroy {
         this.router.navigate(['/']).then();
     }
 
+    toMyAppointments(){
+        this.router.navigate(['/list/appointment']).then();
+    }
 }

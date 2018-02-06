@@ -1,0 +1,25 @@
+.doctor-brief {
+    margin: 0 1rem;
+}
+
+.doctor-field {
+    padding: 1rem 0 0 0;
+}
+
+.larger-font {
+    font-size: 20pt;
+}
+
+.schedule {
+    border-bottom: 0.1rem solid #ccc;
+}
+
+.part-left {
+    padding: 1rem;
+    width: 75%;
+}
+
+.part-right {
+    padding: 0 1rem;
+    width: 25%;
+}

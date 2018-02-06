@@ -1,14 +1,14 @@
 <div class="container">
     <div class="d-flex flex-column justify-content-center align-content-center appointment-status extra-info">
-        <p>订单状态：</p>
+        <p>订单状态：{{ appointment.status }}</p>
     </div>
     <div class="d-flex flex-row justify-content-between">
         <label>科室</label>
-        <h5>{{ departmentName }}</h5>
+        <h5>{{ appointment.departmentName }}</h5>
     </div>
     <div class="d-flex flex-row justify-content-between">
         <label>医生</label>
-        <h5>{{ doctorName }}</h5>
+        <h5>{{ appointment.doctorName }}</h5>
     </div>
     <hr>
     <div class="d-flex flex-row justify-content-between">
@@ -17,7 +17,7 @@
     </div>
     <div class="d-flex flex-row justify-content-between">
         <label>费用</label>
-        <h5>{{ schedule.medicalFee }}</h5>
+        <h5>{{ appointment.medicalFee }}</h5>
     </div>
     <div class="d-flex flex-row justify-content-between">
         <label>支付方式</label>
@@ -25,7 +25,7 @@
     </div>
     <div class="d-flex flex-row justify-content-between">
         <label>就诊日期</label>
-        <h5>{{ schedule.visiting }}</h5>
+        <h5>{{ appointment.visiting }}{{ appointment.section }}</h5>
     </div>
     <div class="d-flex flex-row justify-content-between">
         <label>领号时间</label>
@@ -43,15 +43,15 @@
     <label>就诊人信息</label>
     <div class="d-flex flex-row justify-content-between">
         <label>患者姓名</label>
-        <h5>{{ patient.name }}</h5>
+        <h5>{{ appointment.name }}</h5>
     </div>
     <div class="d-flex flex-row justify-content-between">
         <label>身份证号</label>
-        <h5>{{ patient.identity }}</h5>
+        <h5>{{ appointment.identity }}</h5>
     </div>
     <div class="d-flex flex-row justify-content-between">
         <label>手机号</label>
-        <h5>{{ patient.phone }}</h5>
+        <h5>{{ appointment.phone }}</h5>
     </div>
     <div class="d-flex flex-row justify-content-between">
         <label>就诊类型</label>
@@ -63,7 +63,7 @@
     </div>
     <button class="btn btn-primary btn-lg btn-block" (click)="backToOrigin()">返回首页</button>
     <div class="d-flex flex-column extra-info justify-content-center align-content-center appointment-extra">
-        <p>订单号：{{ appointmentId }}</p>
-        <p>下单时间：{{ appointmentDatetime }}</p>
+        <p>订单号：{{ appointment.rid }}</p>
+        <p>下单时间：{{ appointment.appointment }}</p>
     </div>
 </div>

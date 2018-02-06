@@ -1,13 +1,17 @@
 <ul class="list-group">
     <li *ngFor="let doctor of doctors" class="list-group-item">
         <div (click)="showDoctorDetails(doctor)" class="d-flex flex-row justify-content-start">
-            <img class="img-responsive rounded" src="{{ doctor.imageurl }}">
-            <div>
-                <h3>{{ doctor.name }}</h3>
-                <p class="text-info">{{ doctor.title }}</p>
-                <blockquote>
-                    <small>{{ doctor.field }}</small>
-                </blockquote>
+            <div class="d-flex flex-row justify-content-center align-items-center doctor-head-image">
+                <img class="img-responsive rounded" src="{{ doctor.imageurl }}">
+            </div>
+            <div class="d-flex flex-column">
+                <div class="doctor-brief">
+                    <h3>{{ doctor.name }}</h3>
+                    <p class="text-info">{{ doctor.title }}</p>
+                    <blockquote>
+                        <small>{{ doctor.field }}</small>
+                    </blockquote>
+                </div>
             </div>
         </div>
 
