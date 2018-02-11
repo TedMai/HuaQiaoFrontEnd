@@ -35,4 +35,12 @@ export class MyProfileComponent implements OnInit, OnDestroy {
     toMyAppointments(){
         this.router.navigate(['/list/appointment']).then();
     }
+
+    toMyMobile(){
+        this.router.navigate(['/my/mobile']).then();
+    }
+
+    toMyPatients(){
+        this.router.navigate(['/my/patients']).then();
+    }
 }

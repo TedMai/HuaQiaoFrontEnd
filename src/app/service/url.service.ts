@@ -34,6 +34,14 @@ export class UrlService {
         return PREFIX + '/table/' + name;
     }
 
+    static Update(name: string, id: string): string {
+        return PREFIX + '/table/' + name + '?id=' + id;
+    }
+
+    static Delete(name: string, id: string): string {
+        return PREFIX + '/table/' + name + '/id/' + id;
+    }
+
     static Login(type: string, action: string): string {
         return `${ PREFIX }/login/type/${ type }/action/${ action }`;
     }

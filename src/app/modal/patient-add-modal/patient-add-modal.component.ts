@@ -23,6 +23,7 @@ export class PatientAddModalComponent {
     constructor(public activeModal: NgbActiveModal,
                 private container: ContainerService) {
         this.newPatient = new Patient(0, '', 0, '', '', '', '', this.container.getUserID(), 0);
+        // this.newPatient = new Patient(0, '', 0, '', '', '', '', 29, 0);
     }
 
     addPatient(): void {

@@ -19,6 +19,7 @@ export class ListAppointmentComponent implements OnInit, OnDestroy {
                 private container: ContainerService,
                 private hospitalService: HospitalService) {
         const uid = this.container.getUserID();
+        // const uid = 29;
         this.subscription = this.hospitalService.queryRelativeAppointments(uid)
             .subscribe(response => {
                 this.appointments = Record.FormatAppointmentDetails(JSON.parse(response.appointments));

@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {HospitalService} from '../../service/hosptial.service';
 import {ContainerService} from '../../service/container.service';
 import {Appointment} from '../../service/appointment';
-import {Message} from '../../service/message';
+import {Verification} from '../../service/verification';
 
 @Component({
     selector: 'app-appointment-check',
@@ -13,14 +13,11 @@ import {Message} from '../../service/message';
     styleUrls: ['./appointment-check.component.css']
 })
 export class AppointmentCheckComponent implements OnInit, OnDestroy {
-    scheduleId = 0;
-    patientId = 0;
-    requestId = '';
-    bizId = '';
     phone = '';
-    verificationCode = '';
     message = '';
     appointmentSubscription: Subscription;
+    scheduleId = 0;
+    patientId = 0;
 
     constructor(private router: Router,
                 private container: ContainerService,
@@ -39,32 +36,22 @@ export class AppointmentCheckComponent implements OnInit, OnDestroy {
         }
     }
 
-    onSentCompleted(response: Message): void {
-        if (response.Code !== 'OK') {
-            this.message = response.Message;
-        } else {
-            this.requestId = response.RequestId;
-            this.bizId = response.BizId;
-        }
-    }
-
     /**
      * 验证信息无误后
      *  --  1. 生成预约挂号单
      *  --  2. 跳转至挂号单详情页
      */
-    onConfirm(): void {
-        // TODO: 校验验证码是否正确
+    onConfirm(request: Verification): void {
         this.appointmentSubscription = this.hospitalService
             .makeAppointment(new Appointment(
                 '',
                 this.scheduleId,
                 this.patientId,
                 '',
-                this.requestId,
-                this.bizId,
+                request.requestId,
+                request.bizId,
                 this.phone,
-                this.verificationCode))
+                request.verificationCode))
             .subscribe(response => {
                 console.log(response);
                 if (response.code === 0) {

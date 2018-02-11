@@ -4,19 +4,20 @@
             <div> 预约时间：</div>
             <div> {{ item.appointment }}</div>
         </div>
-        <div class='appointment-list-item' (click)="toAppointmentDetails(item.rid)">
+        <div class='d-flex flex-row justify-content-between align-items-center'
+             (click)="toAppointmentDetails(item.rid)">
             <div class='left'>
                 <div class='field'>
-                    <div> 科室：</div>
-                    <div> {{ item.departmentName }}</div>
+                    <div class="subtitle-label"> 科室：</div>
+                    <div class="subtitle-value"> {{ item.departmentName }}</div>
                 </div>
                 <div class='field'>
-                    <div> 医生：</div>
-                    <div> {{ item.doctorName }}</div>
+                    <div class="subtitle-label"> 医生：</div>
+                    <div class="subtitle-value"> {{ item.doctorName }}</div>
                 </div>
-                <div class='visiting'>
-                    <div class='visiting-label'> 就诊时间：</div>
-                    <div class='field'>
+                <div class='field'>
+                    <div class="subtitle-label"> 就诊时间：</div>
+                    <div class='field subtitle-value'>
                         <div>{{ item.visiting }}</div>
                         <div>{{ item.section }}</div>
                     </div>

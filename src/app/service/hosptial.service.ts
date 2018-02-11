@@ -9,6 +9,7 @@ import {UrlService} from './url.service';
 import {Appointment} from './appointment';
 import {User} from './user';
 import {Patient} from './patient';
+import {Verification} from './verification';
 
 // const httpOptions = {
 //     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -40,11 +41,29 @@ export class HospitalService {
             );
     }
 
+    /**
+     * 获取指定预约挂号的信息
+     * @param id
+     * @returns {Observable<{}|any>}
+     */
     querySpecificAppointment(id: string): Observable<any> {
         return this.http
             .get<any>(UrlService.QuerySpecific('appointment', id))
             .pipe(
                 catchError(this.handleError('querySpecificAppointment', {}))
+            );
+    }
+
+    /**
+     * 获取指定用户的信息
+     * @param userId
+     * @returns {Observable<{}|any>}
+     */
+    querySpecificUser(userId: number): Observable<any> {
+        return this.http
+            .get<any>(UrlService.QuerySpecific('user', userId.toString()))
+            .pipe(
+                catchError(this.handleError('querySpecificUser', {}))
             );
     }
 
@@ -218,7 +237,24 @@ export class HospitalService {
                 }
             )
             .pipe(
-                catchError(this.handleError('makeAppointment', []))
+                catchError(this.handleError('addNewPatient', []))
+            );
+    }
+
+    /**
+     * 删除就诊人
+     * @param pid
+     * @returns {Observable<Array|any>}
+     */
+    deletePatient(pid: number): Observable<any> {
+        return this.http
+            .post<any>(
+                UrlService.Delete('patient', pid.toString()),
+                {
+                }
+            )
+            .pipe(
+                catchError(this.handleError('deletePatient', []))
             );
     }
 
@@ -243,6 +279,27 @@ export class HospitalService {
             )
             .pipe(
                 catchError(this.handleError('login', {}))
+            );
+    }
+
+    /**
+     * 绑定用户手机号
+     * @param request
+     * @returns {Observable<{}|any>}
+     */
+    combineMobile(request: Verification): Observable<any> {
+        return this.http
+            .post<any>(
+                UrlService.Update('user', request.userId.toString()),
+                {
+                    requestId: request.requestId,
+                    bizId: request.bizId,
+                    phone: request.phone,
+                    verificationCode: request.verificationCode
+                }
+            )
+            .pipe(
+                catchError(this.handleError('combineMobile', {}))
             );
     }
 

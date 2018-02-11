@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ title }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    {{ content }}
+</div>
+<div class="modal-footer d-flex flex-md-row justify-content-end">
+    <button type="button" class="btn btn-outline-danger" (click)="onConfirm()">确认</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('Cancel')">取消</button>
+</div>

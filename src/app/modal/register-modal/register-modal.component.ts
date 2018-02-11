@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 import {User} from '../../service/user';
-import {Message} from '../../service/message';
+import {Message} from '../../service/verification';
 import {ValidatorService} from '../../service/validator.service';
 
 @Component({

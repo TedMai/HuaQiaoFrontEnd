@@ -17,6 +17,8 @@ import {DetailsAppointmentComponent} from '../details/details-appointment/detail
 import {AppointmentInitComponent} from '../appointment/appointment-init/appointment-init.component';
 import {AppointmentCheckComponent} from '../appointment/appointment-check/appointment-check.component';
 import {MyProfileComponent} from '../my/my-profile/my-profile.component';
+import {MyMobileComponent} from '../my/my-mobile/my-mobile.component';
+import {MyPatientsComponent} from '../my/my-patients/my-patients.component';
 
 const __ROUTES__: Routes = [
     {
@@ -93,6 +95,14 @@ const __ROUTES__: Routes = [
             {
                 path: 'profile/:id',
                 component: MyProfileComponent
+            },
+            {
+                path: 'mobile',
+                component: MyMobileComponent
+            },
+            {
+                path: 'patients',
+                component: MyPatientsComponent
             }
         ]
     },
@@ -107,7 +117,10 @@ const __ROUTES__: Routes = [
     // The forRoot() method is called because a configured router is provided at the app's root.
     // The forRoot() method supplies the Router service providers and directives needed for routing.
     // And performs the initial navigation based on the current browser URL.
-    imports: [RouterModule.forRoot(__ROUTES__)],
+    imports: [RouterModule.forRoot(
+        __ROUTES__,
+        {enableTracing: true}   // <-- debugging purposes only
+    )],
     declarations: [],
     exports: [RouterModule]
 })

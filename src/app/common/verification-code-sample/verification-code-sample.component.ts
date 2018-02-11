@@ -1,24 +1,31 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
-
 import {HospitalService} from '../../service/hosptial.service';
-import {Message} from '../../service/verification';
+import {Verification} from '../../service/verification';
+import {ContainerService} from '../../service/container.service';
 
 @Component({
-    selector: 'app-verification-code',
-    templateUrl: './verification-code.component.html',
-    styleUrls: ['./verification-code.component.css']
+    selector: 'app-verification-code-sample',
+    templateUrl: './verification-code-sample.component.html',
+    styleUrls: ['./verification-code-sample.component.css']
 })
-export class VerificationCodeComponent implements OnInit, OnDestroy {
+export class VerificationCodeSampleComponent implements OnInit, OnDestroy {
     @Input() hasSent = false;
-    @Input() btnText = '发送';
+    @Input() btnSendText = '发送';
+    @Input() btnConfirmText = '下一步';
     @Input() phone = '';
-    @Output() sentCompleted = new EventEmitter<Message>();
+    @Input() message = '';
+    @Output() gotoNext = new EventEmitter<Verification>();
+
+    public verificationCode = '';
+    private requestId = '';
+    private bizId = '';
     private timerId = 0;
     private countDownSeconds = 60;
     private sendMessageSubscription: Subscription;
 
-    constructor(private hospitalService: HospitalService) {
+    constructor(private container: ContainerService,
+                private hospitalService: HospitalService) {
     }
 
     ngOnInit() {
@@ -31,6 +38,10 @@ export class VerificationCodeComponent implements OnInit, OnDestroy {
         }
     }
 
+    update(value): void {
+        this.phone = value;
+    }
+
     sendCode(): void {
         if (this.check(this.phone)) {
             this.hasSent = true;
@@ -39,14 +50,30 @@ export class VerificationCodeComponent implements OnInit, OnDestroy {
                 .subscribe(result => {
                     if (result.Code === 'OK') {
                         this.countDown();
+                        this.requestId = result.RequestId;
+                        this.bizId = result.BizId;
                     }
-                    this.sentCompleted.emit(result);
                 });
         } else {
-            this.sentCompleted.emit(new Message(
-                'Failed', '请输入正确的手机号码', '', ''
-            ));
+            this.message = '请输入正确的手机号码';
         }
+    }
+
+    onConfirm(): void {
+        // this.gotoNext.emit(new Verification(
+        //     'BA0F7460-C210-4507-97C0-8588761275AA',
+        //     '838701815317815630^0',
+        //     '18120995333',
+        //     '817684',
+        //     29
+        // ));
+        this.gotoNext.emit(new Verification(
+            this.requestId,
+            this.bizId,
+            this.phone,
+            this.verificationCode,
+            this.container.getUserID()
+        ));
     }
 
     private clearTimer() {
@@ -61,9 +88,9 @@ export class VerificationCodeComponent implements OnInit, OnDestroy {
                 this.clearTimer();
                 this.countDownSeconds = 60;
                 this.hasSent = false;
-                this.btnText = '重新发送';
+                this.btnSendText = '重新发送';
             } else {
-                this.btnText = `${ this.countDownSeconds } 秒`;
+                this.btnSendText = `${ this.countDownSeconds } 秒`;
             }
         }, 1000);
     }

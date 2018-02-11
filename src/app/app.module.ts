@@ -27,11 +27,14 @@ import {DetailsHospitalComponent} from './details/details-hospital/details-hospi
 import {PatientSelectModalComponent} from './modal/patient-select-modal/patient-select-modal.component';
 import {LoginModalComponent} from './modal/login-modal/login-modal.component';
 import {RegisterModalComponent} from './modal/register-modal/register-modal.component';
+import {ConfirmModalComponent} from './modal/confirm-modal/confirm-modal.component';
 import {VerificationCodeComponent} from './common/verification-code/verification-code.component';
+import {VerificationCodeSampleComponent} from './common/verification-code-sample/verification-code-sample.component';
 import {ConsistentCiphersValidatorDirective} from './common/consistent-ciphers.directive';
 import {MyProfileComponent} from './my/my-profile/my-profile.component';
 import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-modal.component';
-
+import {MyMobileComponent} from './my/my-mobile/my-mobile.component';
+import {MyPatientsComponent} from './my/my-patients/my-patients.component';
 
 @NgModule({
     declarations: [
@@ -52,13 +55,18 @@ import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-mo
         PatientAddModalComponent,
         LoginModalComponent,
         RegisterModalComponent,
+        ConfirmModalComponent,
         VerificationCodeComponent,
         ConsistentCiphersValidatorDirective,
-        MyProfileComponent
+        MyProfileComponent,
+        VerificationCodeSampleComponent,
+        MyMobileComponent,
+        MyPatientsComponent
     ],
     entryComponents: [
         PatientSelectModalComponent,
         PatientAddModalComponent,
+        ConfirmModalComponent,
         LoginModalComponent,
         RegisterModalComponent
     ],

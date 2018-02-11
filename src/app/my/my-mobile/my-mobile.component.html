@@ -1,0 +1,8 @@
+<div *ngIf='isBind'>
+    您已关联手机号：{{ phone }}
+</div>
+<app-verification-code-sample *ngIf='!isBind'
+                              [phone]="phone"
+                              [message]="message"
+                              (gotoNext)="onConfirm($event)"
+></app-verification-code-sample>

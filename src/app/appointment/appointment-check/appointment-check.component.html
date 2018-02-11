@@ -1,35 +1,41 @@
-<form #checkAppointmentForm="ngForm">
-    <div class="container">
-        <ngb-alert type="danger" *ngIf="message" (close)="message=''">{{ message }}</ngb-alert>
-        <div class="form-group">
-            <input type="text" class="form-control" value="{{ phone }}" readonly>
-        </div>
-        <div class="form-group">
-            <div class="d-flex flex-md-row justify-content-between">
-                <input type="number" class="form-control input-verification-code" placeholder="请输入验证码"
-                       required minlength="6"
-                       [(ngModel)]="verificationCode" name="inputVerificationCode"
-                       #verificationCodeValue="ngModel"
-                />
-                <app-verification-code
-                        [phone]="phone"
-                        (sentCompleted)="onSentCompleted($event)"
-                >
-                </app-verification-code>
-            </div>
-            <div *ngIf="verificationCodeValue.invalid && (verificationCodeValue.dirty || verificationCodeValue.touched)"
-                 class="alert alert-danger">
-                <div *ngIf="verificationCodeValue.errors.required">
-                    * 必填项
-                </div>
-                <div *ngIf="verificationCodeValue.errors.minlength">
-                    验证码输入有误
-                </div>
-            </div>
-        </div>
-        <button (click)="onConfirm()" type="button"
-                class="btn btn-success btn-lg btn-block"
-                [disabled]="!checkAppointmentForm.form.valid">下一步
-        </button>
-    </div>
-</form>
+<!--<form #checkAppointmentForm="ngForm">-->
+    <!--<div class="container">-->
+        <!--<ngb-alert type="danger" *ngIf="message" (close)="message=''">{{ message }}</ngb-alert>-->
+        <!--<div class="form-group">-->
+            <!--<input type="text" class="form-control" value="{{ phone }}" readonly>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<div class="d-flex flex-md-row justify-content-between">-->
+                <!--<input type="number" class="form-control input-verification-code" placeholder="请输入验证码"-->
+                       <!--required minlength="6"-->
+                       <!--[(ngModel)]="verificationCode" name="inputVerificationCode"-->
+                       <!--#verificationCodeValue="ngModel"-->
+                <!--/>-->
+                <!--<app-verification-code-->
+                        <!--[phone]="phone"-->
+                        <!--(sentCompleted)="onSentCompleted($event)"-->
+                <!--&gt;-->
+                <!--</app-verification-code>-->
+            <!--</div>-->
+            <!--<div *ngIf="verificationCodeValue.invalid && (verificationCodeValue.dirty || verificationCodeValue.touched)"-->
+                 <!--class="alert alert-danger">-->
+                <!--<div *ngIf="verificationCodeValue.errors.required">-->
+                    <!--* 必填项-->
+                <!--</div>-->
+                <!--<div *ngIf="verificationCodeValue.errors.minlength">-->
+                    <!--验证码输入有误-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<button (click)="onConfirm()" type="button"-->
+                <!--class="btn btn-success btn-lg btn-block"-->
+                <!--[disabled]="!checkAppointmentForm.form.valid">下一步-->
+        <!--</button>-->
+    <!--</div>-->
+<!--</form>-->
+
+<app-verification-code-sample
+        [phone]="phone"
+        [message]="message"
+        (gotoNext)="onConfirm($event)"
+></app-verification-code-sample>
