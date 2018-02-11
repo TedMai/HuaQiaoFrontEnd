@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
+import {Router} from '@angular/router';
 import {ContainerService} from '../../service/container.service';
 
 @Component({
@@ -9,22 +8,15 @@ import {ContainerService} from '../../service/container.service';
     styleUrls: ['./my-profile.component.css']
 })
 export class MyProfileComponent implements OnInit, OnDestroy {
-    private uid: number;
-    private parameterSubscription: Subscription;
 
     constructor(private router: Router,
-                private activatedRoute: ActivatedRoute,
                 private container: ContainerService) {
     }
 
     ngOnInit() {
-        this.parameterSubscription = this.activatedRoute.params.subscribe(params => {
-            this.uid = params['id'];
-        });
     }
 
     ngOnDestroy() {
-        this.parameterSubscription.unsubscribe();
     }
 
     logout() {
@@ -32,15 +24,15 @@ export class MyProfileComponent implements OnInit, OnDestroy {
         this.router.navigate(['/']).then();
     }
 
-    toMyAppointments(){
-        this.router.navigate(['/list/appointment']).then();
+    toMyAppointments() {
+        this.router.navigate(['/my/appointment']).then();
     }
 
-    toMyMobile(){
+    toMyMobile() {
         this.router.navigate(['/my/mobile']).then();
     }
 
-    toMyPatients(){
+    toMyPatients() {
         this.router.navigate(['/my/patients']).then();
     }
 }

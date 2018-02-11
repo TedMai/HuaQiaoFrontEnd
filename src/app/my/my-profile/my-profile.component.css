@@ -1,9 +1,10 @@
 .entry-list {
-    width: 100%;
+    width: 7rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 
 .entry-item {
@@ -25,8 +26,6 @@
     margin-top: 8px;
 }
 
-.logout {
+.outlet {
     width: 100%;
-    position: fixed;
-    bottom: 0;
 }

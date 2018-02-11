@@ -18,8 +18,8 @@ export class MyMobileComponent implements OnInit {
     }
 
     ngOnInit() {
-        // const uid = this.container.getUserID();
-        const uid = 29;
+        const uid = this.container.getUserID();
+        // const uid = 29;
         this.hospitalService.querySpecificUser(uid)
             .subscribe(response => {
                 console.log(response);

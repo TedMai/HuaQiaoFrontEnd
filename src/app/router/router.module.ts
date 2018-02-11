@@ -7,7 +7,6 @@ import {SearchResultComponent} from '../search/search-result/search-result.compo
 
 import {ListDepartmentComponent} from '../list/list-department/list-department.component';
 import {ListDoctorComponent} from '../list/list-doctor/list-doctor.component';
-import {ListAppointmentComponent} from '../list/list-appointment/list-appointment.component';
 
 import {DetailsHospitalComponent} from '../details/details-hospital/details-hospital.component';
 import {DetailsDepartmentComponent} from '../details/details-department/details-department.component';
@@ -16,9 +15,7 @@ import {DetailsAppointmentComponent} from '../details/details-appointment/detail
 
 import {AppointmentInitComponent} from '../appointment/appointment-init/appointment-init.component';
 import {AppointmentCheckComponent} from '../appointment/appointment-check/appointment-check.component';
-import {MyProfileComponent} from '../my/my-profile/my-profile.component';
-import {MyMobileComponent} from '../my/my-mobile/my-mobile.component';
-import {MyPatientsComponent} from '../my/my-patients/my-patients.component';
+import {PageNotFoundComponent} from '../common/page-not-found/page-not-found.component';
 
 const __ROUTES__: Routes = [
     {
@@ -41,10 +38,6 @@ const __ROUTES__: Routes = [
     {
         path: 'list',
         children: [
-            {
-                path: 'appointment',
-                component: ListAppointmentComponent
-            },
             {
                 path: 'department',
                 component: ListDepartmentComponent
@@ -90,26 +83,13 @@ const __ROUTES__: Routes = [
         ]
     },
     {
-        path: 'my',
-        children: [
-            {
-                path: 'profile/:id',
-                component: MyProfileComponent
-            },
-            {
-                path: 'mobile',
-                component: MyMobileComponent
-            },
-            {
-                path: 'patients',
-                component: MyPatientsComponent
-            }
-        ]
-    },
-    {
         path: '',
         redirectTo: '/details/hospital',
         pathMatch: 'full'
+    },
+    {
+        path: '**',
+        component: PageNotFoundComponent
     }
 ];
 

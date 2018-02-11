@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
+import {MyModule} from './my/my.module';
 
 import {HospitalService} from './service/hosptial.service';
 import {UrlService} from './service/url.service';
@@ -17,7 +18,6 @@ import {SearchDoctorComponent} from './search/search-doctor/search-doctor.compon
 import {SearchResultComponent} from './search/search-result/search-result.component';
 import {ListDoctorComponent} from './list/list-doctor/list-doctor.component';
 import {ListDepartmentComponent} from './list/list-department/list-department.component';
-import {ListAppointmentComponent} from './list/list-appointment/list-appointment.component';
 import {DetailsDepartmentComponent} from './details/details-department/details-department.component';
 import {DetailsDoctorComponent} from './details/details-doctor/details-doctor.component';
 import {DetailsAppointmentComponent} from './details/details-appointment/details-appointment.component';
@@ -31,10 +31,8 @@ import {ConfirmModalComponent} from './modal/confirm-modal/confirm-modal.compone
 import {VerificationCodeComponent} from './common/verification-code/verification-code.component';
 import {VerificationCodeSampleComponent} from './common/verification-code-sample/verification-code-sample.component';
 import {ConsistentCiphersValidatorDirective} from './common/consistent-ciphers.directive';
-import {MyProfileComponent} from './my/my-profile/my-profile.component';
 import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-modal.component';
-import {MyMobileComponent} from './my/my-mobile/my-mobile.component';
-import {MyPatientsComponent} from './my/my-patients/my-patients.component';
+import {PageNotFoundComponent} from './common/page-not-found/page-not-found.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +42,6 @@ import {MyPatientsComponent} from './my/my-patients/my-patients.component';
         SearchResultComponent,
         ListDoctorComponent,
         ListDepartmentComponent,
-        ListAppointmentComponent,
         DetailsDepartmentComponent,
         DetailsDoctorComponent,
         DetailsAppointmentComponent,
@@ -58,10 +55,8 @@ import {MyPatientsComponent} from './my/my-patients/my-patients.component';
         ConfirmModalComponent,
         VerificationCodeComponent,
         ConsistentCiphersValidatorDirective,
-        MyProfileComponent,
         VerificationCodeSampleComponent,
-        MyMobileComponent,
-        MyPatientsComponent
+        PageNotFoundComponent
     ],
     entryComponents: [
         PatientSelectModalComponent,
@@ -73,9 +68,10 @@ import {MyPatientsComponent} from './my/my-patients/my-patients.component';
     imports: [
         BrowserModule,
         FormsModule,
-        AppRouterModule,
         HttpClientModule,
-        NgbModule.forRoot()
+        MyModule,
+        NgbModule.forRoot(),
+        AppRouterModule
     ],
     providers: [
         HospitalService,
