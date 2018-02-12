@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {HospitalService} from '../../service/hosptial.service';
-import {Department} from '../../service/department';
+import {Department} from '../../service/hospital.structure';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({

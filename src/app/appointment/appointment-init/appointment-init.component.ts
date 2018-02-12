@@ -4,8 +4,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 import {HospitalService} from '../../service/hosptial.service';
 import {ContainerService} from '../../service/container.service';
-import {Schedule} from '../../service/schedule';
-import {Patient} from '../../service/patient';
+import {Schedule} from '../../service/hospital.structure';
+import {Patient} from '../../service/hospital.structure';
 
 import {PatientSelectModalComponent} from '../../modal/patient-select-modal/patient-select-modal.component';
 import {Subscription} from 'rxjs/Subscription';

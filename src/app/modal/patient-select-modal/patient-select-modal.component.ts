@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {Patient} from '../../service/patient';
+import {Patient} from '../../service/hospital.structure';
 
 @Component({
     selector: 'app-ngbd-modal-content',

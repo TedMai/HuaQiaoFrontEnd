@@ -2,13 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {HospitalService} from '../../service/hosptial.service';
 import {ContainerService} from '../../service/container.service';
-import {Patient} from '../../service/patient';
+import {Patient} from '../../service/hospital.structure';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ConfirmModalComponent} from '../../modal/confirm-modal/confirm-modal.component';
 import {PatientAddModalComponent} from '../../modal/patient-add-modal/patient-add-modal.component';
 
 @Component({
-    selector: 'app-my-patients',
+    // selector: 'app-my-patients',
     templateUrl: './my-patients.component.html',
     styleUrls: ['./my-patients.component.css']
 })

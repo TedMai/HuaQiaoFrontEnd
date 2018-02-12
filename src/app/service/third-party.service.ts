@@ -1,3 +1,6 @@
+/**
+ * 对接第三方应用
+ */
 export class ThirdPartyService {
     /**
      * 使用微信登录
@@ -20,6 +23,11 @@ export class ThirdPartyService {
             + '#wechat_redirect';
     }
 
+    /**
+     * 使用QQ登录
+     * @returns {string}
+     * @constructor
+     */
     static QQLogin(): string {
         return '';
     }

@@ -3,11 +3,11 @@ import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
 import {HospitalService} from '../../service/hosptial.service';
-import {Record} from '../../service/record';
+import {Record} from '../../service/record.service';
 import {ContainerService} from '../../service/container.service';
 
 @Component({
-    selector: 'app-list-appointment',
+    // selector: 'app-list-appointment',
     templateUrl: './list-appointment.component.html',
     styleUrls: ['./list-appointment.component.css']
 })

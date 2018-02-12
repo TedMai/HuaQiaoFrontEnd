@@ -5,9 +5,8 @@ import {Subscription} from 'rxjs/Subscription';
 import {HospitalService} from '../../service/hosptial.service';
 import {ContainerService} from '../../service/container.service';
 import {LoginService} from '../../service/login.service';
-
-import {Doctor} from '../../service/doctor';
-import {Schedule} from '../../service/schedule';
+import {Doctor} from '../../service/hospital.structure';
+import {Schedule} from '../../service/hospital.structure';
 import {DatetimeService} from '../../service/datetime.service';
 
 @Component({

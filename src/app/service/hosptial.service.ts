@@ -4,11 +4,11 @@ import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {catchError} from 'rxjs/operators';
 
-import {Department} from './department';
+import {Department} from './hospital.structure';
 import {UrlService} from './url.service';
-import {Appointment} from './appointment';
-import {User} from './user';
-import {Patient} from './patient';
+import {Appointment} from './hospital.structure';
+import {User} from './hospital.structure';
+import {Patient} from './hospital.structure';
 import {Verification} from './verification';
 
 // const httpOptions = {

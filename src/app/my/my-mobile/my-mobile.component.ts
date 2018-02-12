@@ -4,7 +4,7 @@ import {HospitalService} from '../../service/hosptial.service';
 import {ContainerService} from '../../service/container.service';
 
 @Component({
-    selector: 'app-my-mobile',
+    // selector: 'app-my-mobile',
     templateUrl: './my-mobile.component.html',
     styleUrls: ['./my-mobile.component.css']
 })

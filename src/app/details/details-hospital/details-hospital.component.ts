@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
-import {Hospital} from '../../service/hospital';
+import {Hospital} from '../../service/hospital.structure';
+import {Gallery} from '../../service/hospital.structure';
 import {HospitalService} from '../../service/hosptial.service';
-import {Gallery} from '../../service/gallery';
 import {UrlService} from '../../service/url.service';
 import {Subscription} from 'rxjs/Subscription';
 

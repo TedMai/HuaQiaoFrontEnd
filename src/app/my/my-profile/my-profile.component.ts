@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {ContainerService} from '../../service/container.service';
 
 @Component({
-    selector: 'app-my-profile',
+    // selector: 'app-my-profile',
     templateUrl: './my-profile.component.html',
     styleUrls: ['./my-profile.component.css']
 })

@@ -6,7 +6,7 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
 import {ContainerService} from './service/container.service';
 import {LoginService} from './service/login.service';
-import {Department} from './service/department';
+import {Department} from './service/hospital.structure';
 import {HospitalService} from './service/hosptial.service';
 
 @Component({

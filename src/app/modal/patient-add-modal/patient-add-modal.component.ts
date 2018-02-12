@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
-import {Patient} from '../../service/patient';
+import {Patient} from '../../service/hospital.structure';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ContainerService} from '../../service/container.service';
 import {ValidatorService} from '../../service/validator.service';

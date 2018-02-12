@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UrlService} from '../../service/url.service';
 import {HospitalService} from '../../service/hosptial.service';
 import {ContainerService} from '../../service/container.service';
-import {Doctor} from '../../service/doctor';
+import {Doctor} from '../../service/hospital.structure';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({
