@@ -5,11 +5,16 @@ import {LoginModalComponent} from '../modal/login-modal/login-modal.component';
 import {RegisterModalComponent} from '../modal/register-modal/register-modal.component';
 import {ContainerService} from './container.service';
 import {HospitalService} from './hosptial.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class LoginService {
+    public isLoggedIn = false;
+    // store the URL so we can redirect after logging in
+    public redirectUrl: string;
 
-    constructor(private modalService: NgbModal,
+    constructor(private router: Router,
+                private modalService: NgbModal,
                 private container: ContainerService,
                 private hospitalService: HospitalService) {
     }
@@ -22,12 +27,17 @@ export class LoginService {
         loginModalRef.componentInstance.title = '登录';
         loginModalRef.componentInstance.message = '';
         loginModalRef.componentInstance.toLogin.subscribe(response => {
-            console.log(response);
             this.hospitalService.login(response, 'unionLogin').subscribe(
                 result => {
                     console.log(result);
                     if (result.code === 0) {
                         this.container.setUserID(result.msg.uid);
+                        this.isLoggedIn = true;
+                        // Get the redirect URL from our auth service
+                        // If no redirect has been set, use the default
+                        let redirect = this.redirectUrl ? this.redirectUrl : '';
+                        // Redirect the user
+                        this.router.navigate([redirect]).then();
                         // 关闭对话框
                         loginModalRef.componentInstance.activeModal.close('Login success');
                     } else {
@@ -80,6 +90,12 @@ export class LoginService {
                     console.log(result);
                     if (result.code === 0) {
                         this.container.setUserID(result.msg.insertId);
+                        this.isLoggedIn = true;
+                        // Get the redirect URL from our auth service
+                        // If no redirect has been set, use the default
+                        let redirect = this.redirectUrl ? this.redirectUrl : '';
+                        // Redirect the user
+                        this.router.navigate([redirect]).then();
                         // 关闭对话框
                         registerModalRef.componentInstance.activeModal.close('Register success');
                     }
@@ -115,5 +131,10 @@ export class LoginService {
             (reason) => {
                 console.log(reason);
             });
+    }
+
+    public logout(): void {
+        this.container.setUserID(null);
+        this.isLoggedIn = false;
     }
 }

@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Verification} from '../../service/verification';
 import {HospitalService} from '../../service/hosptial.service';
-import {ContainerService} from '../../service/container.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-    // selector: 'app-my-mobile',
     templateUrl: './my-mobile.component.html',
     styleUrls: ['./my-mobile.component.css']
 })
@@ -13,21 +12,18 @@ export class MyMobileComponent implements OnInit {
     message = '';
     isBind = false;
 
-    constructor(private container: ContainerService,
+    constructor(private route: ActivatedRoute,
                 private hospitalService: HospitalService) {
     }
 
     ngOnInit() {
-        const uid = this.container.getUserID();
-        // const uid = 29;
-        this.hospitalService.querySpecificUser(uid)
-            .subscribe(response => {
-                console.log(response);
-                if (null === response[0].phone) {
+        this.route.data
+            .subscribe((data: { myProfileResolver: any }) => {
+                if (null === data.myProfileResolver[0].phone) {
                     this.isBind = false;
                 } else {
                     this.isBind = true;
-                    this.phone = response[0].phone;
+                    this.phone = data.myProfileResolver[0].phone;
                 }
             });
     }

@@ -61,11 +61,11 @@ export class VerificationCodeSampleComponent implements OnInit, OnDestroy {
 
     onConfirm(): void {
         // this.gotoNext.emit(new Verification(
-        //     'BA0F7460-C210-4507-97C0-8588761275AA',
-        //     '838701815317815630^0',
-        //     '18120995333',
-        //     '817684',
-        //     29
+        //     '5E835EAC-AC30-49EA-89CC-FE78087E32DF',
+        //     '285725118508128016^0',
+        //     '18159393355',
+        //     '660628',
+        //     33
         // ));
         this.gotoNext.emit(new Verification(
             this.requestId,

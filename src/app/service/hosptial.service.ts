@@ -33,9 +33,9 @@ export class HospitalService {
      * @param id
      * @returns {Observable<{}|any>}
      */
-    querySpecificHospital(id: number): Observable<any> {
+    querySpecificHospital(id: string): Observable<any> {
         return this.http
-            .get<any>(UrlService.QuerySpecific('hospital', id.toString()))
+            .get<any>(UrlService.QuerySpecific('hospital', id))
             .pipe(
                 catchError(this.handleError('querySpecificHospital', {}))
             );
@@ -59,9 +59,9 @@ export class HospitalService {
      * @param userId
      * @returns {Observable<{}|any>}
      */
-    querySpecificUser(userId: number): Observable<any> {
+    querySpecificUser(userId: string): Observable<any> {
         return this.http
-            .get<any>(UrlService.QuerySpecific('user', userId.toString()))
+            .get<any>(UrlService.QuerySpecific('user', userId))
             .pipe(
                 catchError(this.handleError('querySpecificUser', {}))
             );
@@ -250,8 +250,7 @@ export class HospitalService {
         return this.http
             .post<any>(
                 UrlService.Delete('patient', pid.toString()),
-                {
-                }
+                {}
             )
             .pipe(
                 catchError(this.handleError('deletePatient', []))

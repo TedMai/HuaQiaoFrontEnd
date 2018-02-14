@@ -9,14 +9,12 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 export class ConfirmModalComponent implements OnInit {
     @Input() title: string;
     @Input() content: string;
+    @Input() btnConfirmText = '确认';
+    @Input() btnCancelText = '取消';
 
     constructor(public activeModal: NgbActiveModal) {
     }
 
     ngOnInit() {
-    }
-
-    onConfirm() {
-      this.activeModal.close('Yes');
     }
 }

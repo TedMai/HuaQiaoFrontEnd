@@ -5,6 +5,7 @@
     justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
+    background-color: #F8F9FA;
 }
 
 .entry-item {

@@ -124,6 +124,9 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
             });
     }
 
+    /**
+     * 提交预约单
+     */
     onSubmitAppointment(): void {
         if (typeof this.patient === 'undefined' || this.patient.pid === 0) {
             this.message = '请选择就诊人';
@@ -131,8 +134,6 @@ export class AppointmentInitComponent implements OnInit, OnDestroy {
             this.container.set({
                 schedule: this.schedule,
                 patient: this.patient
-                // departmentName: this.departmentName,
-                // doctorName: this.doctorName
             });
             this.router.navigate(['/appointment/check']).then();
         }

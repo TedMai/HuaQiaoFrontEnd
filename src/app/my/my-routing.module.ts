@@ -5,23 +5,37 @@ import {MyProfileComponent} from './my-profile/my-profile.component';
 import {MyMobileComponent} from './my-mobile/my-mobile.component';
 import {MyPatientsComponent} from './my-patients/my-patients.component';
 import {ListAppointmentComponent} from './list-appointment/list-appointment.component';
+import {AuthGuard} from '../service/auth-guard.service';
+import {MyProfileResolver} from '../service/resolver/my-profile.service';
+import {RelativePatientsResolver} from '../service/resolver/patient.service';
+import {RelativeAppointmentsResolver} from '../service/resolver/appointment.service';
 
 const __MY_ROUTES__: Routes = [
     {
         path: 'my',
         component: MyProfileComponent,
+        canActivateChild: [AuthGuard],
         children: [
             {
-                path: 'appointment',
-                component: ListAppointmentComponent
+                path: 'appointment/:uid',
+                component: ListAppointmentComponent,
+                resolve: {
+                    relativeAppointmentsResolver: RelativeAppointmentsResolver
+                }
             },
             {
-                path: 'mobile',
-                component: MyMobileComponent
+                path: 'mobile/:uid',
+                component: MyMobileComponent,
+                resolve: {
+                    myProfileResolver: MyProfileResolver
+                }
             },
             {
-                path: 'patients',
-                component: MyPatientsComponent
+                path: 'patients/:uid',
+                component: MyPatientsComponent,
+                resolve: {
+                    relativePatientsResolver: RelativePatientsResolver
+                }
             }
         ]
     }
@@ -36,8 +50,12 @@ const __MY_ROUTES__: Routes = [
     imports: [RouterModule.forChild(
         __MY_ROUTES__
     )],
-    declarations: [],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [
+        MyProfileResolver,
+        RelativePatientsResolver,
+        RelativeAppointmentsResolver
+    ]
 })
 export class MyRoutingModule {
 }

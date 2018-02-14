@@ -1,10 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import {HospitalService} from '../../service/hosptial.service';
 import {ContainerService} from '../../service/container.service';
-import {LoginService} from '../../service/login.service';
 import {Doctor} from '../../service/hospital.structure';
 import {Schedule} from '../../service/hospital.structure';
 import {DatetimeService} from '../../service/datetime.service';
@@ -14,45 +11,34 @@ import {DatetimeService} from '../../service/datetime.service';
     templateUrl: './details-doctor.component.html',
     styleUrls: ['./details-doctor.component.css']
 })
-export class DetailsDoctorComponent implements OnInit, OnDestroy {
+export class DetailsDoctorComponent implements OnInit {
     departmentName: string;
     doctor: Doctor;
     schedules: Schedule[];
-    subscription: Subscription;
 
-    constructor(private router: Router,
-                private hospitalService: HospitalService,
-                private container: ContainerService,
-                private loginService: LoginService) {
+    constructor(private route: ActivatedRoute,
+                private router: Router,
+                private container: ContainerService) {
     }
 
     ngOnInit() {
         this.departmentName = this.container.get().departmentName;
         this.doctor = this.container.get().doctor;
-        this.subscription = this.hospitalService.queryRelativeSchedules(this.doctor.id)
-            .subscribe(response => {
-                this.schedules = response.map(item => {
+        this.route.data
+            .subscribe((data: { relativeSchedulesResolver: any }) => {
+                this.schedules = data.relativeSchedulesResolver.map(item => {
                     item.visiting = DatetimeService.FormatDate(new Date(item.visiting));
                     return item;
                 });
             });
     }
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
-
     makeAppointment(schedule: Schedule) {
-        const uid = this.container.getUserID();
-        if (typeof uid === 'undefined' || uid === null) {
-            this.loginService.openLoginModal();             // 弹出登录对话框
-        } else {
-            this.container.set({
-                departmentName: this.departmentName,
-                doctorName: this.doctor.name,
-                schedule: schedule
-            });
-            this.router.navigate(['/appointment/init', schedule.id]).then();
-        }
+        this.container.set({
+            departmentName: this.departmentName,
+            doctorName: this.doctor.name,
+            schedule: schedule
+        });
+        this.router.navigate(['/appointment/init', schedule.id]).then();
     }
 }

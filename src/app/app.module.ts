@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
+import {WidgetModule} from './widget/widget.module';
 import {MyModule} from './my/my.module';
 
 import {HospitalService} from './service/hosptial.service';
@@ -12,8 +13,7 @@ import {LoginService} from './service/login.service';
 import {ValidatorService} from './service/validator.service';
 
 import {AppComponent} from './app.component';
-import {AppRouterModule} from './router/router.module';
-import {SearchDepartmentComponent} from './search/search-department/search-department.component';
+import {AppRouterModule} from './app.router.module';
 import {SearchDoctorComponent} from './search/search-doctor/search-doctor.component';
 import {SearchResultComponent} from './search/search-result/search-result.component';
 import {ListDoctorComponent} from './list/list-doctor/list-doctor.component';
@@ -28,16 +28,11 @@ import {PatientSelectModalComponent} from './modal/patient-select-modal/patient-
 import {LoginModalComponent} from './modal/login-modal/login-modal.component';
 import {RegisterModalComponent} from './modal/register-modal/register-modal.component';
 import {ConfirmModalComponent} from './modal/confirm-modal/confirm-modal.component';
-import {VerificationCodeComponent} from './common/verification-code/verification-code.component';
-import {VerificationCodeSampleComponent} from './common/verification-code-sample/verification-code-sample.component';
-import {ConsistentCiphersValidatorDirective} from './common/consistent-ciphers.directive';
 import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-modal.component';
-import {PageNotFoundComponent} from './common/page-not-found/page-not-found.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        SearchDepartmentComponent,
         SearchDoctorComponent,
         SearchResultComponent,
         ListDoctorComponent,
@@ -52,11 +47,7 @@ import {PageNotFoundComponent} from './common/page-not-found/page-not-found.comp
         PatientAddModalComponent,
         LoginModalComponent,
         RegisterModalComponent,
-        ConfirmModalComponent,
-        VerificationCodeComponent,
-        ConsistentCiphersValidatorDirective,
-        VerificationCodeSampleComponent,
-        PageNotFoundComponent
+        ConfirmModalComponent
     ],
     entryComponents: [
         PatientSelectModalComponent,
@@ -69,6 +60,7 @@ import {PageNotFoundComponent} from './common/page-not-found/page-not-found.comp
         BrowserModule,
         FormsModule,
         HttpClientModule,
+        WidgetModule,
         MyModule,
         NgbModule.forRoot(),
         AppRouterModule

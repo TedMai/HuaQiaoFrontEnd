@@ -8,6 +8,6 @@
     {{ content }}
 </div>
 <div class="modal-footer d-flex flex-md-row justify-content-end">
-    <button type="button" class="btn btn-outline-danger" (click)="onConfirm()">确认</button>
-    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('Cancel')">取消</button>
+    <button type="button" class="btn btn-outline-danger" (click)="activeModal.close('Yes')">{{ btnConfirmText }}</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('Cancel')">{{ btnCancelText }}</button>
 </div>

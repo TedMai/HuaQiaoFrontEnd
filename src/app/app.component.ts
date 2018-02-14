@@ -4,7 +4,6 @@ import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
-import {ContainerService} from './service/container.service';
 import {LoginService} from './service/login.service';
 import {Department} from './service/hospital.structure';
 import {HospitalService} from './service/hosptial.service';
@@ -27,8 +26,7 @@ export class AppComponent implements OnInit, AfterContentChecked {
 
     constructor(private router: Router,
                 private loginService: LoginService,
-                private hospitalService: HospitalService,
-                private container: ContainerService) {
+                private hospitalService: HospitalService) {
     }
 
     /**
@@ -51,8 +49,8 @@ export class AppComponent implements OnInit, AfterContentChecked {
      * 检测用户登录状态
      */
     ngAfterContentChecked() {
-        const uid = this.container.getUserID();
-        (typeof uid === 'undefined' || uid === null) ? this.isLoggedIn = false : this.isLoggedIn = true;
+        // const uid = this.container.getUserID();
+        (this.loginService.isLoggedIn === false) ? this.isLoggedIn = false : this.isLoggedIn = true;
     }
 
     /**
@@ -86,6 +84,6 @@ export class AppComponent implements OnInit, AfterContentChecked {
      */
     found(id: number, name: string): void {
         this.searchTerms.next('');  // 清空
-        this.router.navigate(['/search/result/' + id + '/' + name]).then();
+        this.router.navigate(['/search/result', {id: id, name: name}]).then();
     }
 }

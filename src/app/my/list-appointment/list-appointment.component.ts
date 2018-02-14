@@ -1,40 +1,30 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import {HospitalService} from '../../service/hosptial.service';
 import {Record} from '../../service/record.service';
-import {ContainerService} from '../../service/container.service';
 
 @Component({
     // selector: 'app-list-appointment',
     templateUrl: './list-appointment.component.html',
     styleUrls: ['./list-appointment.component.css']
 })
-export class ListAppointmentComponent implements OnInit, OnDestroy {
+export class ListAppointmentComponent implements OnInit {
     appointments: Record[];
-    subscription: Subscription;
 
-    constructor(private router: Router,
-                private container: ContainerService,
-                private hospitalService: HospitalService) {
-        const uid = this.container.getUserID();
-        // const uid = 29;
-        this.subscription = this.hospitalService.queryRelativeAppointments(uid)
-            .subscribe(response => {
-                this.appointments = Record.FormatAppointmentDetails(JSON.parse(response.appointments));
-            });
+    constructor(private route: ActivatedRoute,
+                private router: Router) {
     }
 
     ngOnInit() {
-    }
+        this.route.data
+            .subscribe((data: { relativeAppointmentsResolver: any }) => {
+                this.appointments = Record.FormatAppointmentDetails(JSON.parse(data.relativeAppointmentsResolver.appointments));
+            });
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
     }
 
     public toAppointmentDetails(rid: string) {
-        this.container.set({'rid': rid});
-        this.router.navigate(['/details/appointment']).then();
+        // this.container.set({'rid': rid});
+        this.router.navigate(['/details/appointment', {rid: rid}]).then();
     }
 }

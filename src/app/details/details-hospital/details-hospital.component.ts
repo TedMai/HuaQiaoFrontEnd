@@ -1,33 +1,30 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 import {Hospital} from '../../service/hospital.structure';
 import {Gallery} from '../../service/hospital.structure';
-import {HospitalService} from '../../service/hosptial.service';
 import {UrlService} from '../../service/url.service';
-import {Subscription} from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-details-hospital',
     templateUrl: './details-hospital.component.html',
     styleUrls: ['./details-hospital.component.css']
 })
-export class DetailsHospitalComponent implements OnInit, OnDestroy {
+export class DetailsHospitalComponent implements OnInit {
 
     hospital: Hospital;
     gallery: Gallery[];
-    subscription: Subscription;
 
     /**
      * 完成初始化工作
      *      --      医院 ID 及其图集
      *      --      轮播图片设置
+     * @param route
      * @param carouselConfig
-     * @param hospitalService
      */
-    constructor(private carouselConfig: NgbCarouselConfig,
-                private hospitalService: HospitalService) {
-        this.hospital = new Hospital(26, '', '', '', '', '', 0, 0);
+    constructor(private route: ActivatedRoute,
+                private carouselConfig: NgbCarouselConfig) {
         this.gallery = [];
 
         carouselConfig.interval = 4000;      // 自动循环每个项目之间延迟的时间量。
@@ -40,13 +37,12 @@ export class DetailsHospitalComponent implements OnInit, OnDestroy {
      * Then sets the directive/component's input properties.
      */
     ngOnInit() {
-        console.log('DetailsHospitalComponent   ==>     ngOnInit');
-        this.subscription = this.hospitalService.querySpecificHospital(this.hospital.id)
-            .subscribe(response => {
-                this.hospital = JSON.parse(response.hospital)[0];
+        this.route.data
+            .subscribe((data: { hospitalDetailResolver: any }) => {
+                this.hospital = JSON.parse(data.hospitalDetailResolver.hospital)[0];
                 console.log(this.hospital);
 
-                JSON.parse(response.gallery).map(image => {
+                JSON.parse(data.hospitalDetailResolver.gallery).map(image => {
                     this.gallery.push({
                         id: image.id,
                         imageurl: UrlService.FetchImage(image.imageurl),
@@ -55,9 +51,5 @@ export class DetailsHospitalComponent implements OnInit, OnDestroy {
                     });
                 });
             });
-    }
-
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
     }
 }
