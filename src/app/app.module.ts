@@ -11,6 +11,9 @@ import {UrlService} from './service/url.service';
 import {ContainerService} from './service/container.service';
 import {LoginService} from './service/login.service';
 import {ValidatorService} from './service/validator.service';
+import {AuthGuard} from './service/auth-guard.service';
+
+import {HighlightDirective} from './directives/highlight.directive';
 
 import {AppComponent} from './app.component';
 import {AppRouterModule} from './app.router.module';
@@ -29,6 +32,7 @@ import {LoginModalComponent} from './modal/login-modal/login-modal.component';
 import {RegisterModalComponent} from './modal/register-modal/register-modal.component';
 import {ConfirmModalComponent} from './modal/confirm-modal/confirm-modal.component';
 import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-modal.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -47,7 +51,8 @@ import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-mo
         PatientAddModalComponent,
         LoginModalComponent,
         RegisterModalComponent,
-        ConfirmModalComponent
+        ConfirmModalComponent,
+        HighlightDirective
     ],
     entryComponents: [
         PatientSelectModalComponent,
@@ -58,6 +63,7 @@ import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-mo
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
         WidgetModule,
@@ -70,7 +76,8 @@ import {PatientAddModalComponent} from './modal/patient-add-modal/patient-add-mo
         UrlService,
         ContainerService,
         LoginService,
-        ValidatorService
+        ValidatorService,
+        AuthGuard
     ],
     bootstrap: [AppComponent]
 })

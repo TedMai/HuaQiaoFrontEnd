@@ -1,5 +1,5 @@
 export class DatetimeService {
-    static formatNumber(n: number) {
+    static FormatNumber(n: number) {
         const num = n.toString();
         return num[1] ? num : '0' + num;
     }
@@ -11,8 +11,8 @@ export class DatetimeService {
         const hour = date.getHours();
         const minute = date.getMinutes();
         const second = date.getSeconds();
-        const prefix = [year, month, day].map(DatetimeService.formatNumber).join('/');
-        const post = [hour, minute, second].map(DatetimeService.formatNumber).join(':');
+        const prefix = [year, month, day].map(DatetimeService.FormatNumber).join('/');
+        const post = [hour, minute, second].map(DatetimeService.FormatNumber).join(':');
 
         return prefix + ' ' + post;
     }
@@ -22,6 +22,6 @@ export class DatetimeService {
         const month = date.getMonth() + 1;
         const day = date.getDate();
 
-        return [year, month, day].map(DatetimeService.formatNumber).join('-');
+        return [year, month, day].map(DatetimeService.FormatNumber).join('-');
     }
 }

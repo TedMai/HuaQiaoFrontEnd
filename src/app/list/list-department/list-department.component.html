@@ -9,7 +9,8 @@
                             <div class="card-body">
                                 <ul class="children">
                                     <li *ngFor="let department of children">
-                                        <div (click)="showDoctorList(department.did, department.name)">
+                                        <div [appHighlight]="backgroundColor"
+                                             (click)="showDoctorList(department.did, department.name)">
                                             {{ department.name }}
                                         </div>
                                     </li>

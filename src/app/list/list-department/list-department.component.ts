@@ -14,6 +14,7 @@ export class ListDepartmentComponent implements OnInit {
     children: Department[];
     isCollapsed: boolean;
     focusSuperior: number;
+    backgroundColor: string = '#F8F9FA';
 
     constructor(private route: ActivatedRoute,
                 private router: Router) {

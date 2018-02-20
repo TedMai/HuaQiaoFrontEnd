@@ -2,19 +2,38 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
-import {Hospital} from '../../service/hospital.structure';
-import {Gallery} from '../../service/hospital.structure';
+import {Gallery, Hospital} from '../../service/hospital.structure';
 import {UrlService} from '../../service/url.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
     selector: 'app-details-hospital',
     templateUrl: './details-hospital.component.html',
-    styleUrls: ['./details-hospital.component.css']
+    styleUrls: ['./details-hospital.component.css'],
+    animations: [
+        trigger('heroState', [
+            state('inactive', style({
+                backgroundColor: '#eee',
+                transform: 'translateX(0) scale(1)'
+            })),
+            state('active', style({
+                backgroundColor: '#cfd8dc',
+                transform: 'translateX(-100%) scale(2)'
+            })),
+            state('in', style({height: '*'})),
+            transition('void <=> void', [
+                animate('2s 2s', style({transform: 'translateX(100%) scale(0)'}))
+                // style({height: '*'}),
+                // animate(250, style({height: 0}))
+            ])
+        ])
+    ]
 })
 export class DetailsHospitalComponent implements OnInit {
 
     hospital: Hospital;
     gallery: Gallery[];
+    state = 'inactive';
 
     /**
      * 完成初始化工作
@@ -51,5 +70,9 @@ export class DetailsHospitalComponent implements OnInit {
                     });
                 });
             });
+    }
+
+    toggleState() {
+        this.state = this.state === 'active' ? 'inactive' : 'active';
     }
 }
