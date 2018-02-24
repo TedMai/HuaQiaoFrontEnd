@@ -4,30 +4,11 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 import {Gallery, Hospital} from '../../service/hospital.structure';
 import {UrlService} from '../../service/url.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
     selector: 'app-details-hospital',
     templateUrl: './details-hospital.component.html',
-    styleUrls: ['./details-hospital.component.css'],
-    animations: [
-        trigger('heroState', [
-            state('inactive', style({
-                backgroundColor: '#eee',
-                transform: 'translateX(0) scale(1)'
-            })),
-            state('active', style({
-                backgroundColor: '#cfd8dc',
-                transform: 'translateX(-100%) scale(2)'
-            })),
-            state('in', style({height: '*'})),
-            transition('void <=> void', [
-                animate('2s 2s', style({transform: 'translateX(100%) scale(0)'}))
-                // style({height: '*'}),
-                // animate(250, style({height: 0}))
-            ])
-        ])
-    ]
+    styleUrls: ['./details-hospital.component.css']
 })
 export class DetailsHospitalComponent implements OnInit {
 
