@@ -1,19 +1,14 @@
-import {TestBed, async, ComponentFixture} from '@angular/core/testing';
-import {AppComponent} from './app.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
+
+import {AppComponent} from './app.component';
 import {Router} from '@angular/router';
 import {LoginService} from './service/login.service';
 import {HospitalService} from './service/hosptial.service';
 
-class RouterStub {
-}
-
-class LoginServiceMock {
-    public isLoggedIn = false;
-}
-
-class HospitalServiceMock {
-}
+import {RouterStub} from './service/mock/router.stub';
+import {LoginServiceMock} from './service/mock/login.service.mock';
+import {HospitalServiceMock} from './service/mock/hospital.service.mock';
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -43,9 +38,17 @@ describe('AppComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('检查登录态', () => {
-        const el = fixture.debugElement.nativeElement.querySelector('button');
-        expect(el).toBeTruthy('未登录时应显示登录按键');
-        expect(el.textContent).toContain('登录', '按键文字应为登录');
+    const suites = [
+        {description: '未登录时应显示登录按键', isLoggedIn: false, element: 'button'},
+        {description: '登录成功后应显示用户头像', isLoggedIn: true, element: 'img'}
+    ];
+    suites.forEach((suite) => {
+        it(suite.description, () => {
+            const loginSevice = fixture.debugElement.injector.get(LoginService);
+            loginSevice.isLoggedIn = suite.isLoggedIn;
+            fixture.detectChanges();
+            const el = fixture.debugElement.nativeElement.querySelector(suite.element);
+            expect(el).toBeTruthy(suite.description);
+        });
     });
 });

@@ -1,10 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
 import {DetailsHospitalComponent} from './details-hospital.component';
-import {Router} from '@angular/router';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import {ActivatedRoute} from '@angular/router';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
-class RouterStub {
+class ActivatedRouteStub {
 
 }
 
@@ -19,14 +19,18 @@ describe('DetailsHospitalComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                // ngb-carousel.forRoot()
+                // NgbModule.forRoot()
             ],
             declarations: [DetailsHospitalComponent],    // declare the DetailsHospitalComponent component
+            schemas: [NO_ERRORS_SCHEMA],
             providers: [
+                {provide: ActivatedRoute, useClass: ActivatedRouteStub},
+                {provide: NgbCarouselConfig, useClass: NgbCarouselConfigStub}
             ]
         })
             .compileComponents();   // compile template and css
-        // When compileComponents completes, the external templates and css files have been "inlined" and TestBed.createComponent can create new instances of DetailsHospitalComponent synchronously.
+        // When compileComponents completes, the external templates and css files have been "inlined".
+        // TestBed.createComponent can create new instances of DetailsHospitalComponent synchronously.
     }));
 
     beforeEach(() => {

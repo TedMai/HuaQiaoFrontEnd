@@ -14,7 +14,6 @@ export class DetailsHospitalComponent implements OnInit {
 
     hospital: Hospital;
     gallery: Gallery[];
-    state = 'inactive';
 
     /**
      * 完成初始化工作
@@ -51,9 +50,5 @@ export class DetailsHospitalComponent implements OnInit {
                     });
                 });
             });
-    }
-
-    toggleState() {
-        this.state = this.state === 'active' ? 'inactive' : 'active';
     }
 }
