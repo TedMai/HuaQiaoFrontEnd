@@ -21,7 +21,6 @@ export class MyPatientsComponent implements OnInit {
     ngOnInit() {
         this.route.data
             .subscribe((data: { relativePatientsResolver: any }) => {
-                console.log(data);
                 this.patients = JSON.parse(data.relativePatientsResolver.patients);
             });
     }

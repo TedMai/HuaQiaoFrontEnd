@@ -28,10 +28,7 @@ module.exports = function (config) {
         logLevel: config.LOG_INFO,
         autoWatch: true,
         browsers: ['Chrome'],
-        // browsers: ['Maxthon'],
         singleRun: false,
-        // detached: true
-        // hostname: 'localhost'
         listenAddress: '127.0.0.1'
     });
 };

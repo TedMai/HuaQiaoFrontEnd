@@ -24,7 +24,6 @@ export class ListAppointmentComponent implements OnInit {
     }
 
     public toAppointmentDetails(rid: string) {
-        // this.container.set({'rid': rid});
         this.router.navigate(['/details/appointment', {rid: rid}]).then();
     }
 }

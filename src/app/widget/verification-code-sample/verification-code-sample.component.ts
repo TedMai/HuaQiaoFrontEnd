@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {HospitalService} from '../../service/hosptial.service';
 import {Verification} from '../../service/verification';
@@ -9,7 +9,7 @@ import {ContainerService} from '../../service/container.service';
     templateUrl: './verification-code-sample.component.html',
     styleUrls: ['./verification-code-sample.component.css']
 })
-export class VerificationCodeSampleComponent implements OnInit, OnDestroy {
+export class VerificationCodeSampleComponent implements OnDestroy {
     @Input() hasSent = false;
     @Input() btnSendText = '发送';
     @Input() btnConfirmText = '下一步';
@@ -26,9 +26,6 @@ export class VerificationCodeSampleComponent implements OnInit, OnDestroy {
 
     constructor(private container: ContainerService,
                 private hospitalService: HospitalService) {
-    }
-
-    ngOnInit() {
     }
 
     ngOnDestroy() {

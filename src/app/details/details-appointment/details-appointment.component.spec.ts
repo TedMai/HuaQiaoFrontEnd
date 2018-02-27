@@ -2,18 +2,23 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {DetailsAppointmentComponent} from './details-appointment.component';
 import {ActivatedRoute, Router} from '@angular/router';
-import {RouterStub} from '../../service/mock/router.stub';
+import {ActivatedRouteStub, RouterStub} from '../../service/mock/router.stub';
 
 describe('DetailsAppointmentComponent', () => {
     let component: DetailsAppointmentComponent;
     let fixture: ComponentFixture<DetailsAppointmentComponent>;
+    let activatedRoute: ActivatedRouteStub;
+
+    beforeEach(() => {
+        activatedRoute = new ActivatedRouteStub();
+    });
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [DetailsAppointmentComponent],
             providers: [
-                {provide: Router, useClass: RouterStub},
-                {provide: ActivatedRoute}
+                {provide: ActivatedRoute, useValue: activatedRoute},
+                {provide: Router, useClass: RouterStub}
             ]
         })
             .compileComponents();
