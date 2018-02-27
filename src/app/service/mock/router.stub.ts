@@ -1,12 +1,10 @@
 import {Injectable} from '@angular/core';
+// Only implements params and part of snapshot.paramMap
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class RouterStub {
 }
-
-// Only implements params and part of snapshot.paramMap
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {convertToParamMap, ParamMap} from '@angular/router';
 
 @Injectable()
 export class ActivatedRouteStub {
@@ -34,6 +32,12 @@ export class ActivatedRouteStub {
     // ActivatedRoute.data
     private _repo = new BehaviorSubject(
         {
+            hospitalDetailResolver: {
+                hospital: `[{}]`,
+                gallery: `[]`
+            },
+            departmentListResolver: [],
+            relativeDoctorsResolver: {doctors: `[]`},
             appointmentDetailResolver: {
                 appointment: `[
                             {"rid":"3sQ2Yhd0IiaEB3FbF3DaKeOlnzB6cbPy",
@@ -56,7 +60,8 @@ export class ActivatedRouteStub {
             myProfileResolver: [{phone: '12345678900'}],
             relativePatientsResolver: {
                 patients: `[]`
-            }
+            },
+            relativeSchedulesResolver: []
         });
     data = this._repo.asObservable();
 }

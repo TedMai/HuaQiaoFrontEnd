@@ -7,11 +7,17 @@ import {RouterStub} from '../../service/mock/router.stub';
 import {HospitalService} from '../../service/hosptial.service';
 import {HospitalServiceMock} from '../../service/mock/hospital.service.mock';
 import {ContainerService} from '../../service/container.service';
-import {ContianerServiceMock} from '../../service/mock/container.service.mock';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalStub} from '../../service/mock/modal.stub';
 
 describe('AppointmentInitComponent', () => {
     let component: AppointmentInitComponent;
     let fixture: ComponentFixture<AppointmentInitComponent>;
+    let containerService: ContainerService;
+
+    beforeEach(() => {
+        containerService = new ContainerService();
+    });
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -19,9 +25,9 @@ describe('AppointmentInitComponent', () => {
             schemas: [NO_ERRORS_SCHEMA],
             providers: [
                 {provide: Router, useClass: RouterStub},
-                // {provide: NgbModal, useClass: NgbModalStub},
+                {provide: NgbModal, useClass: NgbModalStub},
                 {provide: HospitalService, useClass: HospitalServiceMock},
-                {provide: ContainerService, useClass: ContianerServiceMock},
+                {provide: ContainerService, useValue: containerService},
             ]
         })
             .compileComponents();
@@ -33,7 +39,7 @@ describe('AppointmentInitComponent', () => {
         fixture.detectChanges();
     });
 
-    // it('should create', () => {
-    //     expect(component).toBeTruthy();
-    // });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

@@ -1,25 +1,40 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ListDoctorComponent } from './list-doctor.component';
+import {ListDoctorComponent} from './list-doctor.component';
+import {ActivatedRouteStub, RouterStub} from '../../service/mock/router.stub';
+import {ContainerService} from '../../service/container.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 describe('ListDoctorComponent', () => {
-  let component: ListDoctorComponent;
-  let fixture: ComponentFixture<ListDoctorComponent>;
+    let component: ListDoctorComponent;
+    let fixture: ComponentFixture<ListDoctorComponent>;
+    let activatedRoute: ActivatedRouteStub;
+    let containerService: ContainerService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ListDoctorComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        activatedRoute = new ActivatedRouteStub();
+        containerService = new ContainerService();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ListDoctorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ListDoctorComponent],
+            providers: [
+                {provide: ActivatedRoute, useValue: activatedRoute},
+                {provide: Router, useClass: RouterStub},
+                {provide: ContainerService, useValue: containerService}
+            ]
+        })
+            .compileComponents();
+    }));
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ListDoctorComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

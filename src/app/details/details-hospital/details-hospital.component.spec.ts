@@ -3,10 +3,7 @@ import {DetailsHospitalComponent} from './details-hospital.component';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
-
-class ActivatedRouteStub {
-
-}
+import {ActivatedRouteStub} from '../../service/mock/router.stub';
 
 class NgbCarouselConfigStub {
 
@@ -15,16 +12,18 @@ class NgbCarouselConfigStub {
 describe('DetailsHospitalComponent', () => {
     let component: DetailsHospitalComponent;
     let fixture: ComponentFixture<DetailsHospitalComponent>;
+    let activatedRoute: ActivatedRouteStub;
+
+    beforeEach(() => {
+        activatedRoute = new ActivatedRouteStub();
+    });
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
-                // NgbModule.forRoot()
-            ],
             declarations: [DetailsHospitalComponent],    // declare the DetailsHospitalComponent component
             schemas: [NO_ERRORS_SCHEMA],
             providers: [
-                {provide: ActivatedRoute, useClass: ActivatedRouteStub},
+                {provide: ActivatedRoute, useValue: activatedRoute},
                 {provide: NgbCarouselConfig, useClass: NgbCarouselConfigStub}
             ]
         })
@@ -41,7 +40,7 @@ describe('DetailsHospitalComponent', () => {
         fixture.detectChanges();
     });
 
-    // it('should create', () => {
-    //     expect(component).toBeTruthy();
-    // });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

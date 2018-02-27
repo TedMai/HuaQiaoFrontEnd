@@ -29,6 +29,7 @@ module.exports = function (config) {
         autoWatch: true,
         browsers: ['Chrome'],
         singleRun: false,
-        listenAddress: '127.0.0.1'
+        listenAddress: '127.0.0.1',
+        hostname: 'localhost'
     });
 };

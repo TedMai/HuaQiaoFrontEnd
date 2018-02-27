@@ -39,7 +39,6 @@ export class DetailsHospitalComponent implements OnInit {
         this.route.data
             .subscribe((data: { hospitalDetailResolver: any }) => {
                 this.hospital = JSON.parse(data.hospitalDetailResolver.hospital)[0];
-                console.log(this.hospital);
 
                 JSON.parse(data.hospitalDetailResolver.gallery).map(image => {
                     this.gallery.push({
