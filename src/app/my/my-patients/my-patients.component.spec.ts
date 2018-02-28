@@ -3,8 +3,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MyPatientsComponent} from './my-patients.component';
 import {ActivatedRouteStub} from '../../service/mock/router.stub';
 import {ActivatedRoute} from '@angular/router';
-import {HospitalService} from '../../service/hosptial.service';
-import {HospitalServiceMock} from '../../service/mock/hospital.service.mock';
+import {HospitalService} from '../../service/hospital.service';
+import {HospitalServiceSpy} from '../../service/mock/hospital.service.spy';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModalStub} from '../../service/mock/modal.stub';
 
@@ -23,7 +23,7 @@ describe('MyPatientsComponent', () => {
             providers: [
                 {provide: ActivatedRoute, useValue: activatedRoute},
                 {provide: NgbModal, useValue: NgbModalStub},
-                {provide: HospitalService, useClass: HospitalServiceMock}
+                {provide: HospitalService, useClass: HospitalServiceSpy}
             ]
         })
             .compileComponents();

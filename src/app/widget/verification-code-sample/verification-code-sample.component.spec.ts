@@ -5,10 +5,9 @@ import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {VerificationCodeSampleComponent} from './verification-code-sample.component';
 import {ContainerService} from '../../service/container.service';
-import {HospitalService} from '../../service/hosptial.service';
-import {HospitalServiceMock} from '../../service/mock/hospital.service.mock';
+import {HospitalService} from '../../service/hospital.service';
+import {HospitalServiceSpy} from '../../service/mock/hospital.service.spy';
 import {click} from '../../service/mock/helper';
-import {of} from 'rxjs/observable/of';
 
 describe('VerificationCodeSampleComponent', () => {
     let component: VerificationCodeSampleComponent;
@@ -37,7 +36,7 @@ describe('VerificationCodeSampleComponent', () => {
             schemas: [NO_ERRORS_SCHEMA],
             providers: [
                 {provide: ContainerService, useValue: containerService},
-                {provide: HospitalService, useClass: HospitalServiceMock}
+                {provide: HospitalService, useClass: HospitalServiceSpy}
                 // HospitalService
             ]
         })

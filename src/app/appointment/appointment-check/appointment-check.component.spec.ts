@@ -7,8 +7,8 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {ContainerService} from '../../service/container.service';
 import {RouterStub} from '../../service/mock/router.stub';
 import {Router} from '@angular/router';
-import {HospitalServiceMock} from '../../service/mock/hospital.service.mock';
-import {HospitalService} from '../../service/hosptial.service';
+import {HospitalServiceSpy} from '../../service/mock/hospital.service.spy';
+import {HospitalService} from '../../service/hospital.service';
 import {NgbModalStub} from '../../service/mock/modal.stub';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -38,7 +38,7 @@ describe('AppointmentCheckComponent', () => {
             providers: [
                 {provide: Router, useClass: RouterStub},
                 {provide: ContainerService, useValue: containerService},
-                {provide: HospitalService, useClass: HospitalServiceMock},
+                {provide: HospitalService, useClass: HospitalServiceSpy},
                 {provide: NgbModal, useClass: NgbModalStub}
             ]
         })

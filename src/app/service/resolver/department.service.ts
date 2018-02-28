@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {HospitalService} from '../hosptial.service';
+import {HospitalService} from '../hospital.service';
 import {Observable} from 'rxjs/Observable';
 import {Department} from '../hospital.structure';
 

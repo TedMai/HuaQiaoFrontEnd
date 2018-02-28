@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
-import {HospitalService} from '../../service/hosptial.service';
+import {HospitalService} from '../../service/hospital.service';
 import {Verification} from '../../service/verification';
 import {ContainerService} from '../../service/container.service';
 

@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Subscription} from 'rxjs/Subscription';
 
-import {HospitalService} from '../../service/hosptial.service';
+import {HospitalService} from '../../service/hospital.service';
 import {ContainerService} from '../../service/container.service';
 import {Appointment} from '../../service/hospital.structure';
 import {Verification} from '../../service/verification';

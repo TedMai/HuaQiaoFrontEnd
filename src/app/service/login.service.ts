@@ -4,7 +4,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LoginModalComponent} from '../modal/login-modal/login-modal.component';
 import {RegisterModalComponent} from '../modal/register-modal/register-modal.component';
 import {ContainerService} from './container.service';
-import {HospitalService} from './hosptial.service';
+import {HospitalService} from './hospital.service';
 import {Router} from '@angular/router';
 
 @Injectable()

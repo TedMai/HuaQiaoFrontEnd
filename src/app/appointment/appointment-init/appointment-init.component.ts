@@ -2,7 +2,7 @@ import {Router} from '@angular/router';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
-import {HospitalService} from '../../service/hosptial.service';
+import {HospitalService} from '../../service/hospital.service';
 import {ContainerService} from '../../service/container.service';
 import {Schedule} from '../../service/hospital.structure';
 import {Patient} from '../../service/hospital.structure';

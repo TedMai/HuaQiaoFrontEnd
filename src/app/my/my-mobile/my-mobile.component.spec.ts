@@ -6,8 +6,8 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {MyMobileComponent} from './my-mobile.component';
 import {ActivatedRouteStub} from '../../service/mock/router.stub';
-import {HospitalService} from '../../service/hosptial.service';
-import {HospitalServiceMock} from '../../service/mock/hospital.service.mock';
+import {HospitalService} from '../../service/hospital.service';
+import {HospitalServiceSpy} from '../../service/mock/hospital.service.spy';
 import {VerificationCodeSampleComponent} from '../../widget/verification-code-sample/verification-code-sample.component';
 import {ContainerService} from '../../service/container.service';
 
@@ -34,7 +34,7 @@ describe('MyMobileComponent', () => {
             schemas: [NO_ERRORS_SCHEMA],
             providers: [
                 {provide: ActivatedRoute, useValue: activatedRoute},
-                {provide: HospitalService, useClass: HospitalServiceMock},
+                {provide: HospitalService, useClass: HospitalServiceSpy},
                 {provide: ContainerService, useValue: containerService}
             ]
         })

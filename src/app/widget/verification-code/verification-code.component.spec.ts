@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {VerificationCodeComponent} from './verification-code.component';
-import {HospitalServiceMock} from '../../service/mock/hospital.service.mock';
-import {HospitalService} from '../../service/hosptial.service';
+import {HospitalServiceSpy} from '../../service/mock/hospital.service.spy';
+import {HospitalService} from '../../service/hospital.service';
 
 describe('VerificationCodeComponent', () => {
     let component: VerificationCodeComponent;
@@ -12,7 +12,7 @@ describe('VerificationCodeComponent', () => {
         TestBed.configureTestingModule({
             declarations: [VerificationCodeComponent],
             providers: [
-                {provide: HospitalService, useClass: HospitalServiceMock}
+                {provide: HospitalService, useClass: HospitalServiceSpy}
             ]
         })
             .compileComponents();

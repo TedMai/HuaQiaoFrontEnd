@@ -37,7 +37,7 @@ export class HospitalService {
         return this.http
             .get<any>(UrlService.QuerySpecific('hospital', id))
             .pipe(
-                catchError(this.handleError('querySpecificHospital', {}))
+                catchError(this.handleError('querySpecificHospital', {errMsg: '#querySpecificHospital#获取医院的信息失败'}))
             );
     }
 
@@ -312,13 +312,14 @@ export class HospitalService {
         return (error: any): Observable<T> => {
 
             // TODO: send the error to remote logging infrastructure
-            console.error(error); // log to console instead
+            // console.error(error); // log to console instead
 
             // TODO: better job of transforming error for user consumption
             // this.log(`${operation} failed: ${error.message}`);
 
             // Let the app keep running by returning an empty result.
-            return of(result as T);
+            // return of(result as T);
+            return of(error as T);
         };
     }
 }

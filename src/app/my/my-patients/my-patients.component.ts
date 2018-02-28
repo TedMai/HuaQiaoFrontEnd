@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HospitalService} from '../../service/hosptial.service';
+import {HospitalService} from '../../service/hospital.service';
 import {Patient} from '../../service/hospital.structure';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ConfirmModalComponent} from '../../modal/confirm-modal/confirm-modal.component';

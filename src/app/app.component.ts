@@ -6,7 +6,7 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
 import {LoginService} from './service/login.service';
 import {Department} from './service/hospital.structure';
-import {HospitalService} from './service/hosptial.service';
+import {HospitalService} from './service/hospital.service';
 
 @Component({
     selector: 'app-root',

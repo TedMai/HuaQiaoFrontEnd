@@ -6,7 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {WidgetModule} from './widget/widget.module';
 import {MyModule} from './my/my.module';
 
-import {HospitalService} from './service/hosptial.service';
+import {HospitalService} from './service/hospital.service';
 import {UrlService} from './service/url.service';
 import {ContainerService} from './service/container.service';
 import {LoginService} from './service/login.service';

@@ -1,4 +1,5 @@
 import {DebugElement} from '@angular/core';
+import {defer} from 'rxjs/observable/defer';
 
 /** Button events to pass to `DebugElement.triggerEventHandler` for RouterLink event handler */
 export const ButtonClickEvents = {
@@ -15,4 +16,16 @@ export function click(el: DebugElement | HTMLElement, eventObj: any = ButtonClic
     } else {
         el.triggerEventHandler('click', eventObj);
     }
+}
+
+/** Create async observable that emits-once and completes
+ *  after a JS engine turn */
+export function asyncData<T>(data: T) {
+    return defer(() => Promise.resolve(data));
+}
+
+/** Create async observable error that errors
+ *  after a JS engine turn */
+export function asyncError<T>(errorObject: any) {
+    return defer(() => Promise.reject(errorObject));
 }

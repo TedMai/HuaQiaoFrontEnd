@@ -4,11 +4,11 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {AppComponent} from './app.component';
 import {Router} from '@angular/router';
 import {LoginService} from './service/login.service';
-import {HospitalService} from './service/hosptial.service';
+import {HospitalService} from './service/hospital.service';
 
 import {RouterStub} from './service/mock/router.stub';
 import {LoginServiceMock} from './service/mock/login.service.mock';
-import {HospitalServiceMock} from './service/mock/hospital.service.mock';
+import {HospitalServiceSpy} from './service/mock/hospital.service.spy';
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -23,7 +23,7 @@ describe('AppComponent', () => {
             providers: [
                 {provide: Router, useClass: RouterStub},
                 {provide: LoginService, useClass: LoginServiceMock},
-                {provide: HospitalService, useClass: HospitalServiceMock}
+                {provide: HospitalService, useClass: HospitalServiceSpy}
             ]
         }).compileComponents();
     }));

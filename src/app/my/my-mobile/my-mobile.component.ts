@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Verification} from '../../service/verification';
-import {HospitalService} from '../../service/hosptial.service';
+import {HospitalService} from '../../service/hospital.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
