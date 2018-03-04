@@ -1,6 +1,6 @@
 import {Message} from '../verification';
-import {of} from 'rxjs/observable/of';
 import {asyncData} from './helper';
+/// <reference path="jasmine.d.ts" />
 
 export class HospitalServiceSpy {
     // 发送短信验证码

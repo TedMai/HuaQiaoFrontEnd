@@ -64,7 +64,6 @@ export class AppComponent implements OnInit, AfterContentChecked {
      * 跳转至个人中心
      */
     toUserProfile() {
-        // const uid = this.container.getUserID();
         this.router.navigate(['/my']).then();
     }
 
