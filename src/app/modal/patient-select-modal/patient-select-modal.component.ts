@@ -8,14 +8,14 @@ import {Patient} from '../../service/hospital.structure';
     styleUrls: ['./patient-select-modal.component.css']
 })
 export class PatientSelectModalComponent {
-    @Input() title;
+    @Input() title: string;
     patients: Patient[];
     patientSelected: Patient;
 
     constructor(public activeModal: NgbActiveModal) {
     }
 
-    onSelected(pid): void {
+    onSelected(pid: number): void {
         this.patients.map(patient => {
             if (patient.pid === pid) {
                 this.patientSelected = patient;

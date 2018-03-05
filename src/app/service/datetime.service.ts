@@ -17,7 +17,7 @@ export class DatetimeService {
         return prefix + ' ' + post;
     }
 
-    static FormatDate(date) {
+    static FormatDate(date: Date) {
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
         const day = date.getDate();

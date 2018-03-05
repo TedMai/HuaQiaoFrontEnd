@@ -35,7 +35,7 @@ export class VerificationCodeSampleComponent implements OnDestroy {
         }
     }
 
-    update(value): void {
+    update(value: string): void {
         this.phone = value;
     }
 

@@ -37,7 +37,7 @@ export class ThirdPartyService {
      * @param length
      * @returns {string}
      */
-    static getNonceStr(length): string {
+    static getNonceStr(length: number): string {
         let
             i,
             nonceStr = '';
