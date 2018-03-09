@@ -29,7 +29,6 @@ export class LoginService {
         loginModalRef.componentInstance.toLogin.subscribe(response => {
             this.hospitalService.login(response, 'unionLogin').subscribe(
                 result => {
-                    console.log(result);
                     if (result.code === 0) {
                         this.container.setUserID(result.msg.uid);
                         this.isLoggedIn = true;
@@ -43,6 +42,8 @@ export class LoginService {
                     } else {
                         // 弹出气泡提示
                         loginModalRef.componentInstance.message = '账号或者密码错误！';
+                        // 清空密码输入框
+                        loginModalRef.componentInstance.user.password = '';
                     }
                 }
             );

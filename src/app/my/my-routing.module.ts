@@ -14,24 +14,24 @@ const __MY_ROUTES__: Routes = [
     {
         path: 'my',
         component: MyProfileComponent,
-        canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard],
         children: [
             {
-                path: 'appointment/:uid',
+                path: 'appointment',
                 component: ListAppointmentComponent,
                 resolve: {
                     relativeAppointmentsResolver: RelativeAppointmentsResolver
                 }
             },
             {
-                path: 'mobile/:uid',
+                path: 'mobile',
                 component: MyMobileComponent,
                 resolve: {
                     myProfileResolver: MyProfileResolver
                 }
             },
             {
-                path: 'patients/:uid',
+                path: 'patients',
                 component: MyPatientsComponent,
                 resolve: {
                     relativePatientsResolver: RelativePatientsResolver

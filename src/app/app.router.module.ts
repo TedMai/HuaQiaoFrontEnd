@@ -14,7 +14,7 @@ import {DetailsAppointmentComponent} from './details/details-appointment/details
 
 import {AppointmentInitComponent} from './appointment/appointment-init/appointment-init.component';
 import {AppointmentCheckComponent} from './appointment/appointment-check/appointment-check.component';
-import {PageNotFoundComponent} from './widget/page-not-found/page-not-found.component';
+// import {PageNotFoundComponent} from './widget/page-not-found/page-not-found.component';
 
 import {AuthGuard} from './service/auth-guard.service';
 import {HospitalDetailResolver} from './service/resolver/hospital-detail.service';
@@ -105,11 +105,11 @@ const __ROUTES__: Routes = [
         path: '',
         redirectTo: '/details/hospital',
         pathMatch: 'full'
-    },
-    {
-        path: '**',
-        component: PageNotFoundComponent
     }
+    // {
+    //     path: '**',
+    //     component: PageNotFoundComponent
+    // }
 ];
 
 @NgModule({
